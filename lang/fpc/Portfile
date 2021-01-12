@@ -46,7 +46,7 @@ universal_variant   no
 set fpcbasepath     ${prefix}/libexec/${name}
 
 subport "chmcmd-${name}" {
-    revision        0
+    revision        1
 
     description     The FPC Pascal htmlhelp (CHM) compiler
     long_description \
@@ -83,7 +83,7 @@ subport "chmcmd-${name}" {
 }
 
 subport "${name}-cross" {
-    revision        0
+    revision        1
 
     description     FreePascal common cross-compiler binaries
     long_description \
@@ -116,7 +116,7 @@ subport "${name}-cross" {
 }
 
 if {${subport} eq "${name}"} {
-    revision            1
+    revision            2
 
     installs_libs       yes
 
@@ -130,6 +130,12 @@ if {${subport} eq "${name}"} {
             ${worksrcpath}/utils/tply/pyacc.y \
             ${worksrcpath}/utils/tply/pyacc.pas \
             ${worksrcpath}/utils/tply/plex.pas
+        # fix building of lazarus for building on macOS < 10.11, which do not have coreimage
+        # see here: https://wiki.freepascal.org/Cocoa_Interface#FPC_3.2.0_for_macOS_10.10_and_earlier
+        # fixed in the branch fixes-3.2. So, it can be probably be removed 
+        # with the next release
+        reinplace "s|{\$linkframework CoreImage}|{linkframework CoreImage}|g" \
+            ${worksrcpath}/packages/cocoaint/src/CocoaAll.pas
     }
 
     switch ${build_arch} {
