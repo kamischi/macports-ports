@@ -115,6 +115,8 @@ subport "${name}-cross" {
     }
 }
 
+# no need for bintuils i8086-embedded
+
 subport "${name}-cross-arm-wince" {
     revision                0
     worksrcdir              fpcbuild-${version}/fpcsrc
@@ -147,6 +149,7 @@ subport "${name}-cross-arm-wince" {
     }
 }
 
+# no need for binutils: embedded
 foreach ostarget {nativent win32 wince} {
     subport "${name}-cross-i386-$ostarget" {
         revision                0
@@ -181,6 +184,7 @@ foreach ostarget {nativent win32 wince} {
     }
 }
 
+# need binutils: embedded
 subport "${name}-cross-x86-64-win64" {
     revision                0
     worksrcdir              fpcbuild-${version}/fpcsrc
