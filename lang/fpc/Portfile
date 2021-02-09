@@ -115,10 +115,18 @@ subport "${name}-cross" {
     }
 }
 
-# no need for bintuils i8086-embedded
+# no need for binutils i8086-embedded
 
 subport "${name}-cross-arm-wince" {
+    PortGroup   obsolete 1.0
+    replaced_by arm-wince-${name}
+    revision    1
+    categories  lang cross
+}
+
+subport "arm-wince-${name}" {
     revision                0
+    categories              lang cross
     worksrcdir              fpcbuild-${version}/fpcsrc
     use_parallel_build      no
     use_configure           no
@@ -152,7 +160,15 @@ subport "${name}-cross-arm-wince" {
 # no need for binutils: embedded
 foreach ostarget {nativent win32 wince} {
     subport "${name}-cross-i386-$ostarget" {
+        PortGroup   obsolete 1.0
+        replaced_by i386-$ostarget-${name}
+        revision    1
+        categories  lang cross
+    }
+
+    subport "i386-$ostarget-${name}" {
         revision                0
+        categories              lang cross
         worksrcdir              fpcbuild-${version}/fpcsrc
         use_parallel_build      no
         use_configure           no
@@ -184,9 +200,17 @@ foreach ostarget {nativent win32 wince} {
     }
 }
 
-# need binutils: embedded
 subport "${name}-cross-x86-64-win64" {
+    PortGroup   obsolete 1.0
+    replaced_by x86_64-w64-${name}
+    revision    1
+    categories  lang cross
+}
+
+# need binutils: embedded
+subport "x86_64-w64-${name}" {
     revision                0
+    categories              lang cross
     worksrcdir              fpcbuild-${version}/fpcsrc
     use_parallel_build      no
     use_configure           no
