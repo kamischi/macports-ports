@@ -40,6 +40,9 @@ use_parallel_build  no
 
 extract.only        ${src}
 
+# should be fixed in 3.2.4
+patchfiles          aoptx86.pas.patch
+
 use_configure       no
 universal_variant   no
 
@@ -83,7 +86,7 @@ subport "chmcmd-${name}" {
 }
 
 subport "${name}-cross" {
-    revision        0
+    revision        1
 
     description     FreePascal common cross-compiler binaries
     long_description \
@@ -156,7 +159,7 @@ subport "${name}-cross-arm-wince" {
 
 foreach ostarget {nativent win32 wince} {
     subport "${name}-cross-i386-$ostarget" {
-        revision                0
+        revision                1
         worksrcdir              fpcbuild-${version}/fpcsrc
         use_parallel_build      no
         use_configure           no
@@ -189,7 +192,7 @@ foreach ostarget {nativent win32 wince} {
 }
 
 subport "${name}-cross-x86-64-win64" {
-    revision                0
+    revision                1
     worksrcdir              fpcbuild-${version}/fpcsrc
     use_parallel_build      no
     use_configure           no
@@ -221,7 +224,7 @@ subport "${name}-cross-x86-64-win64" {
 }
 
 if {${subport} eq "${name}"} {
-    revision            0
+    revision            1
 
     installs_libs       yes
 
