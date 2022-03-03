@@ -1,0 +1,68 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           cmake 1.1
+PortGroup           compilers 1.0
+
+github.setup        openmopac mopac 5e0a51b44e59a8d787187beeca131bd635a3903c
+checksums           rmd160  a42f1ef3b26109993a67b6624cfbe4ed14fb7a7a \
+                    sha256  5927e49d747b97a7955d46c28e77e4323968806fecc9ef713e395904e4a17cd8 \
+                    size    23083115
+version             2022-03-01-[string range ${github.version} 0 6]
+revision            0
+categories          science chemistry
+platforms           darwin
+license             LGPL-3
+maintainers         {@kamischi web.de:karl-michael.schindler} openmaintainer
+description         Semiempirical quantum chemistry program
+long_description    MOPAC (Molecular Orbital PACkage) is a semiempirical \
+                    quantum chemistry program based on Dewar and Thiel's \
+                    NDDO approximation
+homepage            https://openmopac.github.io
+
+compilers.choose    fc f90
+compilers.setup     require_fortran
+
+depends_lib-append  port:OpenBLAS
+
+#pre-configure {
+#    set libgfortran [exec ${configure.fc} --print-file-name libgfortran.dylib]
+#    configure.ldflags-append "-Wl,-rpath,[file dirname ${libgfortran}]"
+#}
+
+configure.fflags-append -O3
+
+post-build {
+    if { ${os.arch} eq "arm" } {
+        set libgfortran [glob -tails -directory ${prefix}/lib/libgcc libgfortran.*.dylib]
+        set libquadmath [glob -tails -directory ${prefix}/lib/libgcc libquadmath.*.dylib]
+#        system "echo 'hallo kms ${libgfortran}'"
+#        system "echo 'hallo kms ${libquadmath}'"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libgfortran} @rpath/libgcc/${libgfortran} mopac"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libquadmath} @rpath/libgcc/${libquadmath} mopac"
+#        system -W ${workpath}/build "otool -L mopac"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libgfortran} @rpath/libgcc/${libgfortran} param"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libquadmath} @rpath/libgcc/${libquadmath} param"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libgfortran} @rpath/libgcc/${libgfortran} libmopac.dylib"
+        system -W ${workpath}/build "install_name_tool -change @rpath/${libquadmath} @rpath/libgcc/${libquadmath} libmopac.dylib"
+
+    }
+}
+
+test.run            yes
+
+#pre-test {
+#    set worksrcdir  ${worksrcdir}/tests
+#}
+
+#test {
+#    system -W ${worksrcpath} "chmod -R a+rw ."
+#    system -W ${worksrcpath} "cmake . -DCOMPARATOR=ncc"
+#    # or AE, ncc, unspecified, old, diffpng
+#    system -W ${worksrcpath} "make -j"
+#    system -W ${worksrcpath} "${prefix}/bin/ctest -C Default --verbose"
+#    # or All, Default, Heavy, Examples
+#}
+
+github.livecheck.branch main
