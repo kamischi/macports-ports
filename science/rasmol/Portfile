@@ -1,8 +1,8 @@
 PortSystem 1.0
 
 name                rasmol
-version             2.7.4.2
-set releasedate     10Apr08
+version             2.7.5.2
+#set releasedate     13May2011
 description         Molecular graphics visualisation tool
 categories          science graphics chemistry
 platforms           darwin
@@ -10,23 +10,25 @@ maintainers         nomaintainer
 license             {GPL-2 RASLIC}
 homepage            http://www.rasmol.org/
 
-distname            RasMol_${version}
+distname            RasMol-${version}
 master_sites        ${homepage}software/ \
                     http://www.bernstein-plus-sons.com/software/
-checksums           md5 80e4514c2522101a65fa109b85f748d5 \
-                    sha1 2e8d15f430971379ad5d1930f3ecd4c0f7ede3f5 \
-                    rmd160 c8480e36ca758601cc2341049ff2ca72ee64c629
+checksums           md5     d075ba3eb81604ccf7c0bea2a0039b7b \
+                    sha1    3e2fe37a003a1d9f6a866e9a17cd0bf596c5f349 \
+                    rmd160  a680014832de3a5fb461683292ea2b0bed16fce6 \
+                    sha256  b975e6e69d5c6b161a81f04840945d2f220ac626245c61bcc6c56181b73a5718 \
+                    size    9768769
 
 depends_lib         port:xorg-libXi
 
-patchfiles          patch-Imakefile.diff \
-                    patch-rasmol.h.diff
+#patchfiles          patch-Imakefile.diff \
+patchfiles          patch-rasmol.h.diff
 
 post-patch {
-    reinplace "s|@PREFIX@|${prefix}|g" ${worksrcpath}/Imakefile
+    reinplace "s|\$(USRLIBDIR)|${prefix}/share|g" ${worksrcpath}/Imakefile
 }
 
-worksrcdir          ${distname}_${releasedate}/src
+worksrcdir          ${distname}/src
 use_xmkmf           yes
 build.target        rasmol
 destroot {
