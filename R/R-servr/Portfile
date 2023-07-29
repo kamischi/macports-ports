@@ -3,15 +3,15 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github yihui servr 0.25 v
+R.setup             github yihui servr 0.27 v
 revision            0
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             GPL-3
 description         Simple HTTP server to serve static files or dynamic documents
 long_description    {*}${description}
-checksums           rmd160  14d1a23e36a9cb1aea0f11934da095f5d388db53 \
-                    sha256  39ee183441dcbf41132c93d5b163e8bdc1903203a8cd4be067bc20f0e0229a73 \
-                    size    26357
+checksums           rmd160  8af63d340e07c77d89649ae91efffa0a3f29ccfb \
+                    sha256  f008e0beb0e34c70c841445baad55763f4b91267ae41cd69d8c0b46154532e6d \
+                    size    28542
 supported_archs     noarch
 
 depends_lib-append  port:R-httpuv \

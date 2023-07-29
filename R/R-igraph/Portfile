@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             cran igraph igraph 1.4.1
+R.setup             cran igraph igraph 1.5.0.1
 revision            0
 maintainers         {gmail.com:szhorvat @szhorvat} {@barracuda156 gmail.com:vital.had} openmaintainer
 license             GPL-2+
@@ -13,32 +13,34 @@ long_description    Routines for simple graphs and network analysis. \
                     for generating random and regular graphs, graph visualization, \
                     centrality methods and much more.
 homepage            https://igraph.org/r
-checksums           rmd160  c5398a24d41dd598ec82eabe2e35c4a4eff5919c \
-                    sha256  08a258f46ae87bcbe7f7cf47d46d2bbedb0663407921a30fc89892674b505df1 \
-                    size    2910158
+checksums           rmd160  1c55d0739c1b8006d691bb7d844e2ba799ca9c93 \
+                    sha256  a80a157ee290252f89c7c690654d82eadf72eba389d3100da26a5bf2eb0da3b4 \
+                    size    3314208
 
-depends_lib-append  port:glpk \
+depends_lib-append  path:lib/pkgconfig/icu-uc.pc:icu \
+                    port:glpk \
                     port:gmp \
                     port:libxml2 \
+                    port:R-cli \
+                    port:R-cpp11 \
                     port:R-magrittr \
                     port:R-pkgconfig \
                     port:R-rlang
 
 compilers.setup     require_fortran
 
-variant tests description "Enable tests" {
-    require_active_variants R tcltk
-    depends_test-append \
-                    port:R-ape \
+depends_test-append port:R-ape \
+                    port:R-callr \
+                    port:R-decor \
                     port:R-digest \
                     port:R-graph \
                     port:R-igraphdata \
                     port:R-knitr \
                     port:R-rgl \
+                    port:R-rmarkdown \
                     port:R-scales \
                     port:R-testthat \
-                    port:R-withr \
                     port:R-vdiffr \
-                    port:R-rmarkdown
-    test.run        yes
-}
+                    port:R-withr
+
+test.run            yes

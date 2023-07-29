@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyglet
-version             2.0.5
+version             2.0.8
 revision            0
 categories-append   devel graphics
 license             BSD
@@ -22,9 +22,9 @@ homepage            https://pyglet.readthedocs.org/
 
 use_zip             yes
 
-checksums           rmd160  713e3f3059aa2414b5d7a734d27614b2d7c5decb \
-                    sha256  c47ff4eded95104d030e0697eedd6082b61dc987460bbca83ec47b6e7cbfd38a \
-                    size    6492747
+checksums           rmd160  0604131fc96571c05adbfa4d9cc36f67f67e0df5 \
+                    sha256  c5cf9a132c1c01a67f54bf79f5a4cd8b4466d426f56852033078a3f67cd883c6 \
+                    size    6519613
 
 if {${name} ne ${subport}} {
     depends_build-append \

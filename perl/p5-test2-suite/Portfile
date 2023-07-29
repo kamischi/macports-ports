@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         Test2-Suite 0.000148 ../../authors/id/E/EX/EXODIST
+perl5.setup         Test2-Suite 0.000155 ../../authors/id/E/EX/EXODIST
 revision            0
 license             {Artistic-1 GPL}
 maintainers         nomaintainer
@@ -14,17 +14,14 @@ long_description    {*}${description}
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  8596d99f1c8b12f5becedb9305f36a9ccf826cb4 \
-                    sha256  f34ee1a147c11ac749101437f1b1e0dfe6752026df3d0a09a638b2e73d9de6a2 \
-                    size    235712
+checksums           rmd160  67f04adad941a9084a536291a1cef37a47b44409 \
+                    sha256  c78e6bc4d69bc097836976863382b52b9e0c31ee185066ce60c54bd74baad53d \
+                    size    243229
 
 if {${perl5.major} != ""} {
     depends_lib-append \
                     port:p${perl5.major}-data-dumper \
-                    port:p${perl5.major}-importer \
                     port:p${perl5.major}-module-pluggable \
-                    port:p${perl5.major}-scope-guard \
-                    port:p${perl5.major}-sub-info \
                     port:p${perl5.major}-term-table \
                     port:p${perl5.major}-test-simple \
                     port:p${perl5.major}-time-hires

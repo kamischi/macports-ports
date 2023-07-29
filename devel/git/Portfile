@@ -10,7 +10,7 @@ legacysupport.newest_darwin_requires_legacy 10
 name                git
 # NOTE: Update the DEVEL version first before updating this RELEASE version,
 #       to verify that the intended version builds on all platforms.
-version             2.40.0
+version             2.41.0
 revision            0
 
 description         A fast version control system
@@ -22,7 +22,7 @@ long_description    Git is a fast, scalable, distributed open source version \
 subport ${name}-devel {
     PortGroup           github  1.0
 
-    github.setup        git git 2.40.0 v
+    github.setup        git git 2.41.0 v
     github.tarball_from archive
 
     description     \
@@ -57,13 +57,13 @@ if {${name} eq ${subport}} {
                     git-manpages-${version}${extract.suffix}
 
     checksums       git-${version}${extract.suffix} \
-                    rmd160  14c277d36a9dad067062275aa77d75280bb76781 \
-                    sha256  b17a598fbf58729ef13b577465eb93b2d484df1201518b708b5044ff623bf46d \
-                    size    7183692 \
+                    rmd160  e984285a4c9d4b883095f57f4aa18f1eb9eb6aaa \
+                    sha256  e748bafd424cfe80b212cbc6f1bbccc3a47d4862fb1eb7988877750478568040 \
+                    size    7273624 \
                     git-manpages-${version}${extract.suffix} \
-                    rmd160  0066433ef53b2454892727e2df5c37d68ed563e1 \
-                    sha256  5766aecf137370015e3fd72e355b83c73dc2aa2ee14a42546049346442c3356e \
-                    size    562824
+                    rmd160  14c8dd2a0de9eaaf83288f84cd794b4f19568e26 \
+                    sha256  bc7a4c944492c76fc3cd766ce22e826d0241e43792c611d4fdc068e0df545877 \
+                    size    565060
 
     extract.only    git-${version}${extract.suffix} \
                     git-manpages-${version}${extract.suffix}
@@ -76,9 +76,9 @@ if {${name} eq ${subport}} {
     # DEVELOPMENT VERSION
 
     checksums       ${distname}${extract.suffix} \
-                    rmd160  c75b602e363eae59cd068f1a9f9752bde731459a \
-                    sha256  d46fa859fe1e89b479e3e29c6e65d7c3c26a48f3c08f1e2e5a5ced04155b4f86 \
-                    size    10601526
+                    rmd160  176350ba830625db1995f2cf7b6bd0a738b2ea93 \
+                    sha256  4f0b74bbde2800b00d3a50a7f389bcf1d59f1265b6986c00048d8ba4892ab01a \
+                    size    10804275
 
     depends_build-append \
                     port:asciidoc \
@@ -255,9 +255,9 @@ variant doc description {Install HTML and plaintext documentation} {
         # RELEASE
         distfiles-append    git-htmldocs-${version}${extract.suffix}
         checksums-append    git-htmldocs-${version}${extract.suffix} \
-                            rmd160  fab989a73b05e03e139adb17e2bf1dfb6d82b097 \
-                            sha256  3da9fbe542e7d565b4168ea15872e8e1b13324e4bb5ab65604ca9a333dfe37bb \
-                            size    1517292
+                            rmd160  d0fd291528d2b4973247876fe76cb4bdb2f2ebf1 \
+                            sha256  0cb2d4a09270eede7c1b686e2dfeac9bffef9e42c117a7e120f3cbb3e665d286 \
+                            size    1525692
 
         patchfiles-append   patch-git-subtree.html.diff
 

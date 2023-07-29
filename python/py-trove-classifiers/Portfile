@@ -4,21 +4,21 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-trove-classifiers
-version             2023.2.20
+version             2023.7.6
 revision            0
 
 supported_archs     noarch
 platforms           {darwin any}
 license             Apache-2
-maintainers         nomaintainer
+maintainers         {mps @Schamschula} openmaintainer
 
 description         Canonical source for classifiers on PyPI (pypi.org).
 long_description    {*}${description}
 homepage            https://github.com/pypa/trove-classifiers
 
-checksums           rmd160  4657df0eaf8fc121efc8ecb9f09db9452ca58551 \
-                    sha256  860b0c0d8c9e0d32629ca5ef137ea1e637580b634b74ba40e1539fd34464c0f5 \
-                    size    15788
+checksums           rmd160  3c9dcd2c51bd21b49b1d792fc0fb9800c8569e5b \
+                    sha256  8a8e168b51d20fed607043831d37632bb50919d1c80a64e0f1393744691a8b22 \
+                    size    15844
 
 python.versions     37 38 39 310 311
 

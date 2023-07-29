@@ -3,16 +3,17 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             cran strengejacke ggeffects 1.1.5
+# Revert to GitHub once updated there.
+R.setup             cran strengejacke ggeffects 1.2.3
 revision            0
-maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
+maintainers         nomaintainer
 license             GPL-3
 description         Create tidy data frames of marginal effects for ggplot from model outputs.
 long_description    {*}${description}
 homepage            https://strengejacke.github.io/ggeffects
-checksums           rmd160  ae4140f47cfc30ba26fc6091cd4acdf916907803 \
-                    sha256  d75766ac7f05ea377651c096b3eb7d4308701d8babcf8fa4b23fac742aa1cf5b \
-                    size    235901
+checksums           rmd160  737b0dbbe42df859a3a0ab75ec740feba2ec6ba7 \
+                    sha256  13a6eef6d4a9a1a78af7aa47c9575ec11781affd6cfedceb60fada80456ca98e \
+                    size    284143
 supported_archs     noarch
 
 depends_lib-append  port:R-insight

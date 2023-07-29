@@ -103,15 +103,16 @@ if {$subport eq $name || $subport eq "emacs-app"} {
 if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
     PortGroup       github 1.0
 
-    github.setup    emacs-mirror emacs 5ff018524c740c77215ddb5d5983dbfcadb05599
+    github.setup    emacs-mirror emacs 89558533683a100ca7946c4a35bf4ef50463efef
     epoch           5
-    version         20230308
+    version         20230725
+    revision        1
 
     master_sites    ${github.master_sites}
 
-    checksums       rmd160  724779db748bc38491686c94865bf59a2bde874c \
-                    sha256  532fdcc0a6182ed7574367040eea080fe309525ac2c022d7719cbedf12935e16 \
-                    size    47021753
+    checksums       rmd160  0833ee02135a0fb1a84885cbb3d32da114940109 \
+                    sha256  815333b399dd6978c28bfd80828a086dcf54ed2266ea3a3ef8d73707b25749e1 \
+                    size    48420650
 
     configure.args-append \
         --with-sqlite3 \
@@ -133,6 +134,7 @@ if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
         configure.args-append   --with-tree-sitter
         depends_lib-append  port:tree-sitter
         depends_run-append  port:tree-sitter-typescript \
+            port:tree-sitter-javascript \
             port:tree-sitter-tsx \
             port:tree-sitter-c \
             port:tree-sitter-cpp \
@@ -150,7 +152,9 @@ if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
             port:tree-sitter-yaml \
             port:tree-sitter-rust \
             port:tree-sitter-ruby \
-            port:tree-sitter-html
+            port:tree-sitter-html \
+            port:tree-sitter-heex \
+            port:tree-sitter-elixir
     }
 
     default_variants-append +treesitter

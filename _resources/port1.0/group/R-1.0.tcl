@@ -6,7 +6,6 @@
 # PortGroup         R 1.0
 
 PortGroup           active_variants 1.1
-PortGroup           compiler_blacklist_versions 1.0
 PortGroup           compilers 1.0
 
 # For packages from CRAN and Bioconductor R.author can be set to anything;
@@ -33,6 +32,14 @@ proc R.setup {domain author package version {R_tag_prefix ""} {R_tag_suffix ""}}
             homepage        https://cran.r-project.org/package=${R.package}
             master_sites    https://cran.r-project.org/src/contrib \
                             https://cran.r-project.org/src/contrib/Archive/${R.package}
+            distname        ${R.package}_${version}
+            worksrcdir      ${R.package}
+            livecheck.type  regex
+            livecheck.regex [quotemeta ${R.package}]_(\[0-9.\]+).tar.gz
+        }
+        r-universe {
+            homepage        https://${R.author}.r-universe.dev
+            master_sites    https://${R.author}.r-universe.dev/src/contrib
             distname        ${R.package}_${version}
             worksrcdir      ${R.package}
             livecheck.type  regex
@@ -66,6 +73,13 @@ compiler.cxx_standard       2011
 
 # Avoid Apple clangs:
 compiler.blacklist-append   {clang}
+# Blacklist macports-clang-16+. See discussion in
+#   https://trac.macports.org/ticket/67144
+# for rationale. The decision when to migrate to a new compiler is then in the
+# hands of the R maintainers and will not change from the current defaults when
+# these get bumped centrally.
+# NOTE : Keep this setting in sync with the one in the R port.
+compiler.blacklist-append   {macports-clang-1[6-9]}
 
 port::register_callback R.add_dependencies
 
@@ -118,7 +132,7 @@ if {${os.platform} eq "darwin" && (${build_arch} in [list ppc ppc64])} {
 
 global prefix frameworks_dir
 # Please update R version here:
-set Rversion        4.2.2
+set Rversion        4.3.0
 set branch          [join [lrange [split ${Rversion} .] 0 1] .]
 set packages        ${frameworks_dir}/R.framework/Versions/${branch}/Resources/library
 set suffix          .tar.gz

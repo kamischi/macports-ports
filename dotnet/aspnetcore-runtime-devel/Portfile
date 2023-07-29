@@ -4,7 +4,8 @@ PortSystem          1.0
 
 name                aspnetcore-runtime-devel
 set main_version    8.0.0
-set patch_version   2.23153.2
+# See patch version in https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+set patch_version   6.23329.11
 version             ${main_version}-preview.${patch_version}
 revision            0
 categories          dotnet
@@ -28,15 +29,15 @@ supported_archs     x86_64 arm64
 switch ${build_arch} {
     x86_64 {
         distname            aspnetcore-runtime-${version}-osx-x64
-        checksums           rmd160  77a7d483bc1e8147eebc3597da060c3f731e0dc4 \
-                            sha256  df17962d1628ac79927e83a282462c6314ff505c2d26598202cd0a1512af50a8 \
-                            size    39435098
+        checksums           rmd160  28f3098321109fb523cc9188b5f0ab466a28bbe0 \
+                            sha256  204873bb32ea59db016567b42411831592223d5612a8f21e7b5160c2ed978d12 \
+                            size    40723447
     }
     arm64 {
         distname            aspnetcore-runtime-${version}-osx-arm64
-        checksums           rmd160  c1b8385243e14bc40c3417f4c9ed5e1e43a89fbd \
-                            sha256  946e616d9318da0dcf224a5f40757be40fb5e44c18019efcde0a02cd65ae9099 \
-                            size    37713632
+        checksums           rmd160  84d72ed31be4ee0e20db77b5d5311fb884073b66 \
+                            sha256  8bca58b79bb8478a3cf2065415a40d6627e575f6aa5372c27440e11cf1605636 \
+                            size    38821846
     }
     default {
         known_fail yes

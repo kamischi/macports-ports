@@ -3,8 +3,8 @@
 PortSystem          1.0
 
 name                memesuite
-version             5.5.1
-revision            0
+version             5.5.3
+revision            1
 categories          science biology
 platforms           darwin linux
 license             Noncommercial
@@ -20,9 +20,9 @@ homepage            https://meme-suite.org
 master_sites        ${homepage}/meme/meme-software/${version}
 distname            meme-${version}
 
-checksums           rmd160  e5f56d338b3b69257c03edbe2f34cea7b6e04577 \
-                    sha256  d7369cb01b55db477b7f73be1cf431d1ae86e92f14786e9891b9a9dff2b0975a \
-                    size    52798604
+checksums           rmd160  1d55ffa9c20678b5887ec1d26635bfb82a4a9e2c \
+                    sha256  203abf6d89da15f346e6cbf25795fb0659020755df54e8b4b69cb0d4e636e8a1 \
+                    size    53706468
 
 set perl_vers       5.34
 set py_vers         3.11

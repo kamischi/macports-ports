@@ -12,12 +12,12 @@ legacysupport.newest_darwin_requires_legacy 9
 name                dav1d
 # Please increase the revision of libheif, ffmpeg and ffmpeg-devel whenever
 # dav1d's version is updated.
-version             1.1.0
+version             1.2.1
 revision            0
 
-checksums           rmd160  9382c5e587344d61d476adf5e9c19146449c3644 \
-                    sha256  78bb25ebb67097df93d62c30975a1973fa2679cfd04ccbbf3ed222f0a7105353 \
-                    size    994928
+checksums           rmd160  c0314f7d9ef03b20fd3af06e76b526bf2f5e336e \
+                    sha256  6ed7a7f0e050b28beeb6b0f17fc834703f99fa95d3dd296e86b69226c1856f70 \
+                    size    1018903
 
 categories          multimedia
 license             BSD

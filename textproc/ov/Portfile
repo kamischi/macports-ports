@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/noborus/ov 0.15.0 v
+go.setup            github.com/noborus/ov 0.31.0 v
 github.tarball_from archive
 revision            0
 
@@ -18,9 +18,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  301b33cca2ee0c61db0875033b34c1db7ec2d3d3 \
-                    sha256  a4466d51c68bf4296e77139677af6b0fd53ffcd2887173865bb4d05511b0e9ad \
-                    size    609035
+checksums           rmd160  281a716230c7c5351381e0c01ceb6ab5d89cccd4 \
+                    sha256  47c4ef2631812bf101f48296db2aa1826f9a756ef7f4345705480a1e04980561 \
+                    size    3411774
 
 # Enable fetching deps at build time
 build.env-delete    GO111MODULE=off GOPROXY=off

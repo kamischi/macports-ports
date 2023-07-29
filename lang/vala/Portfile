@@ -3,19 +3,13 @@
 PortSystem          1.0
 
 name                vala
-set my_name         vala
 conflicts           vala-devel
-version             0.56.4
+set my_name         vala
+version             0.56.9
 revision            0
 
-checksums           rmd160  fc76ffaa4c14454521470035b72b9f0339dfff1f \
-                    sha256  862c41d938543ed3d8d86c8219a61087797193defee8da0c50caf49993c66b6a \
-                    size    3978480
-
 categories          lang
-platforms           darwin
 license             LGPL-2.1+
-
 maintainers         {mascguy @mascguy} openmaintainer
 
 description         Compiler for the GObject type system
@@ -23,7 +17,6 @@ long_description    Vala is a new programming language that aims to bring modern
                     language features to GNOME developers without imposing any additional \
                     runtime requirements and without using a different ABI compared to \
                     applications and libraries written in C.
-
 homepage            https://wiki.gnome.org/Projects/Vala
 
 set branch          [join [lrange [split ${version} .] 0 1] .]
@@ -32,18 +25,33 @@ dist_subdir         ${my_name}
 distname            ${my_name}-${version}
 use_xz              yes
 
-depends_build       port:pkgconfig \
+checksums           rmd160  282e16d4930ca60b0862fac2210aba116658bc93 \
+                    sha256  55578c7c4f067ace028e541806af240f8084cb6ff0cc554caa8ac08cbf8bce2f \
+                    size    3996196
+
+depends_build-append \
                     port:bison \
                     port:flex \
                     port:gettext \
                     port:help2man \
-                    port:libxslt
+                    port:libxslt \
+                    port:pkgconfig
 
-depends_lib         path:lib/pkgconfig/glib-2.0.pc:glib2 \
-                    path:bin/dot:graphviz \
-                    port:gettext-runtime
+depends_lib-append \
+                    port:gettext-runtime \
+                    path:lib/pkgconfig/glib-2.0.pc:glib2
 
-configure.args      --disable-silent-rules
+configure.args-append \
+                    --disable-silent-rules \
+                    --disable-valadoc
+
+variant docs description {Install documentation} {
+    depends_build-append \
+                    path:bin/dot:graphviz
+
+    configure.args-delete \
+                    --disable-valadoc
+}
 
 test.run            yes
 

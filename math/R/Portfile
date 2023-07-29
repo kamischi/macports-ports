@@ -9,7 +9,7 @@ PortGroup legacysupport 1.1
 name                        R
 # Remember to set revision to 0 when bumping version
 # And also to update Rversion in R PortGroup
-version                     4.2.3
+version                     4.3.1
 revision                    0
 
 set branch                  [join [lrange [split ${version} .] 0 1] .]
@@ -32,15 +32,28 @@ homepage                    https://www.r-project.org/
 master_sites                https://cran.rstudio.com/src/base/R-4/ \
                             https://cran.r-project.org/src/base/R-4/
 
-checksums                   rmd160  c46686207d55e9f6fcd52049a8f1b7c542ad0483 \
-                            sha256  55e4a9a6d43be314e2c03d0266a6fa5444afdce50b303bfc3b82b3979516e074 \
-                            size    34010655
+checksums                   rmd160  cf8c659211eee877966308890a7125e41c39b82c \
+                            sha256  8dd0bf24f1023c6f618c3b317383d291b4a494f40d73b983ac22ffea99e4ba99 \
+                            size    34899964
 
 # Avoid Apple clangs:
 compiler.blacklist-append   {clang}
+# Blacklist macports-clang-16+. See discussion in
+#   https://trac.macports.org/ticket/67144
+# for rationale. The decision when to migrate to a new compiler is then in the
+# hands of the R maintainers and will not change from the current defaults when
+# these get bumped centrally.
+# NOTE : Keep this setting in sync with the one in the R portgroup.
+compiler.blacklist-append   {macports-clang-1[6-9]}
 
 compilers.choose            fc f77
 compilers.setup             require_fortran
+
+# https://trac.macports.org/ticket/67298
+# See related: https://skia.googlesource.com/skia/+/3490263287e9432119c501884e45840de4d986bc
+if {${os.platform} eq "darwin" && ${os.major} < 11} {
+    patchfiles-append       patch-fix-10.6.diff
+}
 
 # We wanna ensure the same compiler is used for R itself and R packages.
 # See R PortGroup.
@@ -174,7 +187,7 @@ variant builtin_lapack conflicts accelerate atlas openblas description {build us
 }
 
 variant openblas conflicts builtin_lapack accelerate atlas description {build using the BLAS and Lapack in the OpenBLAS port} {
-    depends_lib-append      port:OpenBLAS
+    depends_lib-append      path:lib/libopenblas.dylib:OpenBLAS
     configure.args-delete   --enable-BLAS-shlib
     configure.args-append   --with-blas="-L${prefix}/lib -lopenblas" --with-lapack
 }
@@ -256,7 +269,7 @@ variant java description {enable Java} {
     configure.args-replace --disable-java --enable-java
 }
 
-default_variants +cairo +recommended +openmp
+default_variants +cairo +tcltk +recommended +openmp
 
 if {![variant_isset quartz]} {
     default_variants-append +x11
@@ -282,7 +295,7 @@ test.target                 check
 destroot.destdir prefix=${destroot}${frameworks_dir}
 
 post-destroot {
-    copy ${destroot}${frameworks_dir}/lib/pkgconfig/libR.pc ${destroot}${prefix}/lib/pkgconfig/libR.pc
+    copy ${destroot}${frameworks_dir}/R.framework/Resources/lib/pkgconfig/libR.pc ${destroot}${prefix}/lib/pkgconfig/libR.pc
 
     foreach v { "rhome" "rincludedir" } {
         reinplace "s|${v}=${destroot}|${v}=|" "${destroot}${prefix}/lib/pkgconfig/libR.pc"

@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           cmake 1.1
 
-github.setup        shlomif fortune-mod 3.14.1 fortune-mod-
+github.setup        shlomif fortune-mod 3.20.0 fortune-mod-
 github.tarball_from releases
 conflicts           fortune
 
@@ -20,9 +20,9 @@ long_description    Implementation of the Unix fortune command for displaying \
 
 depends_lib         port:recode
 
-checksums           rmd160  b6beb446a046726f88291b4652761426a82d16d0 \
-                    sha256  367023f5db01d5952e4e6d96f263dd2b6875e43b6ba3cbdee9cfad3e8294b17b \
-                    size    1428956
+checksums           rmd160  540198dd238431bfaa2a16e911abbbf991b4e575 \
+                    sha256  3101be95fb89c4848d483e72930da8d03f6925737a23d78803d6b55c42fe2094 \
+                    size    1472864
 
 use_xz              yes
 

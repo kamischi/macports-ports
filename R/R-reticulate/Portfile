@@ -3,16 +3,18 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github rstudio reticulate 1.28 v
+# Revert to GitHub once updated there.
+R.setup             cran rstudio reticulate 1.30
 revision            0
 categories-append   python
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             Apache-2
 description         Interface to Python
 long_description    {*}${description}
-checksums           rmd160  dc2128ca41a03b7f9f3b130df44902de507fa285 \
-                    sha256  7fe66f0061abeafaa26dbef45e835920d76a62ae623db34cd08a3af8d0466f34 \
-                    size    1859852
+homepage            https://rstudio.github.io/reticulate
+checksums           rmd160  fa2967e927e0b2541f94af30eb3118db1f93a9ae \
+                    sha256  ee8f8a3a90fa49faf802c345a23e103d897e40dadc5ec75bfb13ce06576017df \
+                    size    1571754
 
 set py_ver          3.11
 set py_ver_nodot    [string map {. {}} ${py_ver}]
@@ -24,11 +26,14 @@ depends_lib-append  port:R-here \
                     port:R-rappdirs \
                     port:R-Rcpp \
                     port:R-RcppTOML \
+                    port:R-rlang \
                     port:R-withr
 
 depends_test-append port:R-callr \
+                    port:R-cli \
+                    port:R-glue \
                     port:R-knitr \
-                    port:R-rlang \
+                    port:R-pillar \
                     port:R-rmarkdown \
                     port:R-testthat
 

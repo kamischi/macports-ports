@@ -4,7 +4,8 @@ PortSystem          1.0
 
 name                dotnet-runtime-devel
 set main_version    8.0.0
-set patch_version   2.23128.3
+# See patch version in https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+set patch_version   6.23329.7
 version             ${main_version}-preview.${patch_version}
 revision            0
 categories          dotnet
@@ -27,15 +28,15 @@ supported_archs     x86_64 arm64
 switch ${build_arch} {
     x86_64 {
         distname            dotnet-runtime-${version}-osx-x64
-        checksums           rmd160  7dfb2c3d5408c07a5017f86389714b2fcedd8849 \
-                            sha256  2de893ac3ca63ed01815a67cee609d79fbb4d85f718d692b96800aec09107d24 \
-                            size    29838701
+        checksums           rmd160  7b61acf0e1a9c38ab1d1379a8ebe87ace914e42a \
+                            sha256  3c5256ad903d08099e2e807980ea708ce311ce05becbd890ef9c897fd4a3d6ae \
+                            size    30555333
     }
     arm64 {
         distname            dotnet-runtime-${version}-osx-arm64
-        checksums           rmd160  36a0bc89dd4992625b4c155fbec16c0f88cb98fc \
-                            sha256  9f43601d6e84f1cf5126ba93d10df97fb53193d0b022a039b5197ac74a12d896 \
-                            size    28339404
+        checksums           rmd160  f59249af46d822715b2217a6c2b2b4a40f89bf40 \
+                            sha256  46696796a4c2424e08473f308f8071794d8b26ecf9dc7b780d81d7f8fc561227 \
+                            size    28910668
     }
     default {
         known_fail yes

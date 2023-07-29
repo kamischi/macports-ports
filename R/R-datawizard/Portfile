@@ -3,16 +3,48 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github easystats datawizard 0.6.5 v
+# GitHub version lags behind.
+R.setup             cran easystats datawizard 0.8.0
 revision            0
 categories-append   math
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
-license             GPL-3
+license             GPL-3+
 description         Easy data wrangling and statistical transformations
 long_description    {*}${description}
-checksums           rmd160  b339be95cd7e8b38d5c05c9e4618021b04abddf6 \
-                    sha256  9a0b3530bc869ad77f8f19f86684279b85c8c73e06c6fac36baa111c79409346 \
-                    size    671143
+homepage            https://easystats.github.io/datawizard
+checksums           rmd160  6ca261a067f0dea9c345cf1e61a9c6948f98a772 \
+                    sha256  13a3ed4f36157b18955dcbcb5a1f81a0d913349312cd44141f0afde16a3d22a2 \
+                    size    512813
 supported_archs     noarch
 
 depends_lib-append  port:R-insight
+
+depends_test-append port:R-bayestestR \
+                    port:R-brms \
+                    port:R-data.table \
+                    port:R-dplyr \
+                    port:R-effectsize \
+                    port:R-gamm4 \
+                    port:R-ggplot2 \
+                    port:R-gt \
+                    port:R-haven \
+                    port:R-htmltools \
+                    port:R-httr \
+                    port:R-knitr \
+                    port:R-lme4 \
+                    port:R-mediation \
+                    port:R-parameters \
+                    port:R-poorman \
+                    port:R-psych \
+                    port:R-readxl \
+                    port:R-readr \
+                    port:R-rio \
+                    port:R-rmarkdown \
+                    port:R-rstanarm \
+                    port:R-see \
+                    port:R-testthat \
+                    port:R-tibble \
+                    port:R-tidyr \
+                    port:R-withr
+
+test.run            yes

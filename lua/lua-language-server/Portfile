@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
-github.setup        LuaLS lua-language-server 3.6.17
+github.setup        LuaLS lua-language-server 3.6.25
 github.tarball_from releases
 revision            0
 
@@ -19,26 +19,28 @@ use_zip             yes
 extract.mkdir       yes
 distname            ${name}-${version}-submodules
 
-checksums           rmd160  d39ac069eb0ae9f486aae8d869ee4ebc7b45f06a \
-                    sha256  3b305a17b885fbbf405eb029907984e86e0be0491f5ef94cb2778300120ed7ea \
-                    size    30696826
+checksums           rmd160  17426de3bac50bc3c203e58e020a2ed869418ed5 \
+                    sha256  0808ac7a3e35a246260a2818844093e5fcf7e0cc89744780f37dc26b82fff12c \
+                    size    31287196
 
-depends_build       port:ninja
-use_configure       no
+depends_build       port:luamake
 compiler.c_standard 2011
 compiler.cxx_standard 2017
+
+configure {
+    # see https://trac.macports.org/wiki/UsingTheRightCompiler
+    set makefile    [open "${worksrcpath}/make.lua" "a"]
+    puts $makefile  ""
+    puts $makefile  "lm.cc = '${configure.cc}'"
+    close $makefile
+}
 
 pre-build {
     copy ${filespath}/wrapper ${worksrcpath}
     reinplace "s,@@PREFIX@@,${prefix},g" ${worksrcpath}/wrapper
-    reinplace "s,cc = clang,cc = ${configure.cc},g" \
-        ${worksrcpath}/3rd/luamake/compile/ninja/macos.ninja
-
-    system -W ${worksrcpath} "${prefix}/bin/ninja -C 3rd/luamake -f \
-        compile/ninja/macos.ninja"
 }
 
-build.cmd ${worksrcpath}/3rd/luamake/luamake rebuild
+build.cmd ${prefix}/bin/luamake rebuild
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/wrapper ${destroot}${prefix}/bin/${name}

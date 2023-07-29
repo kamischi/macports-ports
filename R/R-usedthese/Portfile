@@ -3,29 +3,28 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github cgoo4 usedthese 0.3.1 v
+# GitHub version lags behind.
+R.setup             cran cgoo4 usedthese 0.3.3
 revision            0
 categories-append   devel
-maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
+maintainers         nomaintainer
 license             MIT
 description         Summarises package & function usage
 long_description    {*}${description}
 homepage            https://cgoo4.github.io/usedthese
-checksums           rmd160  6189801c2850d8bd88a650ccf5157354a71bc4b0 \
-                    sha256  d7fe08c90a4cc0187fbd03d1501d2cc71ec7eaa0dcb0759b78ecbc40da6ac132 \
-                    size    3945061
+checksums           rmd160  419f51b8bb756fa1ac09db3c78cf1b9b756d228a \
+                    sha256  bd4d0aee63d77f94e6a8d6070f42ac231243b2f36c6f212a5470cf0e31972d3b \
+                    size    93211
 supported_archs     noarch
 
 depends_lib-append  port:R-conflicted \
                     port:R-dplyr \
                     port:R-highr \
-                    port:R-httr \
                     port:R-kableExtra \
                     port:R-knitr \
                     port:R-purrr \
                     port:R-readr \
                     port:R-rlang \
-                    port:R-rvest \
                     port:R-stringr \
                     port:R-tibble \
                     port:R-tidyr \
@@ -33,7 +32,9 @@ depends_lib-append  port:R-conflicted \
                     port:R-withr
 
 depends_test-append port:R-covr \
+                    port:R-httr \
                     port:R-rmarkdown \
+                    port:R-rvest \
                     port:R-spelling \
                     port:R-testthat \
                     port:R-tsibble \

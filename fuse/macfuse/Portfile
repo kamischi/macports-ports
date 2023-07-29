@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        osxfuse osxfuse 4.4.2 macfuse-
+github.setup        osxfuse osxfuse 4.5.0 macfuse-
 revision            0
 name                macfuse
 conflicts           osxfuse
@@ -24,9 +24,9 @@ github.tarball_from releases
 distname            ${name}-${version}
 use_dmg             yes
 
-checksums           rmd160  b0ef99c4b404bd71e51ae67d1f2f2914d2aa965f \
-                    sha256  0e59f6cc796cd69fbc5779bc5b5081f7cd8e41beecc75c02fc0d2ccb8758b9cb \
-                    size    5970709
+checksums           rmd160  ff3fbf4c08e6cbadfc25304e481daa0c90d62ebb \
+                    sha256  9df7257315a9b9a97a9ba3a76011cabed7bc3784515b69fa098f8d81efec726d \
+                    size    5974209
 
 if {${os.platform} eq "darwin" && ${os.major} < 16} {
     known_fail yes

@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                openvpn2
-version             2.6.0
+version             2.6.5
 revision            0
 distname            openvpn-${version}
 categories          net security
@@ -20,9 +20,9 @@ long_description    \
 homepage            https://openvpn.net
 master_sites        https://swupdate.openvpn.net/community/releases/
 
-checksums           rmd160  de39325f7b682b23892d161fd23e5f00ff3afd65 \
-                    sha256  ebec933263c9850ef6f7ce125e2f22214be60b1cbb8ccff18892643fe083ae8f \
-                    size    1840792
+checksums           rmd160  581c7463377c45c619517ded45d6e523d3f67cda \
+                    sha256  e34efdb9a3789a760cfc91d57349dfb1e31da169c98c06cb490c6a8a015638e2 \
+                    size    1862799
 
 depends_build       port:pkgconfig
 depends_lib         port:lzo2 \

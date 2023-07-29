@@ -3,18 +3,32 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             cran cran multcomp 1.4-23
+R.setup             cran r-forge multcomp 1.4-25
 revision            0
 categories-append   math
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             GPL-2
 description         Simultaneous inference in general parametric models
 long_description    {*}${description}
-checksums           rmd160  b5339ef2e8504af90669be2fe630efe1d9c1b44e \
-                    sha256  425154a58bd8f2dbaff5d16e97b03473cbc0d571b1c2e4dd66a13c6d20a8cde1 \
-                    size    614387
+checksums           rmd160  9c5860f1819e9bb97ca8dd276ca8c419109433c5 \
+                    sha256  9dfa7821a699e7b6fc99f2b8bf6bc5fecf6e3d83ece814882b5c8ed8faffd282 \
+                    size    613666
 supported_archs     noarch
 
 depends_lib-append  port:R-mvtnorm \
                     port:R-sandwich \
                     port:R-TH.data
+
+depends_test-append port:R-coin \
+                    port:R-coxme \
+                    port:R-fixest \
+                    port:R-glmmTMB \
+                    port:R-lme4 \
+                    port:R-lmtest \
+                    port:R-ISwR \
+                    port:R-robustbase \
+                    port:R-SimComp \
+                    port:R-tram \
+                    port:R-xtable
+
+test.run            yes

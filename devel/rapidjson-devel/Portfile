@@ -4,14 +4,14 @@ PortSystem                      1.0
 PortGroup                       github 1.0
 PortGroup                       cmake 1.1
 
-github.setup                    Tencent rapidjson 012be8528783cdbf4b7a9e64f78bd8f056b97e24
-version                         20230112
+github.setup                    Tencent rapidjson a95e013b97ca6523f32da23f5095fcc9dd6067e5
+version                         20230717
 revision                        0
 name                            rapidjson-devel
 
-checksums                       rmd160  dab3323f98ab4f1cab778eb3ef0a69fa3b3f4685 \
-                                sha256  1e242ca6cb5ae1ee0cf85802606638d04ec7ba90cf983a1295e2631856ead256 \
-                                size    1115362
+checksums                       rmd160  0850c4ca38eb2dcf064fa66baa329a3c601114ec \
+                                sha256  2fa6cafe6123ea4f4b5f6297cffd46139b76e37da160e171d8d0f194625a9481 \
+                                size    1115591
 
 license                         MIT
 categories                      devel
@@ -70,9 +70,11 @@ post-destroot {
 
 variant tests description {Build and run unit tests} {
     # https://github.com/Tencent/rapidjson/issues/2118
-    # depends_build-append        port:gtest
-    # configure.args-append       -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=ON \
-    #                             -DGTEST_SOURCE_DIR=${prefix}/src/googletest
+    compiler.cxx_standard       2014
+    patchfiles-append           patch-fix-cxx-standard.diff
+    depends_build-append        port:gtest
+    configure.args-append       -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=ON \
+                                -DGTEST_SOURCE_DIR=${prefix}/src/googletest
     configure.args-replace      -DRAPIDJSON_BUILD_TESTS=OFF -DRAPIDJSON_BUILD_TESTS=ON
     test.run                    yes
 }

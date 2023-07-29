@@ -4,12 +4,13 @@ PortSystem          1.0
 PortGroup           cmake 1.1
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
+PortGroup           compiler_blacklist_versions 1.0
 
 # MAP_ANONYMOUS
 legacysupport.newest_darwin_requires_legacy 14
 
 # Ports that depend on this port must be revbump after update.
-github.setup        abseil abseil-cpp 20230125.1
+github.setup        abseil abseil-cpp 20230125.3
 name                abseil
 revision            0
 categories          devel
@@ -23,9 +24,9 @@ long_description    Abseil is an open-source collection of C++ library \
                     Google's own C++ code base, has been extensively \
                     tested and used in production.
 
-checksums           rmd160  3ef33acc751a2fc335359c1b92a3d4fe8eb748db \
-                    sha256  2cbe8aca130e2f380d09c72e257e373cc73ee8719c1ee6c493fce091babf40ed \
-                    size    2119666
+checksums           rmd160  18ea059168c7f8b5dbaeea433e71c57e9644b157 \
+                    sha256  0195e85f858b38f4563a6f2912e30bfc45dfad4815fbf97d273ed1cae9bbca94 \
+                    size    2119590
 
 patchfiles          patch-remove-Xarch-from-pkg-config.diff
 
@@ -43,6 +44,12 @@ platform darwin {
 github.livecheck.regex  {([0-9.]+)}
 
 compiler.cxx_standard   2014
+
+# https://trac.macports.org/ticket/67553
+# error: default initialization of an object of const type 'const absl::lts_20230125::Condition'
+#   without a user-provided default constructo
+compiler.blacklist-append \
+                    {clang < 900}
 
 configure.args-append \
                     -DBUILD_SHARED_LIBS=ON \

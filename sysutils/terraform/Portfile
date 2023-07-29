@@ -15,7 +15,7 @@ maintainers             {emcrisostomo @emcrisostomo} \
                         openmaintainer
 
 # *NOTE* Remember to update `latestVersion` on a version upgrade.
-set latestVersion       terraform-1.4
+set latestVersion       terraform-1.5
 
 set armAvailable        no
 set customDistSubDir    yes
@@ -35,20 +35,38 @@ proc terraformDistBase {} {
     return ${name}_[terraformVersion]_darwin
 }
 
-subport terraform-1.4 {
-    set patchNumber     2
+subport terraform-1.5 {
+    set patchNumber     4
     revision            0
 
     set armAvailable    yes
 
     checksums           [terraformDistBase]_amd64.zip \
-                        rmd160  c9b553909ea9c73ff08951bc1b07547e3e83a91c \
-                        sha256  c218a6c0ef6692b25af16995c8c7bdf6739e9638fef9235c6aced3cd84afaf66 \
-                        size    22030042 \
+                        rmd160  b5644d503f706897855a906aed8df6fafab6ed71 \
+                        sha256  27aca7551143d98be83b780fa0040b359c43a6704bdd49514ea582d942752718 \
+                        size    22256529 \
                         [terraformDistBase]_arm64.zip \
-                        rmd160  b2bb5b69ca9f7790005f7a760c8465f5d35269a0 \
-                        sha256  af8ff7576c8fc41496fdf97e9199b00d8d81729a6a0e821eaf4dfd08aa763540 \
-                        size    20588400
+                        rmd160  f0f368fc6fee565ba038979607fc0a80d2468b13 \
+                        sha256  6d68b0e1c0eab5f525f395ddaee360e2eccddff49c2af37d132e8c045b5001c5 \
+                        size    20786134
+
+    set customDistSubDir no
+}
+
+subport terraform-1.4 {
+    set patchNumber     6
+    revision            0
+
+    set armAvailable    yes
+
+    checksums           [terraformDistBase]_amd64.zip \
+                        rmd160  769eb093caebb50fffaee0f824580fd6ffd2332d \
+                        sha256  5d8332994b86411b049391d31ad1a0785dfb470db8b9c50617de28ddb5d1f25d \
+                        size    22051279 \
+                        [terraformDistBase]_arm64.zip \
+                        rmd160  ff4e4ddd2bf37638228ac0da9836f27f9a7ac0f0 \
+                        sha256  30a2f87298ff9f299452119bd14afaa8d5b000c572f62fa64baf432e35d9dec1 \
+                        size    20613318
 
     set customDistSubDir no
 }
@@ -165,7 +183,7 @@ if {${subport} eq ${name}} {
     PortGroup           obsolete 1.0
 
     replaced_by         ${latestVersion}
-    version             1.4.2
+    version             1.5.4
     revision            0
 
 } elseif {${subport} eq "terraform_select"} {

@@ -5,7 +5,7 @@ PortGroup       compiler_blacklist_versions 1.0
 PortGroup       github    1.0
 PortGroup       perl5     1.0
 
-github.setup    timescale timescaledb 2.10.1
+github.setup    timescale timescaledb 2.11.1
 revision        0
 license         Apache-2
 description     A time-series database that integrates with PostreSQL.
@@ -23,9 +23,9 @@ long_description \
                 as well as full SQL support. TimescaleDB is packaged \
                 as a PostgreSQL extension.
 
-checksums       rmd160  acbb37f7787fe2f73ef0a4cc9697d22bf26972ea \
-                sha256  bbb66d3602b8427c850a678ebf579ae3e172414575c344593ae4ca3dd43627eb \
-                size    7418909
+checksums       rmd160  8424abd558ac6a2e21855bff22dcb5f25734f70c \
+                sha256  a1e156e56511f019e3ad45ea2cde0519753613dba8da138e00b014ed77793d27 \
+                size    7725042
 
 depends_build   path:bin/cmake:cmake \
                 port:perl${perl5.major} \
@@ -77,6 +77,7 @@ configure.pre_args
 # binaries may be built that are licensed under the Timescale License
 # (TSL). See https://github.com/timescale/timescaledb#timescaledb and
 # https://github.com/timescale/timescaledb/blob/master/tsl/LICENSE-TIMESCALE.
+# However, using +timescale_license will enable Timescale License'd code.
 #
 # -DLINTER=off: see https://github.com/timescale/timescaledb/issues/2889
 configure.args          -DAPACHE_ONLY=1 \
@@ -86,3 +87,8 @@ configure.args          -DAPACHE_ONLY=1 \
 build.dir               ${worksrcpath}/build
 
 github.livecheck.regex  {([0-9.]+)}
+
+variant timescale_license description {Enable Timescale License code, license will be Timescale License} {
+    configure.args-delete   -DAPACHE_ONLY=1
+    license                 {Timescale License}
+}

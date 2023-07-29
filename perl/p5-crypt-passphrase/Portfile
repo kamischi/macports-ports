@@ -4,19 +4,20 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         Crypt-Passphrase 0.010
+perl5.setup         Crypt-Passphrase 0.016
 revision            0
 license             {Artistic-1 GPL}
 maintainers         nomaintainer
+homepage            https://metacpan.org/dist/${perl5.module}
 description         Crypt::Passphrase - A module for managing passwords in a cryptographically agile manner
 long_description    {*}${description}
 
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  a4520107b2c6fe295aa87e3177436387cb0d9a17 \
-                    sha256  a9718f5091a030a8762fc10e7cd3f023b5a4a3415eab9e3434cf283f4a1ac6f2 \
-                    size    17631
+checksums           rmd160  6541979136adbd5cbeede0cdb85261d64c0f575d \
+                    sha256  4ceb4f8b54ac33f3d81c9ab47ae4cfa1e8c36f3849efa821703c9c307e3a4fc7 \
+                    size    22855
 
 if {${perl5.major} != ""} {
     depends_build-append \
@@ -27,6 +28,7 @@ if {${perl5.major} != ""} {
                     port:p${perl5.major}-digest-md5 \
                     port:p${perl5.major}-digest-sha \
                     port:p${perl5.major}-encode \
+                    port:p${perl5.major}-mime-base64 \
                     port:p${perl5.major}-scalar-list-utils \
                     port:p${perl5.major}-unicode-normalize
 }

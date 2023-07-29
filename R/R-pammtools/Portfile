@@ -3,7 +3,8 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github adibender pammtools 0.5.8 v.
+# GitHub version lags behind.
+R.setup             cran adibender pammtools 0.5.92
 revision            0
 categories-append   math
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
@@ -11,9 +12,9 @@ license             MIT
 description         Piece-wise exponential additive mixed modeling tools for survival analysis
 long_description    {*}${description}
 homepage            https://adibender.github.io/pammtools
-checksums           rmd160  b2900eca891198982c07d6632bf63868e8a94b0f \
-                    sha256  26e55f853b1b855b2124c1b7eda25f8286ded839552a7fc17ee8508d4d044f9c \
-                    size    424764
+checksums           rmd160  06a33ea4d71f86d7f4850e8bef2fa6ecd45ae1ad \
+                    sha256  ccf9d930521af76d441d82bf08b89e125f237f81df1f50a8152c13c9bf73e401 \
+                    size    386791
 supported_archs     noarch
 
 depends_lib-append  port:R-checkmate \

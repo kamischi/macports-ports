@@ -3,22 +3,24 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             cran rstudio rmarkdown 2.20
+R.setup             cran rstudio rmarkdown 2.23
 revision            0
-maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
+maintainers         nomaintainer
 license             GPL-3
 description         Dynamic documents for R
 long_description    Convert R Markdown documents into a variety of formats.
-checksums           rmd160  6ebf127ebbc7c5da00a7ad3b3225308f33476e5b \
-                    sha256  d7f7059bfcb43e4b92432d69ba0e0c74ad10a20f153689262a3e848adb60159d \
-                    size    3243512
+homepage            https://pkgs.rstudio.com/rmarkdown
+checksums           rmd160  651887f6c3bb74564e28262f7c779809c9f76021 \
+                    sha256  668d086f0ca597ef6f665b471f19b176be45971828b74ec8c25c3a46947bc825 \
+                    size    2184675
 supported_archs     noarch
 
 depends_lib-append  port:R-bslib \
                     port:R-evaluate \
+                    port:R-fontawesome \
                     port:R-htmltools \
-                    port:R-jsonlite \
                     port:R-jquerylib \
+                    port:R-jsonlite \
                     port:R-knitr \
                     port:R-stringr \
                     port:R-tinytex \
@@ -28,7 +30,8 @@ depends_lib-append  port:R-bslib \
 # Remove a test dependency that requires NodeJS:
 patchfiles          patch-no-katex.diff
 
-depends_test-append port:R-digest \
+depends_test-append port:R-cleanrmd \
+                    port:R-digest \
                     port:R-downlit \
                     port:R-dygraphs \
                     port:R-fs \

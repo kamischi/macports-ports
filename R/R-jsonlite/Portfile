@@ -3,23 +3,23 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github jeroen jsonlite 1.8.4 v
+# Revert to GitHub once updated there.
+R.setup             cran jeroen jsonlite 1.8.7
 revision            0
 categories-append   devel
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             MIT
 description         Robust, high-performance JSON parser and generator for R
 long_description    {*}${description}
-checksums           rmd160  1e4bf2e718ad5b79dcb16eada2d87b0c0ee7c523 \
-                    sha256  439db7ccf9041d55664695c19a39ae7e6cb76389e904aca6755189961c0b36c0 \
-                    size    898184
-
-patchfiles          patch-no-sf.diff
+checksums           rmd160  f440246e754a40230fa116c9433efa6f8775bfae \
+                    sha256  7d42b7784b72d728698ea02b97818df51e2015ffa39fec2eaa2400771b0f601c \
+                    size    1053075
 
 depends_test-append port:R-httr \
                     port:R-knitr \
                     port:R-R.rsp \
                     port:R-rmarkdown \
+                    port:R-sf \
                     port:R-testthat \
                     port:R-vctrs
 

@@ -5,11 +5,11 @@ PortGroup           active_variants 1.1
 PortGroup           conflicts_build 1.0
 
 name                magic
-version             8.3.381
+version             8.3.417
 revision            0
-checksums           rmd160  1526f6b12d060110ff7abae8ba59accbe8d2ad92 \
-                    sha256  9492a478a10552fce069c9a6e5611a13a5af980a7e413a4f235d28415a4dcf27 \
-                    size    4210365
+checksums           rmd160  9634f4c18a285b826b0d898d21bdf33b3c91435f \
+                    sha256  2086a7eb64df26cb0928547a3947e26fd1a5484e3eecb1965e0a7bf9c4c54232 \
+                    size    4218752
 
 set branch          [join [lrange [split ${version} .] 0 1] .]
 categories          science
@@ -35,7 +35,11 @@ depends_lib         port:blt \
                     port:libGLU \
                     port:mesa \
                     port:tcl \
-                    port:tk
+                    port:tk \
+                    port:xorg-libice \
+                    port:xorg-libXi \
+                    port:xorg-libXmu \
+                    port:zlib
 
 require_active_variants tk x11
 
@@ -47,9 +51,9 @@ configure.dir       ${worksrcpath}/scripts
 
 if {${os.platform} eq "darwin" && ${os.major} < 19} {
     depends_build-append \
-                    port:python310
+                    port:python311
     configure.args-append \
-                    ac_cv_path_PYTHON3=${prefix}/bin/python3.10
+                    ac_cv_path_PYTHON3=${prefix}/bin/python3.11
 } else {
     configure.args-append \
                     ac_cv_path_PYTHON3=/usr/bin/python3

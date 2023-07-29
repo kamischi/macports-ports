@@ -3,7 +3,8 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github r-lib testthat 3.1.7 v
+# Revert to GitHub once updated there.
+R.setup             cran r-lib testthat 3.1.10
 revision            0
 categories-append   devel
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
@@ -11,9 +12,9 @@ license             MIT
 description         Unit Testing for R
 long_description    {*}${description}
 homepage            https://testthat.r-lib.org
-checksums           rmd160  d2ac8cac5488f1b0be2e177beceab51572d07d57 \
-                    sha256  6deca3afd6a517bb29e92bac13f6d690249ad88f7d18b703b6c9c3d4fc785046 \
-                    size    516295
+checksums           rmd160  7eb359e113b822094a9d0c45d3451c8a731018c0 \
+                    sha256  3135085d04ef76d2e000dddb7100a9708b27c1fbf4f33b51301f72b07b0608f6 \
+                    size    737357
 
 depends_lib-append  port:R-brio \
                     port:R-callr \
@@ -38,7 +39,6 @@ depends_test-append port:R-covr \
                     port:R-curl \
                     port:R-diffviewer \
                     port:R-knitr \
-                    port:R-mockery \
                     port:R-rmarkdown \
                     port:R-rstudioapi \
                     port:R-shiny \

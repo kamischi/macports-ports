@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-pyqt5-scintilla
 python.rootname     QScintilla
-version             2.13.4
+version             2.14.1
 revision            0
 
 categories-append   devel
@@ -19,11 +19,12 @@ long_description    QScintilla is a port to Qt of the Scintilla programmers edit
 
 homepage            https://www.riverbankcomputing.com/software/qscintilla
 
-checksums           rmd160  900d94afa1e56b4ee92dbd4e503c55a51c3d1d5b \
-                    sha256  3568da2f029a2d5d2f40603d7cc6869ecffc9bdd4a53a805adb0cec6cb734150 \
-                    size    1762526
+checksums           rmd160  4ca3029ab9123c75125efa982249af7934e61899 \
+                    sha256  2c120a56d60363ff4bc73b8a763dc69fae5f84681c24efcb03064c7df103052b \
+                    size    1775505
 
 python.versions     37 38 39 310 311
+python.pep517       no
 
 # these Python versions require an older qscintilla-qt5 version
 conflicts           py27-qscintilla-qt5 py35-qscintilla-qt5

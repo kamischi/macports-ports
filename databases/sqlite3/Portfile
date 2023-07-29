@@ -5,7 +5,7 @@ PortGroup           clang_dependency 1.0
 
 name                sqlite3
 # don't forget to update the checksums for sqlite3-tools when updating sqlite3
-version             3.41.1
+version             3.42.0
 revision            0
 categories          databases
 platforms           darwin
@@ -29,9 +29,9 @@ master_sites        ${homepage}2023
 set padded_ver      [string range [subst [regsub -all {\.([0-9]+)} "${version}.0.0" {[format %02d \1]}]] 0 6]
 distname            sqlite-autoconf-${padded_ver}
 
-checksums           rmd160  dd10990543d3bd0313f2c5d0e609fd252f4704d3 \
-                    sha256  4dadfbeab9f8e16c695d4fbbc51c16b2f77fb97ff4c1c3d139919dfc038c9e33 \
-                    size    3125153
+checksums           rmd160  0752db046501ef367a3661e0d80f553000c3670f \
+                    sha256  7abcfd161c6e2742ca5c6c0895d1f853c940f203304a0b49da4e1eca5d088ca6 \
+                    size    3148813
 
 depends_lib         port:libedit \
                     port:ncurses \
@@ -103,9 +103,11 @@ subport ${name}-tcl {
 
     configure.cppflags-prepend  -I${worksrcpath}
 
-    if {${build_arch} eq "i386"} {
-        patch.dir   ${configure.dir}
-        patchfiles  patch-tea-configure.diff
+    platform darwin {
+        if {${os.major} < 11} {
+            patch.dir   ${configure.dir}
+            patchfiles  patch-tea-configure.diff
+        }
     }
 }
 
@@ -117,9 +119,9 @@ subport ${name}-tools {
     long_description        {*}${description}, including the sqldiff program and the \
                             sqlite3_analyzer program.
 
-    checksums       rmd160  9d98cc96ec9071bcdfdb0f457326c6e4bd5dc7bb \
-                    sha256  db929012f9009e7f07960e7f017e832d8789a29f4b203071b4fd79229e7d7a20 \
-                    size    13833820
+    checksums       rmd160  3112097fb7741dd0edce73bd88b9ba90e317b767 \
+                    sha256  38ca56a317be37fb00bd92bc280d9b9209bd4008b297d483c41ec1f6079bfb6d \
+                    size    13910252
 
     use_zip                 yes
     depends_lib             port:tcl \

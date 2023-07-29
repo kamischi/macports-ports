@@ -7,7 +7,7 @@ PortGroup           openssl 1.0
 
 github.setup        arxanas git-branchless 0.7.1 v
 github.tarball_from archive
-revision            0
+revision            1
 
 description         A suite of advanced tools for Git, such as `git undo`, \
                     and `git sl` (smartlog)
@@ -29,7 +29,7 @@ checksums           ${distname}${extract.suffix} \
                     sha256  d1e0e4196ba063a55b1c436a65e7ebba46ce6f6cfc3d2adc41e7c25a1bf3b7c6 \
                     size    442420
 
-depends_lib-append  port:libgit2 \
+depends_lib-append  path:lib/pkgconfig/libgit2.pc:libgit2 \
                     port:zlib
 
 destroot {

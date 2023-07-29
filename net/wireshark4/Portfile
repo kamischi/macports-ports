@@ -30,12 +30,12 @@ if { ${os.platform} eq "darwin" && ${os.major} < 16 } {
     }
 }
 
-version         4.0.4
+version         4.0.6
 revision        0
 
-checksums       sha256  a4a09f6564f00639036ffe5064ac4dc2176adfa3e484c539c9c73f835436e74b \
-                sha1    ae3c28d6966c420ee3a8d058ea212a1b6adab50f \
-                size    41399396
+checksums       sha256  0079097a1b17ebc7250a73563f984c13327dac5016b7d53165810fbcca4bd884 \
+                sha1    a60b6f8063df2a711932ba869ae86e6476087cf0 \
+                size    41583088
 
 livecheck.type  regex
 livecheck.url   ${homepage}download.html
@@ -180,10 +180,10 @@ foreach py_ver_nodot ${pythons_suffixes} {
         break
     }
 }
-## if no python3* variant is specified, add +python310
+## if no python3* variant is specified, add +python311
 ## XYZZY: it would be better to detect which python3* is already installed and use that...
 if {!${python_isset}} {
-    default_variants-append +python310
+    default_variants-append +python311
 }
 
 

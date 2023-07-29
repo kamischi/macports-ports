@@ -3,11 +3,11 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        erlang rebar3 3.19.0
+github.setup        erlang rebar3 3.22.0
 revision            0
-checksums           rmd160  d8d2e0a8ac802b07758591458994bcd968a039bf \
-                    sha256  ff9ef42c737480477ebdf0dd9d95ece534a14c96f05edafbf32e9af973280bc3 \
-                    size    442286
+checksums           rmd160  5e95b67b72da12cb401b321e23ea643199729af7 \
+                    sha256  28b256038b445ec818d2cc33000b3217f42a946219ede55ab5970503bfcf6647 \
+                    size    797341
 
 categories          erlang devel
 maintainers         {ciserlohn @ci42}

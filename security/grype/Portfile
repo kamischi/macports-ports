@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/anchore/grype 0.59.1 v
+go.setup            github.com/anchore/grype 0.64.2 v
 github.tarball_from archive
 revision            0
 
@@ -21,19 +21,20 @@ license             Apache-2
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  1d5e444e997e2eab4b865bfd7e7b76fd6ddde6dc \
-                    sha256  bc0dee99d31aca6289c41a86fb12810449a51fe213a0c5f158c999be45761f93 \
-                    size    1021093
+fetch.type          git
+
+depends_build-append \
+                    port:goreleaser
 
 build.env-delete    GO111MODULE=off GOPROXY=off
 
-build.pre_args-append \
-    -ldflags \" -w -s \
-    -X ${go.package}/internal/version.version=${github.tag_prefix}${version} \
-    \"
-
-build.args-append   -o ./bin/${name}
+build {
+    system -W ${worksrcpath} \
+        "goreleaser build --single-target --id=darwin-build --skip-post-hooks"
+}
 
 destroot {
-    xinstall -m 0755 ${worksrcpath}/bin/${name} ${destroot}${prefix}/bin/
+    xinstall -m 0755 \
+        {*}[glob ${worksrcpath}/dist/*darwin*/${name}] \
+        ${destroot}${prefix}/bin/
 }

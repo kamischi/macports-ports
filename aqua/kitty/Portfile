@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        kovidgoyal kitty 0.27.1 v
+github.setup        kovidgoyal kitty 0.29.2 v
 github.tarball_from releases
 revision            0
 
@@ -20,9 +20,9 @@ homepage            https://sw.kovidgoyal.net/kitty/
 use_xz              yes
 
 checksums           ${distfiles} \
-                    rmd160  94a3357cddb9d209d6af0858757c376a45709567 \
-                    sha256  e57672c5ba1973be139548eb772ff13d79c29b0ed67cbbe4418c87b6f1b1a901 \
-                    size    5045588
+                    rmd160  9e2c9899fad64a66dfa11aa485fd847f69e50860 \
+                    sha256  6995fbc142657ad62dadbd3b4ccd51d9d44aac7de0cc3e8ea4d6a657dda611f6 \
+                    size    7809388
 
 if {${os.major} <= 15} {
     # See https://github.com/kovidgoyal/kitty/issues/2700
@@ -44,7 +44,7 @@ if {${os.major} <= 15} {
 patchfiles-append   patch-kitty-no-deprecated-declarations.diff
 
 python.default_version \
-                    310
+                    311
 
 depends_build-append \
                     path:lib/pkgconfig/librsvg-2.0.pc:librsvg \

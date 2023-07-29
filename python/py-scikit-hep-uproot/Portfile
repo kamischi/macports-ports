@@ -6,12 +6,12 @@ PortGroup           github           1.0
 
 name                py-scikit-hep-uproot
 
-github.setup        scikit-hep uproot5 5.0.4 v
+github.setup        scikit-hep uproot5 5.0.8 v
 revision            0
 
-checksums           rmd160  e901625fee16ee0d9c34b71652af5212036be99b \
-                    sha256  cc4e2630c687a188c36e4223e4a2701efd799fafa317aba936cca28bdf75e6e8 \
-                    size    890740
+checksums           rmd160  c95a484a8e7840300266ac401caa5673593f18d5 \
+                    sha256  6bbb0ba2e22ec204c75e3d003cdbdd580c37dac962160a3b16809abd8279e733 \
+                    size    896744
 
 license             BSD
 platforms           {darwin any}

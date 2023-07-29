@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                homebank
-version             5.6.2
+version             5.6.5
 revision            0
 categories          x11 finance
 license             GPL-2+
@@ -20,9 +20,9 @@ long_description    HomeBank is the free software you have always wanted to \
 homepage            http://homebank.free.fr/
 master_sites        ${homepage}public/sources/
 
-checksums           rmd160  c3837942fc3aee328ae0174a18953bd1dd01acbf \
-                    sha256  12ebde58e04d3c18496f95496067c4e8841b0d111668d1f47c239292b15316f1 \
-                    size    3370041
+checksums           rmd160  5c7f51107723393e9d3c8afb2021be4dc5e3ec50 \
+                    sha256  b5494dfcf87d7a8572696a2afa2a04496ba79e3857cd3e3b18ac03bd1b6d2ca8 \
+                    size    3399365
 
 depends_build       port:intltool \
                     port:pkgconfig

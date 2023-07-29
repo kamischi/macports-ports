@@ -3,16 +3,16 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github tidyverse googlesheets4 1.0.1 v
+R.setup             github tidyverse googlesheets4 1.1.1 v
 revision            0
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             MIT
 description         Access Google Sheets using the Sheets API V4
 long_description    {*}${description}
 homepage            https://googlesheets4.tidyverse.org
-checksums           rmd160  c202e8bc692e889ef03183de9cc9d4a7b23a5fe4 \
-                    sha256  e750c6036d8c97f9b6f979f37dfef7bfe9dd646a8f4e5aff71783cbe521eb1c4 \
-                    size    1957452
+checksums           rmd160  c87110bdc39945bc568003872d0b0a3d3f1ce9b6 \
+                    sha256  8182dde24ed10dc1b5fbaf8c7d7baaa6c7c9f389fa1fe3355080aeb6ca93e83f \
+                    size    2034708
 supported_archs     noarch
 
 depends_lib-append  port:R-cellranger \
@@ -23,9 +23,18 @@ depends_lib-append  port:R-cellranger \
                     port:R-googledrive \
                     port:R-httr \
                     port:R-ids \
+                    port:R-lifecycle \
                     port:R-magrittr \
                     port:R-purrr \
                     port:R-rematch2 \
                     port:R-rlang \
                     port:R-tibble \
-                    port:R-vctrs
+                    port:R-vctrs \
+                    port:R-withr
+
+depends_test-append port:R-readr \
+                    port:R-rmarkdown \
+                    port:R-spelling \
+                    port:R-testthat
+
+test.run            yes

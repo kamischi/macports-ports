@@ -45,7 +45,7 @@ compiler.cxx_standard 2014
 
 if {${subport} eq ${name}} {
     version         2.24.1
-    revision        0
+    revision        1
     conflicts       lilypond-devel
     checksums       rmd160  cceaf4ae4909d106086ae40e41de61c4f1ae59c2 \
                     sha256  d5c59087564a5cd6f08a52ba80e7d6509b91c585e44385dcc0fa39265d181509 \
@@ -53,12 +53,12 @@ if {${subport} eq ${name}} {
 
     set livecheck_url "source.html"
 } else {
-    version         2.25.1
-    revision        0
+    version         2.25.6
+    revision        1
     conflicts       lilypond
-    checksums       rmd160  38811d48e09a14b4bb3a5ae543fb20262d1181fe \
-                    sha256  0dc858fb8f9b588bd365be2ff6afdf02a4ad91bb311e1bedcb77aeaf4645615b \
-                    size    19699372
+    checksums       rmd160  e0ac58f99bab3c45b1fb9aadf37e62fe92fed438 \
+                    sha256  6ae0e401225082ae3e61cea316f27cad4bd544c9fa9ddaf609deb2ccaef98ab9 \
+                    size    18974080
 
     set livecheck_url "development.html"
 }
@@ -212,7 +212,6 @@ post-patch {
         s|/usr/bin/(env\\\ )?python3?|${configure.python}|g \
         scripts/auxiliar/check_texi_refs.py \
         scripts/auxiliar/check_translation.py \
-        scripts/auxiliar/tely-gettext.py \
         scripts/auxiliar/texi-langutils.py \
         scripts/auxiliar/update-snippets.py
 

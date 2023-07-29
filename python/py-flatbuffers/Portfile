@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-flatbuffers
-version             23.3.3
+version             23.5.26
 revision            0
 license             Apache-2
 platforms           darwin linux
@@ -19,9 +19,9 @@ homepage            https://google.github.io/flatbuffers/
 
 python.versions     37 38 39 310 311
 
-checksums           rmd160  ae7aabbd62a3deac36cded6580888968c3c84b41 \
-                    sha256  cabd87c4882f37840f6081f094b2c5bc28cefc2a6357732746936d055ab45c3d \
-                    size    22111
+checksums           rmd160  2fb80007f288cb1343130e32a1d948414a48c2bc \
+                    sha256  9ea1144cac05ce5d86e2859f431c6cd5e66cd9c78c558317c7955fb8d4c78d89 \
+                    size    22114
 
 if {${name} ne ${subport}} {
     depends_build-append \

@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           conflicts_build 1.0
 PortGroup           github 1.0
 
-github.setup        radareorg radare2 5.8.4
+github.setup        radareorg radare2 5.8.8
 revision            0
 categories          devel
 platforms           darwin
@@ -21,9 +21,9 @@ depends_lib         port:capstone \
                     port:libzip
 conflicts_build     ${name}
 
-checksums           rmd160  aed8f1cd2a0cb1191c23ef3c8990e908c5adbd9b \
-                    sha256  dc5d7db416463534136f00ed0492f6afbbb3d64cc6f8781390f282d2a20519aa \
-                    size    11079760
+checksums           rmd160  2f061dd251521ddac5363dad5597b933e247b75b \
+                    sha256  5010f5d971bc8b175a79e6728d6f449ef9bb54764df4e7ebacd8d1dd40138444 \
+                    size    11168695
 
 configure.args-append \
                     --with-syscapstone \

@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/tektoncd/cli 0.29.1 v
+go.setup            github.com/tektoncd/cli 0.31.1 v
 github.tarball_from archive
 name                tektoncd-cli
 revision            0
@@ -23,9 +23,9 @@ license             Apache-2
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  8f493849e0d82f2f9c8d789b43b9694294b9d828 \
-                    sha256  87ae43221a3d8adcd32791a71867e27622b7ef672b8bdb463244b9bf80fd3e22 \
-                    size    22583610
+checksums           rmd160  034235b52e73bf67bf8a6204b95d64a5ac825f23 \
+                    sha256  883c0d979511f8cb895743eb0105558762930cd6b2454bf332120883e76d9889 \
+                    size    19439142
 
 patch {
     # Comment out build commands for Linux and Windows

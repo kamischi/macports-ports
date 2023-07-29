@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           octave 1.0
 
-version             2.0.10
-revision            1
+version             2.1.0
+revision            0
 github.setup        AndreasStahel FEMoctave ${version} v
 octave.setup        femoctave ${version}
 license             GPL-3+
@@ -13,6 +13,6 @@ maintainers         {mps @Schamschula} openmaintainer
 description         Use FEM for solving boundary value problems in two space dimensions.
 long_description    {*}${description}
 
-checksums           rmd160  a7aeafd20387162296b7d275c7d65f0c15fe67b0 \
-                    sha256  3bfa501cb9f61fb49cf149e31eb2a6d9df609a2377aabe5ab94e87fcf662ac5d \
-                    size    30938016
+checksums           rmd160  0cada7f44a32dd22245b5428b0f5c876a5fa00af \
+                    sha256  bd514214ff988477f69331dccc067eca483c0c8e7d43855d6de0304e8649d6b4 \
+                    size    36829717

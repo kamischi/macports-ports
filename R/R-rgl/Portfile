@@ -3,16 +3,18 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github dmurdoch rgl 1.0.1 v
+# Revert to GitHub once updated there.
+R.setup             cran dmurdoch rgl 1.2.1
 revision            0
+categories-append   graphics
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             {GPL-2 GPL-3}
 description         3D visualization using OpenGL
 long_description    {*}${description}
 homepage            https://dmurdoch.github.io/rgl
-checksums           rmd160  817308e036cb2b5fff7b06c6b9cf414765d71e8e \
-                    sha256  dd3ff27de9816b61fa5406b161ce438eb03b289545a3f5e7475a118da99dc5a4 \
-                    size    2024218
+checksums           rmd160  00683a2075306d67a7bf56e84aec20c1154e7ff4 \
+                    sha256  d12a3f35527f260f8d393ae842c7705df5656669a72907f78aa64a363c6dcb9b \
+                    size    2557027
 
 depends_build-append \
                     port:pkgconfig

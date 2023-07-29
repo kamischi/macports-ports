@@ -4,9 +4,10 @@ PortSystem      1.0
 
 PortGroup       github 1.0
 PortGroup       cmake 1.1
+PortGroup       legacysupport 1.1
 PortGroup       compiler_blacklist_versions 1.0
 
-github.setup    ihhub fheroes2 1.0.2
+github.setup    ihhub fheroes2 1.0.6
 
 categories      games
 platforms       darwin
@@ -19,9 +20,9 @@ long_description \
 
 homepage        https://ihhub.github.io/fheroes2/
 
-checksums       rmd160  2a5fe0b2d9652548579d167fc688f238e3e4f494 \
-                sha256  d4b6e918e0f6c9602799e76501ca0585417be737585ced0e4cafa3d9dd142a18 \
-                size    11230627
+checksums       rmd160  f6560a581c0b26b00ce334deb80c4b69b812fd5b \
+                sha256  97a77a59bbfd6bf6d54de59a8948bbd2f60fa16c036c1fbf91b52381faef5ae1 \
+                size    11611188
 
 depends_build-append \
                 port:gettext
@@ -39,6 +40,15 @@ compiler.thread_local_storage \
                 yes
 compiler.blacklist-append \
                 {clang < 900}
+
+# On macOS < 10.15 built-in libc++ has no support for std::filesystem
+legacysupport.newest_darwin_requires_legacy \
+                18
+# GCC can be enforced instead of Clang
+if {[string match *clang* ${configure.compiler}]} {
+    legacysupport.use_mp_libcxx \
+                yes
+}
 
 post-destroot {
     copy ${destroot}${prefix}/share/doc/fheroes2/demo/download_demo_version.sh ${destroot}${prefix}/bin/fheroes2-install-demo

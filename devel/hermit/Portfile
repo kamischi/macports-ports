@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/cashapp/hermit 0.34.1 v
+go.setup            github.com/cashapp/hermit 0.37.0 v
 github.tarball_from archive
 revision            0
 
@@ -23,9 +23,9 @@ license             Apache-2
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  215ed29aeec26e8b78c97c6e8ee4b46cc29b0475 \
-                    sha256  6bf08dcb3f4a0a71505237913a34c6f215e004b02f55a44ba7d26c9179baca54 \
-                    size    1166608
+checksums           rmd160  df3129014b4a3459a84e817d0542826f79f00e25 \
+                    sha256  b04358caa1f6c33cb8d6f2b53541537057ce249489b5349f327323e8f46ae443 \
+                    size    1166407
 
 build.env-delete    GO111MODULE=off GOPROXY=off
 

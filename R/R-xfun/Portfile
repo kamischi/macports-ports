@@ -3,24 +3,23 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github yihui xfun 0.37 v
-revision            0
+# GitHub version lags behind.
+R.setup             cran yihui xfun 0.39
+revision            1
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             BSD
 description         Miscellaneous R functions
 long_description    {*}${description}
 homepage            https://yihui.org/xfun
-checksums           rmd160  5a006e5c79af0359bf6b937a4cfd31e65aef072b \
-                    sha256  4a7cde761c4ef078aacf045168f5d67ca46cbdde070da6acee24a4648c0bb2ad \
-                    size    111345
-
-# For now, remove a heavy dependency on R-magick:
-patchfiles          patch-no-magick.diff
+checksums           rmd160  74bc35b1c78c6f31c5ac7981f6d5387e549280d0 \
+                    sha256  d0ecaabb243dd3496da6029932fcdd4772914843de7ffd0b78a172efde1356c9 \
+                    size    135480
 
 depends_test-append port:R-curl \
                     port:R-htmltools \
                     port:R-jsonlite \
                     port:R-knitr \
+                    port:R-magick \
                     port:R-markdown \
                     port:R-mime \
                     port:R-pak \
@@ -30,6 +29,7 @@ depends_test-append port:R-curl \
                     port:R-rmarkdown \
                     port:R-rstudioapi \
                     port:R-testit \
-                    port:R-tinytex
+                    port:R-tinytex \
+                    port:R-yaml
 
 test.run            yes

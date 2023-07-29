@@ -3,16 +3,17 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github Merck r2rtf 1.0.1 v
+# Revert to GitHub once updated there.
+R.setup             cran Merck r2rtf 1.1.0
 revision            0
-maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
+maintainers         nomaintainer
 license             GPL-3
 description         Easily create production-ready Rich Text Format (RTF) tables and figures
 long_description    {*}${description}
 homepage            https://merck.github.io/r2rtf
-checksums           rmd160  ee6dc2e880cdf7df16d6b83c99e2937ec95c8db8 \
-                    sha256  94839a3fd7dd481830f940e1b48d8af5b1307071298e505f302eb384a358b38a \
-                    size    2165328
+checksums           rmd160  9451c4debaf050a47fbf90811e7854c2d38014d8 \
+                    sha256  37eb2e0dea62cdadf88a97ec1a1a96af215f1b8a2d1c818cce9e2c1cc2e83429 \
+                    size    196564
 supported_archs     noarch
 
 depends_test-append port:R-dplyr \
@@ -25,7 +26,6 @@ depends_test-append port:R-dplyr \
                     port:R-rmarkdown \
                     port:R-stringi \
                     port:R-testthat \
-                    port:R-tidyr \
                     port:R-xml2
 
 test.run            yes

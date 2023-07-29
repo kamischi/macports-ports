@@ -2,13 +2,14 @@
 
 PortSystem                  1.0
 PortGroup                   legacysupport 1.0
+PortGroup                   lua 1.0
 
 name                        lighttpd
-version                     1.4.69
+version                     1.4.71
 revision                    0
-checksums                   rmd160  1e39d192b9708b27070ffeb111b102a392630035 \
-                            sha256  16ac8db95e719629ba61949b99f8a26feba946a81d185215b28379bb4116b0b4 \
-                            size    1045516
+checksums                   rmd160  f5bc2f06b28ace577dc9b92cd1c4c3efdf78ec09 \
+                            sha256  b8b6915da20396fdc354df3324d5e440169b2e5ea7859e3a775213841325afac \
+                            size    1070904
 
 set branch                  [join [lrange [split ${version} .] 0 1] .]
 categories                  www
@@ -30,7 +31,6 @@ use_xz                      yes
 depends_build-append        port:pkgconfig
 
 depends_lib                 port:brotli \
-                            port:lua \
                             port:pcre2 \
                             port:spawn-fcgi \
                             port:xxhashlib \

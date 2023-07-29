@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-sentry-sdk
-version             1.17.0
+version             1.28.1
 revision            0
 
 supported_archs     noarch
@@ -17,9 +17,9 @@ long_description    This is the next line of the Python SDK for Sentry, \
                     intended to replace the raven package on PyPI.
 homepage            https://github.com/getsentry/sentry-python
 
-checksums           rmd160  445f84bc308098cc0cd64c8e26282cfc4e1daaa1 \
-                    sha256  ad40860325c94d1a656da70fba5a7c4dbb2f6809d3cc2d00f74ca0b608330f14 \
-                    size    167793
+checksums           rmd160  5b6079211b615ca04cd4809db2c406d166624308 \
+                    sha256  dcd88c68aa64dae715311b5ede6502fd684f70d00a7cd4858118f0ba3153a3ae \
+                    size    192255
 
 python.versions     39 310 311
 

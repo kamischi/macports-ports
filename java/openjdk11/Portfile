@@ -3,9 +3,9 @@
 PortSystem          1.0
 
 name                openjdk11
-# https://github.com/openjdk/jdk11u/tags
-version             11.0.18
-set build 10
+# See https://github.com/openjdk/jdk11u/tags for the version and build number that matches the latest tag that ends with '-ga'
+version             11.0.20
+set build 8
 revision            0
 categories          java devel
 supported_archs     x86_64 arm64
@@ -19,9 +19,9 @@ master_sites        https://git.openjdk.java.net/jdk11u/archive/refs/tags
 distname            jdk-${version}-ga
 worksrcdir          jdk11u-${distname}
 
-checksums           rmd160  3e3420a28b10abf88c3ddf852f482922c2c79a8b \
-                    sha256  c0560c3480e7ded2a59d783ddf2cb624a44ece9d3036f4a7a7575d597b18fb2e \
-                    size    123369840
+checksums           rmd160  94c405bcaf41bf83935bbb16a2baf76695704719 \
+                    sha256  a277b89ff5ade85d3b5885ad7bffb3f2d9c80df47363fedb9110b62c45dbec37 \
+                    size    116150371
 
 depends_lib         port:freetype
 depends_build       port:autoconf \

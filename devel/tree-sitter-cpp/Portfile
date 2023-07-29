@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           tree_sitter 1.0
 
-github.setup        tree-sitter tree-sitter-cpp 0.20.0 v
+github.setup        tree-sitter tree-sitter-cpp 0.20.2 v
 revision            0
 
 description         A tree-sitter parser for C++
@@ -15,8 +15,8 @@ categories          devel
 license             MIT
 maintainers         {amake @amake} openmaintainer
 
-checksums           rmd160  03196695b10b54013d579528c896ffbfa223f171 \
-                    sha256  0d136cdd69388f1d4a9374933acb7b83d481f2eb091092c3af86e66035be71d3 \
-                    size    504689
+checksums           rmd160  7a1203afbcf816bc514482874a87481f24dc88c0 \
+                    sha256  5a63f24d739cb470522501a4d084f22ea64171a194bffaa82a1033ff953254d0 \
+                    size    1050375
 
 worksrcdir          ${worksrcdir}/src

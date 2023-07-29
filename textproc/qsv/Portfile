@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cargo   1.0
 PortGroup           github  1.0
 
-github.setup        jqnatividad qsv 0.94.0
+github.setup        jqnatividad qsv 0.109.0
 github.tarball_from archive
 revision            0
 
@@ -17,19 +17,18 @@ long_description    \
 
 categories          textproc
 installs_libs       no
-license             Unlicense
+license             public-domain
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           ${distname}${extract.suffix} \
-                    rmd160  854028d228c7ab7f3f95de283441d23f73c6cdf4 \
-                    sha256  1c105c0a8c24fadef245faadee9fd3e77b82342f438e0502df18624cf06fc4cc \
-                    size    817381
+checksums           rmd160  267187072eb335bba11ea5695c82a6ce83c70671 \
+                    sha256  c48d7f5a174d3f80781ae9feb16173d6c5058e4f50916ff2dd77e1ade84a4dbc \
+                    size    2294944
 
+build.pre_args-append \
+                    --features=feature_capable --bin ${name}
 build.pre_args-delete \
                     --frozen --offline
-
-build.args-append   --features=full
 
 destroot {
     xinstall -m 0755 \

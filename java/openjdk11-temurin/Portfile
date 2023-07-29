@@ -5,7 +5,7 @@ PortSystem       1.0
 name             openjdk11-temurin
 categories       java devel
 maintainers      {breun.nl:nils @breun} openmaintainer
-platforms        darwin
+platforms        {darwin any}
 # This port uses prebuilt binaries; 'NoMirror' makes sure MacPorts doesn't mirror/distribute these third-party binaries
 license          GPL-2 NoMirror
 # This port uses prebuilt binaries for a particular architecture; they are not universal binaries
@@ -14,8 +14,8 @@ universal_variant no
 # https://adoptium.net/temurin/releases/
 supported_archs  x86_64 arm64
 
-version      11.0.18
-set build    10
+version      11.0.20
+set build    8
 revision     0
 
 description  Eclipse Temurin, based on OpenJDK 11
@@ -25,14 +25,14 @@ master_sites https://github.com/adoptium/temurin11-binaries/releases/download/jd
 
 if {${configure.build_arch} eq "x86_64"} {
     distname     OpenJDK11U-jdk_x64_mac_hotspot_${version}_${build}
-    checksums    rmd160  637b246bebddefe76ef71cda8982ccc694d6b786 \
-                 sha256  75d79315d7265cc4b89fd9e844161ff90798bc6482ace8c1ac75f862a5b3b565 \
-                 size    187254949
+    checksums    rmd160  a2bff63b08473ac166dcc20123817539c9c25a35 \
+                 sha256  3d9c47a20a8ba7b5aeb2354460adeb018af02f20553c0c3c7b733c1fc9aaf03a \
+                 size    186900244
 } elseif {${configure.build_arch} eq "arm64"} {
     distname     OpenJDK11U-jdk_aarch64_mac_hotspot_${version}_${build}
-    checksums    rmd160  3889af586b13549d678996ed068d7c00c603d17a \
-                 sha256  5c5e9ac08de335d7ed2d6518d3a9cad900874d1e1d572a4046ac64071e239cc7 \
-                 size    185368596
+    checksums    rmd160  186a92cb2eefb414599c66d49d62554a6079b205 \
+                 sha256  46bccb356dba38bf463ea2cc5a8d27ed4e5a51680a7a932f78d5e0c4f8af7c54 \
+                 size    185632863
 }
 
 worksrcdir   jdk-${version}+${build}

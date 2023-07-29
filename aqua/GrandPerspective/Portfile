@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           xcode 1.0
 
 name                GrandPerspective
-version             3.1.0
+version             3.4.2
 set version_unsc    [string map {. _} ${version}]
 license             GPL-2+
 categories          aqua sysutils
@@ -22,9 +22,9 @@ distname            ${name}-${version_unsc}-src
 extract.suffix      .tgz
 worksrcdir          ${name}-${version_unsc}
 
-checksums           rmd160  c681bba3f740bf024309083285e049d1a3a35d5d \
-                    sha256  ed579909d35fb1de4871773e6fb789a81281965ab6f4cd130555f73cffc75fcb \
-                    size    1935038
+checksums           rmd160  50bc401702d14621329fe8c496050bf5b5b5e472 \
+                    sha256  5ee7fc5327b504a4f6a670f96a08a0d9ed9f2f93193f93da79dcaf0eef7c44a6 \
+                    size    1951418
 
 build.dir           ${worksrcpath}/src
 

@@ -4,9 +4,9 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           tree_sitter 1.0
 
-github.setup        WhatsApp tree-sitter-erlang 2422bc9373094bfa97653ac540e08759f812523c
-version             20230123
+github.setup        WhatsApp tree-sitter-erlang 0.1.0
 revision            0
+epoch               1
 
 description         A tree-sitter parser for Erlang
 
@@ -16,9 +16,9 @@ categories          devel
 license             MIT
 maintainers         {amake @amake} openmaintainer
 
-checksums           rmd160  fd214802ef3e0ba1c865f0ed496b5fc558b1ae2a \
-                    sha256  5fcc302e98399ea686fcdff12d290e8879129221afdb582e29f9115ee3435bff \
-                    size    125407
+checksums           rmd160  18ba93ac871e6cb089a39bb45fe75a71ddee5a4f \
+                    sha256  fb720b016114b8012098b56300996b29e915cbf21e6b7b66424700b5e750af93 \
+                    size    134606
 
 worksrcdir          ${worksrcdir}/src
 

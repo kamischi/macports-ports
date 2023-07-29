@@ -3,16 +3,17 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github r-lib pkgcache 2.0.4 v
+# Revert to GitHub once updated there.
+R.setup             cran r-lib pkgcache 2.2.0
 revision            0
 categories-append   devel
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             MIT
 description         Cache CRAN-like metadata and R packages
 long_description    {*}${description}
-checksums           rmd160  84a398c810bdcbe311dac0d6ce650928882c88b5 \
-                    sha256  014df2ff0d098daa343cece52aaa46d405ebc86c6d3399b1ad3cc9631e04a93a \
-                    size    236772
+checksums           rmd160  44ff2699c0dca30ef8f0541c5b86a7a8fff174e8 \
+                    sha256  9a127ba3423bf3449daa98192e9ccc25e7307c01f78c7df9b3e0a33cc98e66a6 \
+                    size    265801
 
 depends_lib-append  port:R-callr \
                     port:R-cli \
@@ -23,3 +24,20 @@ depends_lib-append  port:R-callr \
                     port:R-processx \
                     port:R-R6 \
                     port:R-rappdirs
+
+depends_test-append port:R-covr \
+                    port:R-debugme \
+                    port:R-desc \
+                    port:R-fs \
+                    port:R-mockery \
+                    port:R-pillar \
+                    port:R-pingr \
+                    port:R-rprojroot \
+                    port:R-sessioninfo \
+                    port:R-spelling \
+                    port:R-testthat \
+                    port:R-webfakes \
+                    port:R-withr \
+                    port:R-zip
+
+test.run            yes

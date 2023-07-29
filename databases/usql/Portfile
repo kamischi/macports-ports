@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/xo/usql 0.13.11 v
+go.setup            github.com/xo/usql 0.14.12 v
 github.tarball_from archive
 revision            0
 
@@ -25,9 +25,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  5c40b5dfa83ee5bb134ab331435a5de7ac0ddcdd \
-                    sha256  b9efc67926a59b0f7b1d5a46343930f34a62ee206eb026eedb6e9489eeb41ea8 \
-                    size    287908
+checksums           rmd160  da8034bdd6a25ca4c9774e7495360f819b0e7a8d \
+                    sha256  f2b974cafbef7a572de19e3cf500f197e4fd3c1cb5bc6a762f6516b0c1448f2e \
+                    size    269122
 
 depends_build-append \
                     port:realpath

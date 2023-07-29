@@ -6,11 +6,11 @@ PortGroup           active_variants 1.1
 PortGroup           perl5 1.0
 
 name                pspp-devel
-set buildstamp      20230305114224
-set buildhash       g191994
+set buildstamp      20230531143312
+set buildhash       gfa6bce
 epoch               1
-version             1.6.2
-revision            16
+version             2.0.0-pre1
+revision            18
 categories          math
 license             GPL-3+
 maintainers         {snc @nerdling}
@@ -26,7 +26,7 @@ homepage            https://www.gnu.org/software/pspp/
 platforms           darwin
 
 master_sites        http://pspp.benpfaff.org/~blp/pspp-master/${buildstamp}/source
-distname            pspp-${version}-${buildhash}
+distname            pspp-${version}${buildhash}
 
 perl5.branches      5.34
 
@@ -56,9 +56,9 @@ depends_build-append    \
 
 depends_test-append port:p${perl5.major}-text-diff path:libexec/coreutils/libstdbuf.so:coreutils
 
-checksums           rmd160  76af2d33a73d3632cc557b9012d0d961171ed290 \
-                    sha256  7cf80bfc6a0a731986e475556149f70024696092f1130a5d6c4819d37dddf58e \
-                    size    10520332
+checksums           rmd160  e74d35d79d634dc8e048fe76c5cb320503a798f4 \
+                    sha256  b5a6e45fbaa53ca1e172f7dddba7b2e89a7878df3865433a9dcf2119c554adcc \
+                    size    10602633
 
 post-extract {
     if {[variant_isset gui]} {

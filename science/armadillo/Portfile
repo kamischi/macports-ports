@@ -5,8 +5,9 @@ PortGroup                       cmake 1.1
 PortGroup                       mpi 1.0
 
 name                            armadillo
-version                         12.0.1
+version                         12.4.1
 revision                        0
+
 categories                      science
 maintainers                     {mps @Schamschula} openmaintainer
 license                         Apache-2
@@ -26,9 +27,9 @@ master_sites                    sourceforge:project/arma
 
 use_xz                          yes
 
-checksums                       rmd160  06420c3e85b2735c10a1c8602916563403f4413d \
-                                sha256  230a5c75daad52dc47e1adce8f5a50f9aa4e4354e0f1bb18ea84efa2e70e20df \
-                                size    6802568
+checksums                       rmd160  eb13117c4d894dfa5d7ff2475bd556e1b28aefe1 \
+                                sha256  8127635d27dfb996fab495de6ff9ce84bd9b5e04de3c0037fc2ac6de96dcf397 \
+                                size    6803716
 
 depends_build-append            port:pkgconfig
 
@@ -55,7 +56,7 @@ variant superlu description {compile with SuperLU support} {
     configure.args-append       -DARMA_USE_SUPERLU=ON
 }
 
-if {${os.platform} eq "darwin" && ${build_arch} in [list ppc ppc64]} {
+if {${os.platform} eq "darwin" && ${os.major} < 11} {
     # Without OpenBLAS the build fails on Leopard and Rosetta with undefined symbols.
     # https://trac.macports.org/ticket/65292
     # -DALLOW_OPENBLAS_MACOS=ON is necessary.

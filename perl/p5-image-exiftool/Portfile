@@ -6,7 +6,7 @@ PortGroup           perl5 1.0
 perl5.branches      5.28 5.30 5.32 5.34
 perl5.link_binaries no
 # when updating this port, don't forget to keep port exiftool at same version
-perl5.setup         Image-ExifTool 12.58
+perl5.setup         Image-ExifTool 12.64
 revision            0
 license             {Artistic-1 GPL}
 maintainers         {devans @dbevans} openmaintainer
@@ -20,9 +20,9 @@ long_description    {*}${description}
 homepage            https://exiftool.org
 master_sites        ${homepage}
 
-checksums           rmd160  64e3de408c367d74d8d022b6295e72faf14abc5f \
-                    sha256  6b4a1ae778844739c2a3a0a03bb0988b42cd1985ceeeba27a3c9ddafbc5898ae \
-                    size    5196711
+checksums           rmd160  22cd491fedfd255598ab72e53ec4e7b864fa963e \
+                    sha256  8368034ec7a984823e30a7df6fb980090098b2648dda69d8069f4b06283d9f43 \
+                    size    5244559
 
 livecheck.type      regex
 livecheck.url       ${homepage}/rss.xml

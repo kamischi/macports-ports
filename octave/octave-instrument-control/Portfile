@@ -3,8 +3,8 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        instrument-control 0.8.0
-revision            1
+octave.setup        instrument-control 0.9.1
+revision            0
 platforms           darwin
 license             GPL-2+
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,6 +12,6 @@ description         Low level I/O functions for serial, i2c, spi, parallel, tcp,
                     vxi11, udp and usbtmc interfaces.
 long_description    {*}${description}
 
-checksums           rmd160  edcb46b314c0187d850a89c18c350516cbdcb9ca \
-                    sha256  8373f2cf66fc86f83432414603b71db98a33700776527aa8ac11f336cf94baba \
-                    size    722693
+checksums           rmd160  25cecf70b5669e1aae5b7fa7557f10e00aad953c \
+                    sha256  0b2362c7e5001a28a882803adcd3f236d6b3f73ecb4eca723b0d95f680c08f64 \
+                    size    726548

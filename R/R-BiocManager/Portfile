@@ -3,13 +3,25 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github Bioconductor BiocManager 1.30.20 v
+# Revert to GitHub once updated there.
+R.setup             cran Bioconductor BiocManager 1.30.21.1
 revision            0
 maintainers         nomaintainer
 license             Artistic-2
-description         Access the Bioconductor Project package repository
+description         Access the Bioconductor project package repository
 long_description    {*}${description}
-checksums           rmd160  4a18abacbaa7361cd0f1dd9c5c9eba473c93838e \
-                    sha256  ff89d92763f624935a694bc8f2c3bb4c9cd62a21fb3879bc3249d936e16afaa9 \
-                    size    39730
+homepage            https://bioconductor.github.io/BiocManager
+checksums           rmd160  dcb6274ef352bc9a6e807a3ffa9628b3bea4f003 \
+                    sha256  b2744dbce05ff0660ce68ef9a372db0377acf3548efc5975422206fb55b0c086 \
+                    size    582638
 supported_archs     noarch
+
+depends_test-append port:R-BiocVersion \
+                    port:R-curl \
+                    port:R-knitr \
+                    port:R-remotes \
+                    port:R-rmarkdown \
+                    port:R-testthat \
+                    port:R-withr
+
+test.run            yes

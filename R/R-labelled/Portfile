@@ -3,16 +3,16 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github larmarange labelled 2.10.0 v
+R.setup             github larmarange labelled 2.12.0 v
 revision            0
-maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
-license             GPL-3
+maintainers         nomaintainer
+license             GPL-3+
 description         Manipulating labelled data
 long_description    {*}${description}
 homepage            http://larmarange.github.io/labelled
-checksums           rmd160  811286ce77f09d72600d226e5f6ece62123ab112 \
-                    sha256  7efe1c47d5d445e506056b915ead7f7b10df21e60603fd008ab89b8cae4e547a \
-                    size    1115883
+checksums           rmd160  31acbdc5e70ee69454e4a563736d2d86e5a7eda0 \
+                    sha256  fd1f786351bbf490d7b9a26c855ba78e644976830f402fed029633fc9f201e3b \
+                    size    1133330
 supported_archs     noarch
 
 depends_lib-append  port:R-dplyr \
@@ -22,3 +22,15 @@ depends_lib-append  port:R-dplyr \
                     port:R-stringr \
                     port:R-tidyr \
                     port:R-vctrs
+
+depends_test-append port:R-covr \
+                    port:R-knitr \
+                    port:R-memisc \
+                    port:R-questionr \
+                    port:R-rmarkdown \
+                    port:R-snakecase \
+                    port:R-spelling \
+                    port:R-utf8 \
+                    port:R-testthat
+
+test.run            yes

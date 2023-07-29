@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             github r-lib ps 1.7.2 v
+R.setup             r-universe r-lib ps 1.7.5.9000
 revision            0
 categories-append   sysutils
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
@@ -12,12 +12,14 @@ description         R package to query, list and manipulate system processes
 long_description    ps implements an API to query and manipulate system processes. \
                     Most of its code is based on the psutil Python package.
 homepage            https://ps.r-lib.org
-checksums           rmd160  5812db339dbceccc75b2fff17737b4df6cba099b \
-                    sha256  bd872ec2b8ba863c4f18d179653256cc9e4a66bc1ef5162afd912a92dea20c6e \
-                    size    131072
+checksums           rmd160  83924507dda8d3deaf1fc8b74396e4237e3890ea \
+                    sha256  a2060084f48345fd290085f956dd9186b04bce7956752552856b75ce3c8614a6 \
+                    size    365600
 
-patch.pre_args      -p1
-patchfiles          0001-api-macos.c-fix-missing-stdbool.patch
+# Move to GitHub commit-based or CRAN-based version with the next update.
+# Turned out, R-universe publishes packages from every master commit without increasing their versions.
+# That breaks checksums and is generally a recipe for a disaster.
+master_sites        macports_distfiles
 
 configure.env-append \
                     RBIN=${r.cmd}
@@ -30,6 +32,8 @@ depends_test-append port:R-callr \
                     port:R-processx \
                     port:R-R6 \
                     port:R-rlang \
-                    port:R-testthat
+                    port:R-testthat \
+                    port:R-webfakes
 
+# Some tests fail on older macOS: https://github.com/r-lib/ps/issues/137
 test.run            yes

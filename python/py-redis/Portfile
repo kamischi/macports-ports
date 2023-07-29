@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-redis
-version             4.5.1
+version             4.6.0
 revision            0
 categories-append   devel
 license             MIT
@@ -21,9 +21,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/redis/redis-py
 
-checksums           rmd160  a6dfeedc3540dd8a9caf9c42fb73b6dc5d1da426 \
-                    sha256  1eec3741cda408d3a5f84b78d089c8b8d895f21b3b050988351e925faf202864 \
-                    size    4550408
+checksums           rmd160  0c524ffe1a90132fe73eec15207d3832f8b3fb67 \
+                    sha256  585dc516b9eb042a619ef0a39c3d7d55fe81bdb4df09a52c9cdde0d07bf1aa7d \
+                    size    4561721
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-async-timeout

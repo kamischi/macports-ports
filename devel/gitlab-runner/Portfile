@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            gitlab.com/gitlab-org/gitlab-runner 15.10.0 v
+go.setup            gitlab.com/gitlab-org/gitlab-runner 16.2.0 v
 revision            0
 
 homepage            https://docs.gitlab.com/runner/
@@ -22,9 +22,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  709358d15a0ce961df70c8e3dbb422735968844c \
-                    sha256  f44a2d9fbfac7bf4b66455875fb6fc3a1df4c4de15e93f65884c0ed409158ec6 \
-                    size    1278544
+checksums           rmd160  6b67637423b5afe9e22be37c893b2395c661579f \
+                    sha256  e2e6b7cbe3277e6d23549473efdf241b06f2c89580b4b506f8198c8a5652de32 \
+                    size    1361843
 
 # Allow Go to fetch deps at build time
 build.env-delete    GO111MODULE=off GOPROXY=off

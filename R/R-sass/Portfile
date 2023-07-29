@@ -3,15 +3,15 @@
 PortSystem          1.0
 PortGroup           R 1.0
 
-R.setup             cran rstudio sass 0.4.5
+R.setup             cran rstudio sass 0.4.7
 revision            0
 maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
 license             MIT
 description         Syntactically Awesome Style Sheets
 long_description    {*}${description}
-checksums           rmd160  39632e208894899f70744ef477c4bd20d1169c82 \
-                    sha256  eba161d982d2db108c8c0b61ec6b41a20d3adec430c7cc39537ab388c1007a90 \
-                    size    3026825
+checksums           rmd160  222d29d85157b82034562e3eda413b7d5bc14cf4 \
+                    sha256  717a08b63615a4fd9e494f775c33f0f965db83677cf1cc37849afc3da1c5e9ee \
+                    size    3025460
 
 depends_lib-append  port:R-fs \
                     port:R-htmltools \

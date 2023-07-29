@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           npm 1.0
 
 name                bitwarden-cli
-version             2023.2.0
+version             2023.5.0
 revision            0
 
 npm.rootname        @bitwarden/cli
@@ -19,6 +19,6 @@ description         Bitwarden password manager CLI
 long_description    CLI implementation of the Bitwarden password manager.
 homepage            https://bitwarden.com
 
-checksums           rmd160  e280e09f61cebdb6425362f9889bd261d453386b \
-                    sha256  24d4e3bf51e76e80e98a4a1943593b0f9e3e789b64660d680c2e1fab148ac373 \
-                    size    622524
+checksums           rmd160  8b813166ab40ea527f1d22ff7c3f85d15a2e8f03 \
+                    sha256  1e9a592ed4ae1611afbd652ee546fd95b2bbf8414a02db836d756ee653ed2321 \
+                    size    654560

@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           fortran 1.0
+
+github.setup        jacobwilliams rklib 0.4
+name                runge-kutta-fortran
+revision            0
+epoch               1
+categories-append   math
+license             BSD
+maintainers         {@barracuda156 gmail.com:vital.had} openmaintainer
+description         Fixed and variable-step Runge–Kutta solvers in modern Fortran
+long_description    {*}${description}
+checksums           rmd160  a884b600e79d69623f65d955465a28575af358f9 \
+                    sha256  beba6cc0b398b5b500a4fd16e154acfb35e7c7ee94eb4249d36c15158e85054f \
+                    size    624881
+github.tarball_from archive
+
+post-destroot {
+    set docdir ${prefix}/share/doc/${name}
+    xinstall -d ${destroot}${docdir}
+    xinstall -m 0644 -W ${worksrcpath} LICENSE README.md ${destroot}${docdir}
+}
+
+test.run            yes

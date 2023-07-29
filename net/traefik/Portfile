@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        traefik traefik 2.9.8 v
+github.setup        traefik traefik 2.10.3 v
 github.tarball_from releases
 revision            0
 
@@ -30,17 +30,17 @@ distfiles           traefik_v${version}_darwin_${arch}${extract.suffix} \
                     traefik-v${version}.src${extract.suffix}
 
 checksums           traefik_v${version}_darwin_amd64${extract.suffix} \
-                        rmd160  7b24e01ac4f485e1712f5c1eee09ae0456e23dab \
-                        sha256  313843d030730117bcbd81230b2c736a83f2e4e276d845b6c9cb87828b3f7e2a \
-                        size    37130654 \
+                        rmd160  951a15a828ad9b74e1fd025f74e9f5777fb3a461 \
+                        sha256  ed45ff57afc3d3378afe195e1b72434934f33828dd4024a1e72d9c6093d33a7d \
+                        size    39166238 \
                     traefik_v${version}_darwin_arm64${extract.suffix} \
-                        rmd160  d19d2ef9d7fb6522988adfb37950d8d0b1886682 \
-                        sha256  960f90f64c25b34797813bdbdbfd86a4b7bc4958b569ec77a1cc3e816e76a920 \
-                        size    36495689 \
+                        rmd160  bc6960e743666b79e9d59d1ec2f58940d6f5bc73 \
+                        sha256  90745276f7c51f67db1e7ea5f83eba2c7061c344ab00b7d7da67b14e880ef6ab \
+                        size    38579412 \
                     traefik-v${version}.src${extract.suffix} \
-                        rmd160  fb58ab7e26553c373770ad91c803147d542ca07a \
-                        sha256  aae1faa96971888696a6235bfc5bedb81e9290ec2a39a46ad6bee500d029b600 \
-                        size    10661891
+                        rmd160  faec0ca55103715c0eb8f693e363c44c9d3c43c4 \
+                        sha256  eb4694ef72a8356a2acf36315e5e141027001c1eef8acade7ecb86512305d286 \
+                        size    10783312
 
 extract.mkdir       yes
 use_configure       no

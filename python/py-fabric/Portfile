@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-fabric
-version             3.0.0
+version             3.1.0
 revision            0
 categories-append   devel
 license             BSD
@@ -22,13 +22,14 @@ long_description    {*}${description}
 
 homepage            https://fabfile.org
 
-checksums           rmd160  6ef103df4c5ad7617f4ee5e27033a45fe6950a51 \
-                    sha256  bfe960c1ae904e7624af9d40ad5b9b99581ed9c4fd09349c0d02b7486e1d0f89 \
-                    size    175654
+checksums           rmd160  444eafc31a83015d3b666a3d3234e860a6bf4c20 \
+                    sha256  ea1c5ea3956d196b5990ba720cc8ee457fa1b9c6f265ab3b643ff63b05e8970a \
+                    size    177117
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-invoke \
                         port:py${python.version}-paramiko \
+                        port:py${python.version}-decorator \
                         port:fabric_select
 
     select.group        fabric

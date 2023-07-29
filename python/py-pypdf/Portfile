@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pypdf
-version             3.5.2
+version             3.12.2
 revision            0
 
 categories-append   devel
@@ -23,11 +23,11 @@ long_description    A Pure-Python PDF toolkit. It is capable of \
 
 homepage            https://github.com/py-pdf/pypdf
 
-checksums           rmd160  09a02b52c4a95f22e8afb5c61a86090983500f11 \
-                    sha256  49e0598c417107dde904daf6a62ce731991f51ce98c55d808ac7b3e952904e6d \
-                    size    258065
+checksums           rmd160  188cf91313cdbef96dbdff9d2963893f10994c45 \
+                    sha256  8657d56fd4f64540b9a1e5285845543534321484f1276af893eead7bd00598e6 \
+                    size    258907
 
-python.versions     37 38 39 310 311
+python.versions     38 39 310 311
 python.pep517       yes
 python.pep517_backend   flit
 
