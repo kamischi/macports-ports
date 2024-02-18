@@ -188,9 +188,10 @@ subport "${name}-cross-arm-wince" {
         \n \
         fpc -Parm -Twince FILENAME
 
-    build.args      PP=ppcarm CPU_TARGET=arm OS_TARGET=wince OPT="-ap -v0"
-    destroot.args   CPU_TARGET=arm OS_TARGET=wince CROSSINSTALL=1 \
-                    INSTALL_PREFIX=${destroot}${prefix}
+    build.args      PP=ppcavr OPT="-ap -v0" \
+                    CPU_TARGET=arm OS_TARGET=wince
+    destroot.args   CPU_TARGET=arm OS_TARGET=wince \
+                    CROSSINSTALL=1 INSTALL_PREFIX=${destroot}${prefix}
 
 # remove duplicate doc and bin files
     post-destroot   {
@@ -273,10 +274,10 @@ foreach ostarget {nativent win32 wince} {
             \n \
             fpc -Pi386 -T${ostarget} FILENAME
 
-        build.args      PP=ppc386 CPU_TARGET=i386 OS_TARGET=${ostarget} \
-                        OPT="-ap -v0"
-        destroot.args   CPU_TARGET=i386 OS_TARGET=${ostarget} CROSSINSTALL=1 \
-                        INSTALL_PREFIX=${destroot}${prefix}
+        build.args      PP=ppc386 OPT="-ap -v0" \
+                        CPU_TARGET=i386 OS_TARGET=${ostarget}
+        destroot.args   CPU_TARGET=i386 OS_TARGET=${ostarget} \
+                        CROSSINSTALL=1 INSTALL_PREFIX=${destroot}${prefix}
 
 # remove duplicate doc and bin files
         post-destroot   {
@@ -308,9 +309,10 @@ subport "${name}-cross-x86_64-linux" {
         \n \
         fpc -Px86_64 -Tlinux FILENAME
 
-    build.args      PP=ppcx86 CPU_TARGET=x86_64 OS_TARGET=linux OPT="-ap -v0"
-    destroot.args   CPU_TARGET=x86_64 OS_TARGET=linux CROSSINSTALL=1 \
-                    INSTALL_PREFIX=${destroot}${prefix}
+    build.args      PP=ppc386 OPT="-ap -v0" \
+                    CPU_TARGET=x86_64 OS_TARGET=linux
+    destroot.args   CPU_TARGET=x86_64 OS_TARGET=linux \
+                    CROSSINSTALL=1 INSTALL_PREFIX=${destroot}${prefix}
 
 # remove duplicate doc and bin files
     post-destroot   {
@@ -340,9 +342,10 @@ subport "${name}-cross-x86-64-win64" {
         \n \
         fpc -Px86_64 -Twin64 FILENAME
 
-    build.args      PP=ppcx64 CPU_TARGET=x86_64 OS_TARGET=win64 OPT="-ap -v0"
-    destroot.args   CPU_TARGET=x86_64 OS_TARGET=win64 CROSSINSTALL=1 \
-                    INSTALL_PREFIX=${destroot}${prefix}
+    build.args      PP=ppcx64 OPT="-ap -v0" \
+                    CPU_TARGET=x86_64 OS_TARGET=win64
+    destroot.args   CPU_TARGET=x86_64 OS_TARGET=win64 \
+                    CROSSINSTALL=1 INSTALL_PREFIX=${destroot}${prefix}
 
 # remove duplicate doc and bin files
     post-destroot   {
