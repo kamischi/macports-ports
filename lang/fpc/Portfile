@@ -29,7 +29,8 @@ set boot_v          3.0.4
 
 master_sites        sourceforge:freepascal:main \
                     https://downloads.freepascal.org/fpc/dist/${boot_v}/bootstrap/:bootstrap \
-                    https://downloads.freepascal.org/fpc/dist/${boot_v}/powerpc-macosx/:bootstrap
+                    https://downloads.freepascal.org/fpc/dist/${boot_v}/powerpc-macosx/:bootstrap \
+                    https://downloads.freepascal.org/fpc/dist/${version}/i386-macosx/:bootstrap
 
 set src             ${name}build-${version}.tar.gz
 checksums           ${src} \
@@ -44,6 +45,15 @@ if {${configure.build_arch} in [list ppc ppc64]} {
                     rmd160  c1dbe7fb71382a69146023b2cdac768e05fea8e3 \
                     sha256  587a6ae199d2fb992794c6b4ff9a7aa0c4646687ed5bbab5a6c96bdc322ba53c \
                     size    98748823
+# MacOSX < 10.8 requires bootstrap compiler from dmg
+} elseif {${os.platform} eq "darwin" && ${os.major} <= 12} { # 10.8, Mountain Lion
+    set pp          fpc-${version}.intelarm64-macosx.dmg
+    checksums-append \
+                    ${pp} \
+                    rmd160  600bc2e86e450bba748f3fa54939fb96db0eee41 \
+                    sha256  05d4510c8c887e3c68de20272abf62171aa5b2ef1eba6bce25e4c0bc41ba8b7d \
+                    size    274206896
+
 } else {
     set pp          x86_64-macosx-10.9-ppcx64.tar.bz2
     checksums-append \
@@ -67,8 +77,8 @@ universal_variant   no
 
 set fpcbasepath     ${prefix}/libexec/${name}
 
-if {${os.platform} eq "darwin" && ${os.major} >= 22} {
- # macOS 13, Ventura, fix obsolete linker options
+if {${os.platform} eq "darwin" && ${os.major} >= 22} { # macOS 13, Ventura
+# fix obsolete linker options
     patchfiles-append   t_darwin.pas.patch
 }
 
@@ -134,7 +144,7 @@ subport "${name}-cross" {
             build.target-delete x86_64
         }
         arm64 {
-            build.target-delete aarch64
+            build.target-delete aarch64 i386 i8086
         }
     }
     destroot {
@@ -189,9 +199,97 @@ subport "${name}-cross-arm-wince" {
     }
 }
 
+subport "${name}-cross-x86_64-linux" {
+    revision                0
+    worksrcdir              fpcbuild-${version}/fpcsrc
+    use_parallel_build      no
+    use_configure           no
+    depends_build-append    port:${name} port:${name}-cross \
+                            port:x86_64-linux-binutils
+#    build.target            rtl packages
+#    destroot.target         rtl_install packages_install
+    build.target            rtl
+    destroot.target         rtl_install
+
+# target specifics
+    description     FPC cross-compiler for x86_64-linux
+    long_description \
+        This Pascal crosscompiler produces x86_64 executables, \
+        which run natively on x86_64-linux systems. \n \
+        Get help with: \n \
+        fpc -h \n \
+        Compile and link a Pascal file with: \n \
+        \n \
+        fpc -Px86_64 -Tlinux FILENAME
+
+    build.args      PP=ppcx86 CPU_TARGET=x86_64 OS_TARGET=linux OPT="-ap -v0"
+    destroot.args   CPU_TARGET=x86_64 OS_TARGET=linux CROSSINSTALL=1 \
+                    INSTALL_PREFIX=${destroot}${prefix}
+
+# remove duplicate doc and bin files
+    post-destroot   {
+        file delete -force ${destroot}${prefix}/share
+        file delete -force ${destroot}${prefix}/bin
+    }
+}
+
+foreach subarch {25 35 4 5 51 6} {
+    subport "${name}-cross-avr${subarch}-embedded" {
+        revision                0
+        conflicts {
+            ${name}-cross-avr25-embedded
+            ${name}-cross-avr35-embedded
+            ${name}-cross-avr4-embedded
+            ${name}-cross-avr5-embedded
+            ${name}-cross-avr51-embedded
+            ${name}-cross-avr6-embedded
+        }
+        replaced_by {
+            ${name}-cross-avr25-embedded
+            ${name}-cross-avr35-embedded
+            ${name}-cross-avr4-embedded
+            ${name}-cross-avr5-embedded
+            ${name}-cross-avr51-embedded
+            ${name}-cross-avr6-embedded
+        }
+        worksrcdir              fpcbuild-${version}/fpcsrc
+        use_parallel_build      no
+        use_configure           no
+        depends_build-append    port:${name} port:${name}-cross \
+                                port:avr-binutils
+#        build.target            rtl packages
+#        destroot.target         rtl_install packages_install
+        build.target            rtl
+        destroot.target         rtl_install
+
+# target specifics
+        description     FPC cross-compiler for avr-embedded
+        long_description \
+            This Pascal crosscompiler produces avr executables, \
+            which run natively on avr-embedded systems. \n \
+            Get help with: \n \
+            fpc -h \n \
+            Compile and link a Pascal file with: \n \
+            \n \
+            fpc -Pavr -Tembedded -XPavr- FILENAME
+
+        build.args      PP=ppcavr OPT="-ap -v0 -XPavr-" \
+                        CPU_TARGET=avr OS_TARGET=embedded SUBARCH=avr${subarch}                   
+        destroot.args   CPU_TARGET=avr OS_TARGET=embedded SUBARCH=avr${subarch} \
+                        CROSSINSTALL=1 INSTALL_PREFIX=${destroot}${prefix}
+
+# remove duplicate doc and bin files
+        post-destroot   {
+            file delete -force ${destroot}${prefix}/share
+            file delete -force ${destroot}${prefix}/bin
+        }
+    }
+}
+
 foreach ostarget {nativent win32 wince} {
     subport "${name}-cross-i386-$ostarget" {
         revision                0
+        supported_archs         x86_64 i386
         worksrcdir              fpcbuild-${version}/fpcsrc
         use_parallel_build      no
         use_configure           no
@@ -276,6 +374,23 @@ if {${subport} eq "${name}"} {
             system -W ${workpath} "gunzip -d pkg/Contents/Archive.pax.gz"
             system -W ${workpath}/pkg "pax -r < Contents/Archive.pax"
             copy ${workpath}/pkg/usr/local/lib/${name}/${boot_v}/${bootstrapCompiler} \
+                    ${workpath}
+        }
+    } elseif {${os.platform} eq "darwin" \
+              && ${os.major} <= 12} { # 10.8, Mountain Lion
+        post-extract {
+            xinstall -d ${workpath}/tmp/boot
+            system "hdiutil attach ${distpath}/${pp} -private -nobrowse \
+                    -mountpoint ${workpath}/tmp/boot"
+            copy ${workpath}/tmp/boot/${name}-${version}-intelarm64-macosx.mpkg \
+                    ${workpath}/pkg
+            system "hdiutil detach ${workpath}/tmp/boot -force"
+            delete -force ${workpath}/tmp
+            system -W ${workpath} "pkgutil --expand \
+                    pkg/Contents/Packages/${name}-${version}-intelarm64-macosx.pkg \
+                    content"
+            system -W ${workpath}/content "gzip -dc Payload | cpio -id"
+            copy ${workpath}/content/usr/local/lib/${name}/${version}/${bootstrapCompiler} \
                     ${workpath}
         }
     } else {
