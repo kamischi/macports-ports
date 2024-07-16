@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           crossbinutils 1.0
 
 name                x86_64-binutils
-version             2.41
+version             2.42
 revision            0
 maintainers         {@kamischi web.de:karl-michael.schindler} \
                     openmaintainer
@@ -24,9 +24,13 @@ if {$subport eq $name} {
 foreach ostarget {linux dragonfly freebsd netbsd openbsd} {
     subport x86_64-${ostarget}-binutils {
         crossbinutils.setup     x86_64-${ostarget} ${version}
+        depends_lib             port:$name
         configure.args-append   --disable-werror
         if {${ostarget} eq "linux"} {
             depends_build-append    port:bison
+        }
+        post-destroot {
+            delete ${destroot}${prefix}/share/doc/x86_64-binutils
         }
     }
 }
@@ -38,6 +42,7 @@ subport x86_64-embedded-binutils {
         --disable-werror
 
     post-destroot {
+        delete      ${destroot}${prefix}/share/doc/x86_64-binutils
         file rename ${destroot}${prefix}/x86_64-unknown-elf/bin \
                     ${destroot}${prefix}/x86_64-embedded
         file rename ${destroot}${prefix}/x86_64-unknown-elf/lib \
