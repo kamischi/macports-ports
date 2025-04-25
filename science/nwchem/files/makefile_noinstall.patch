@@ -1,5 +1,5 @@
---- GNUmakefile-orig
-+++ GNUmakefile
+--- src/GNUmakefile-orig
++++ src/GNUmakefile
 @@ -41,7 +41,7 @@ ifdef SUMO
  	$(RANLIB) $(LIBDIR)/libnwchem-sumo.a
  endif

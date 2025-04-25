@@ -25,7 +25,9 @@ worksrcdir          nwchem-${version}-release.revision-${nwc_hash}-src.${nwc_dat
 supported_archs     x86_64 arm64
 categories          science physics chemistry
 license             ECL-2.0
-maintainers         {reneeotten @reneeotten} openmaintainer
+maintainers         {reneeotten @reneeotten} \
+                    {@kamischi web.de:karl-michael.schindler} \
+                    openmaintainer
 description         Open Source High-Performance Computational Chemistry
 long_description    The NWChem software contains computational chemistry tools \
                     that are scalable both in their ability to efficiently \
@@ -44,7 +46,6 @@ compiler.require_fortran \
 compilers.allow_arguments_mismatch \
                     yes
 
-patch.dir           ${worksrcpath}/src
 patchfiles          makefile_noinstall.patch
 
 post-patch {
@@ -67,10 +68,10 @@ use_configure       yes
 
 default_variants +openmpi
 
-# Note (Work in progress): 
-# In case the appropriate MPI_VARIANTs (openmpi or mpich) of the 
-# following packages are not installed automatically, you may have 
-# to do so manually. 
+# Note (Work in progress):
+# In case the appropriate MPI_VARIANTs (openmpi or mpich) of the
+# following packages are not installed automatically, you may have
+# to do so manually.
 # scalapack +MPI_VARIANT
 # MPI_VARIANT-gcc14
  
