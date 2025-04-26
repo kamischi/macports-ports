@@ -7,6 +7,7 @@ PortGroup           mpi 1.0
 PortGroup           makefile 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
+name                nwchem
 version             7.2.3
 revision            0
 
@@ -40,7 +41,7 @@ homepage            https://nwchemgit.github.io
 compiler.blacklist  clang
 compilers.choose    fc cc
 compiler.c_standard 2011
-mpi.setup           require_fortran -g95 -clang
+mpi.setup           require require_fortran -g95 -clang
 compiler.require_fortran \
                     yes
 compilers.allow_arguments_mismatch \
@@ -49,7 +50,8 @@ compilers.allow_arguments_mismatch \
 patchfiles          makefile_noinstall.patch
 
 post-patch {
-    reinplace  "s|/etc/nwchemrc|${prefix}/etc/nwchemrc|g" ${worksrcpath}/src/util/util_nwchemrc.F
+    reinplace   "s|/etc/nwchemrc|${prefix}/etc/nwchemrc|g" \
+                ${worksrcpath}/src/util/util_nwchemrc.F
 }
 
 depends_build-append \
@@ -58,7 +60,8 @@ depends_build-append \
 depends_lib-append  port:hwloc \
                     port:python313 \
                     path:lib/libopenblas.dylib:OpenBLAS \
-                    port:libxc6
+                    port:libxc6 \
+                    port:[mpi_variant_name]-${compilers.gcc_default}
 
 depends_lib-append  port:scalapack
 mpi.enforce_variant scalapack
@@ -66,38 +69,26 @@ mpi.enforce_variant scalapack
 universal_variant   no
 use_configure       yes
 
-default_variants +openmpi
-
-# Note (Work in progress):
-# In case the appropriate MPI_VARIANTs (openmpi or mpich) of the
-# following packages are not installed automatically, you may have
-# to do so manually.
-# scalapack +MPI_VARIANT
-# MPI_VARIANT-gcc14
- 
-# This substitutes guessmpidefs
+# This substitutes src/tools/guess-mpidefs
 set c_name ${compilers.gcc_default}
 if {${c_name} eq {}} {
   lassign [mpi.get_default_mpi_compiler] c_name
 }
 set fcwrapper ${prefix}/bin/mpif90-[mpi_variant_name]-${c_name}
-set ccwrapper ${prefix}/bin/mpicc-[mpi_variant_name]-${c_name}
 if { ![catch { exec $fcwrapper -show } msg] } {
   set mpif90show [exec $fcwrapper -show]
-  set mpicccshow [exec $ccwrapper -show]
-  puts "result is ${mpif90show}"
 } elseif { ![catch { exec $fcwrapper -showme } msg] } {
   set mpif90show [exec $fcwrapper -showme]
-  set mpicccshow [exec $ccwrapper -showme]
-  puts "result is ${mpif90show}"
 } elseif { ![catch { exec $fcwrapper -link-info } msg] } {
   set mpif90show [exec $fcwrapper -link-info]
-  set mpicccshow [exec $ccwrapper -link-info]
-  puts "result is ${mpif90show}"
 } else {
-  ui_error "Could not find suitable MPI wrapper"
+  set mpif90show ""
+  ui_error           "Could not find suitable MPI wrapper"
   return -code error "Could not find suitable MPI wrapper"
 }
+set MPI_INCLUDE [lsearch -all -inline [split $mpif90show " "] -I*]
+set MPI_LIB     [lsearch -all -inline [split $mpif90show " "] -L*]
+set LIBMPI      [lsearch -all -inline [split $mpif90show " "] -l*]
 
 configure.dir       ${worksrcpath}/src
 configure.env-append \
@@ -122,9 +113,9 @@ configure.env-append \
                     MRCC_METHODS=TRUE \
                     NO_NWPWXC_VDW3A=y \
                     FORCE_MPI_ENV=y \
-                    "MPI_INCLUDE=[lsearch -all -inline [split $mpif90show " "] -I*]" \
-                    "MPI_LIB=[lsearch -all -inline [split $mpif90show " "] -L*]" \
-                    "LIBMPI=[lsearch -all -inline [split $mpif90show " "] -l*]"
+                    MPI_INCLUDE=${MPI_INCLUDE} \
+                    MPI_LIB=${MPI_LIB} \
+                    LIBMPI=${LIBMPI}
                     
 platform darwin {
   if {${os.major} < 23} {
