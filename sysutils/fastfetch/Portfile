@@ -8,7 +8,7 @@ PortGroup           legacysupport 1.1
 # clock_gettime
 legacysupport.newest_darwin_requires_legacy 15
 
-github.setup        fastfetch-cli fastfetch 2.40.4
+github.setup        fastfetch-cli fastfetch 2.42.0
 github.tarball_from archive
 revision            0
 
@@ -24,9 +24,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  831767ad69c972bfb39623ca988bcc7374a26582 \
-                    sha256  cf24ffaf4729c6878b1d3a758a208905952d8b25c056bac27eb76af00ebbdb43 \
-                    size    1274693
+checksums           rmd160  76bc41f040c297238e9bfd3d96601bdb9b7db6b7 \
+                    sha256  9f94fdbe0642b2402517bba2fff4dd31099649d4e066f4c39b5b728cc3627f01 \
+                    size    1282221
 
 set py_branch       3.13
 set py_version      [string map {. ""} ${py_branch}]

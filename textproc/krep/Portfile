@@ -2,9 +2,14 @@
 
 PortSystem          1.0
 PortGroup           github 1.0
+PortGroup           legacysupport 1.1
+PortGroup           compiler_blacklist_versions 1.0
 PortGroup           makefile 1.0
 
-github.setup        davidesantangelo krep 1.1.0 v
+# clock_gettime
+legacysupport.newest_darwin_requires_legacy 15
+
+github.setup        davidesantangelo krep 1.1.2 v
 github.tarball_from archive
 revision            0
 
@@ -18,9 +23,9 @@ long_description    \
     search algorithms and leverages modern hardware capabilities to deliver \
     maximum throughput.
 
-checksums           rmd160  1c7b9c56c98727b7cca2bd5e2202a6f657f442e5 \
-                    sha256  e92ef195faca4f444c244bb7c0eac327d3874ab43581bcd5abab0772039b7940 \
-                    size    98904
+checksums           rmd160  b58f4796a58202bab741225139714c78688ab6cc \
+                    sha256  99f17d33577861cb2d445345b159652f7f32bbb7d070314ca685d4ced74f2a81 \
+                    size    99100
 
 categories          textproc
 installs_libs       no
@@ -31,6 +36,9 @@ maintainers         {gmail.com:herby.gillot @herbygillot} \
 build.args-append   ENABLE_ARCH_DETECTION=0
 
 compiler.c_standard 2011
+# krep.h:15:10: fatal error: 'stdatomic.h' file not found
+compiler.blacklist-append \
+                    {clang < 700}
 
 patch {
     reinplace -E {s|CC =|CC ?=|g}           ${worksrcpath}/Makefile

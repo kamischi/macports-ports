@@ -2,10 +2,11 @@
 
 PortSystem          1.0
 PortGroup           github 1.0
+PortGroup           makefile 1.0
 
 github.setup        crystal-lang crystal 1.16.1
 github.tarball_from archive
-revision            0
+revision            1
 categories          lang
 supported_archs     x86_64 arm64
 license             Apache-2
@@ -70,9 +71,6 @@ post-patch {
 
 configure.ldflags-append    -Wl,-rpath,${prefix}/libexec/llvm-${llvm_version}/lib
 
-configure.cmd       env | grep -E '^(CC?|CPP|CXX|LD)(FLAGS)?='
-configure.pre_args  > Makefile.local
-
 set llvm_config     LLVM_CONFIG=llvm-config-mp-${llvm_version}
 
 compiler.cxx_standard  2014
@@ -88,8 +86,15 @@ post-build {
 }
 
 destroot.target-append  install_docs
-destroot.args       -o docs PREFIX=${prefix}
+destroot.args       -o docs
 destroot.env        ${llvm_config}
+
+# https://github.com/crystal-lang/crystal/issues/15684
+post-destroot {
+    move ${destroot}${prefix}/share/docs ${destroot}${prefix}/share/doc/${name}
+    move ${destroot}${prefix}/share/examples \
+        ${destroot}${prefix}/share/doc/${name}
+}
 
 test.run            yes
 test.target         spec
