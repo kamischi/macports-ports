@@ -7,22 +7,22 @@ PortGroup           mpi 1.0
 PortGroup           makefile 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
-name                nwchem
-version             7.2.3
+github.setup        nwchemgit nwchem 7.2.3 v -release
 revision            0
 
 # Using this tarball avoids the need for the make 64_to_32 step
-github.setup        nwchemgit nwchem ${version} v -release
 github.tarball_from tarball
+# Version of included Global Arrays (GA) sources
+# Needs to be checked and updated with an update of nwchem
+set ga_version      5.8.2
 checksums           rmd160  38b29b7232254d6669dc6eb9fadf18b5295f34fe \
                     sha256  a0f76f12ae2f634d33e76409cd389787e6c458cc2cf05ed453538de2d47a23a5 \
                     size    234392394
-master_sites        https://github.com/nwchemgit/nwchem/releases/download/v${version}-release
+master_sites        https://github.com/nwchemgit/${name}/releases/download/v${version}-release
 set nwc_hash        d690e065
 set nwc_date        2024-08-27
-distname            nwchem-${version}-release.revision-${nwc_hash}-src.${nwc_date}
-worksrcdir          nwchem-${version}-release.revision-${nwc_hash}-src.${nwc_date}
-
+distname            ${name}-${version}-release.revision-${nwc_hash}-src.${nwc_date}
+worksrcdir          ${name}-${version}
 supported_archs     x86_64 arm64
 categories          science physics chemistry
 license             ECL-2.0
@@ -67,7 +67,6 @@ depends_lib-append  port:scalapack
 mpi.enforce_variant scalapack
 
 universal_variant   no
-use_configure       yes
 
 # This substitutes src/tools/guess-mpidefs
 set c_name ${compilers.gcc_default}
@@ -130,6 +129,18 @@ configure.cmd       make nwchem_config
 configure.pre_args
 configure.args-append \
                     FFLAG_INT="-fdefault-integer-8"
+
+post-configure {
+# Note: Global Arrays (GA) need autoreconf for the creation of Makefile.in.
+# Without it, GA sources are downloaded again.
+    system "echo ''"
+    system "echo '*** autoreconf in src/tools/ga-${ga_version} start ***'"
+    system "echo ''"
+    system -W ${workpath}/${name}-${version}/src/tools/ga-${ga_version} "autoreconf -vif"
+    system "echo ''"
+    system "echo '*** autoreconf in src/tools/ga-${ga_version} end ***'"
+    system "echo ''"
+}
 
 build.dir           ${configure.dir}
 build.args-append   FFLAG_INT="-fdefault-integer-8" \
