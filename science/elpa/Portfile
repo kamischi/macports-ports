@@ -1,0 +1,76 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           compilers 1.0
+PortGroup           mpi 1.0
+
+name                elpa
+version             2025.01.001
+revision            0
+categories          science physics chemistry
+license             GPL-3
+maintainers         openmaintainer \
+                    {@kamischi web.de:karl-michael.schindler}
+description         Eigenvalue Solvers For Petaflop Applications
+long_description    The publicly available ELPA library provides highly \
+                    efficient and highly scalable direct eigensolvers for \
+                    symmetric (hermitian) matrices.
+homepage            https://elpa.mpcdf.mpg.de
+master_sites        ${homepage}/software/tarball-archive/Releases/${version}
+checksums           sha256  3ef0c6aed9a3e05db6efafe6e14d66eb88b2a1354d61e765b7cde0d3d5f3951e \
+                    rmd160  de858633e2f24980338181edd6f322d72f2de3bb \
+                    size    2169795
+
+depends_lib         port:openblas \
+                    port:lapack \
+                    port:scalapack
+
+post-patch {
+    reinplace -W ${worksrcpath}/src/helpers \
+        "s|cpu_set_t|cpuset_t|g" check_thread_affinity.c
+}
+
+compilers.choose    f77 f90
+compilers.setup     require_fortran
+compilers.add_gcc_rpath_support \
+                    no
+
+mpi.setup           require require_fortran
+
+compiler.blacklist-append \
+                    {clang < 500}
+
+configure.optflags-append \
+                    -I${prefix}/include/${mpi.name}-mp
+
+configure.cflags-append \
+                    -Wno-return-type \
+                    -Wno-error=implicit-function-declaration
+
+configure.args-append \
+                    --with-mpi=yes \
+                    --disable-sse \
+                    --disable-sse-assembly \
+                    --disable-avx-kernels \
+                    --disable-avx2-kernels \
+                    --disable-avx512-kernels \
+                    --disable-affinity-checking \
+                    --disable-c-tests
+
+configure.ldflags-append \
+                    -Wl,-ld_classic \
+                    -L${prefix}/lib/${mpi.name}-mp
+
+variant openmp description {Enable OpenMP support} {
+    depends_lib-append \
+                    port:libomp
+    compiler.openmp_version \
+                    2.5
+    configure.args-append \
+                    --enable-openmp
+    configure.optflags-append \
+                    -I${prefix}/include/libomp
+    configure.ldflags-append \
+                    -L${prefix}/lib/libomp
+
+}
