@@ -55,7 +55,10 @@ post-patch {
 }
 
 depends_build-append \
-                    path:bin/pkg-config:pkgconfig
+                    path:bin/pkg-config:pkgconfig \
+                    port:autoconf \
+                    port:automake \
+                    port:libtool
 
 depends_lib-append  port:hwloc \
                     port:python313 \
@@ -124,7 +127,7 @@ post-configure {
     system "echo ''"
     system "echo '*** autoreconf in src/tools/ga-${ga_version} start ***'"
     system "echo ''"
-    system -W ${workpath}/${name}-${version}/src/tools/ga-${ga_version} "autoreconf -vif"
+    system -W ${workpath}/${name}-${version}/src/tools/ga-${ga_version} "autoreconf -fvi"
     system "echo ''"
     system "echo '*** autoreconf in src/tools/ga-${ga_version} end ***'"
     system "echo ''"
@@ -153,7 +156,7 @@ variant openmp description {Enable OpenMP parallelism} {
 test.run            yes
 # note: a few QA tests
 test {
-    system -W ${worksrcpath}/QA "MPIRUN_PATH=${prefix}/bin/mpirun-[mpi_variant_name]-${p_name}  ./runtests.mpi.unix procs 2 libxc_li2freq dft_he2+ cosmo_h2o_dft h2o_opt ritddft_h2o h2o-response"
+    system -W ${worksrcpath}/QA "MPIRUN_PATH=${prefix}/bin/mpirun-[mpi_variant_name]-${compilers.gcc_default}  ./runtests.mpi.unix procs 2 libxc_li2freq dft_he2+ cosmo_h2o_dft h2o_opt ritddft_h2o h2o-response"
 }
 
 destroot.dir        ${configure.dir}
