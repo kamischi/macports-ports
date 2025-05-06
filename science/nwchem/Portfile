@@ -68,26 +68,14 @@ mpi.enforce_variant scalapack
 
 universal_variant   no
 
-# This substitutes src/tools/guess-mpidefs
-set c_name ${compilers.gcc_default}
-if {${c_name} eq {}} {
-  lassign [mpi.get_default_mpi_compiler] c_name
+set MPI_DIR         [mpi_variant_name]-${compilers.gcc_default}
+set MPI_INCLUDE     "-I${prefix}/include/${MPI_DIR} -I${prefix}/lib/${MPI_DIR}"
+set MPI_LIB         "-L${prefix}/lib/${MPI_DIR}"
+if {[variant_isset mpich] || [variant_isset mpich_devel]} {
+    set LIBMPI      "-lmpifort -lmpi -lpmpi"
+} elseif {[variant_isset openmpi] || [variant_isset openmpi_devel]} {
+    set LIBMPI      "-lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi"
 }
-set fcwrapper ${prefix}/bin/mpif90-[mpi_variant_name]-${c_name}
-if { ![catch { exec $fcwrapper -show } msg] } {
-  set mpif90show [exec $fcwrapper -show]
-} elseif { ![catch { exec $fcwrapper -showme } msg] } {
-  set mpif90show [exec $fcwrapper -showme]
-} elseif { ![catch { exec $fcwrapper -link-info } msg] } {
-  set mpif90show [exec $fcwrapper -link-info]
-} else {
-  set mpif90show ""
-  ui_error           "Could not find suitable MPI wrapper"
-  return -code error "Could not find suitable MPI wrapper"
-}
-set MPI_INCLUDE [lsearch -all -inline [split $mpif90show " "] -I*]
-set MPI_LIB     [lsearch -all -inline [split $mpif90show " "] -L*]
-set LIBMPI      [lsearch -all -inline [split $mpif90show " "] -l*]
 
 configure.dir       ${worksrcpath}/src
 configure.env-append \
@@ -115,7 +103,7 @@ configure.env-append \
                     MPI_INCLUDE=${MPI_INCLUDE} \
                     MPI_LIB=${MPI_LIB} \
                     LIBMPI=${LIBMPI}
-                    
+
 platform darwin {
   if {${os.major} < 23} {
     configure.env-append \
