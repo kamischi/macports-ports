@@ -156,7 +156,10 @@ variant openmp description {Enable OpenMP parallelism} {
 test.run            yes
 # note: a few QA tests
 test {
-    system -W ${worksrcpath}/QA "MPIRUN_PATH=${prefix}/bin/mpirun-[mpi_variant_name]-${compilers.gcc_default}  ./runtests.mpi.unix procs 2 libxc_li2freq dft_he2+ cosmo_h2o_dft h2o_opt ritddft_h2o h2o-response"
+    system -W ${worksrcpath}/QA \
+        "MPIRUN_PATH=${prefix}/bin/mpirun-[mpi_variant_name]-${compilers.gcc_default}  \
+        ./runtests.mpi.unix procs 2 \
+        libxc_li2freq dft_he2+ cosmo_h2o_dft h2o_opt ritddft_h2o h2o-response"
 }
 
 destroot.dir        ${configure.dir}
