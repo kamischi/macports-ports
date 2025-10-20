@@ -41,7 +41,7 @@ homepage            https://nwchemgit.github.io
 compiler.blacklist  clang
 compilers.choose    fc cc
 compiler.c_standard 2011
-mpi.setup           require require_fortran -g95 -clang
+mpi.setup           require require_fortran -mpich -g95 -clang
 compiler.require_fortran \
                     yes
 compilers.allow_arguments_mismatch \
@@ -64,21 +64,17 @@ depends_lib-append  port:hwloc \
                     port:python313 \
                     path:lib/libopenblas.dylib:OpenBLAS \
                     port:libxc6 \
-                    port:[mpi_variant_name]-${compilers.gcc_default}
+                    port:openmpi-${compilers.gcc_default}
 
 depends_lib-append  port:scalapack
 mpi.enforce_variant scalapack
 
 universal_variant   no
 
-set MPI_DIR         [mpi_variant_name]-${compilers.gcc_default}
+set MPI_DIR         openmpi-${compilers.gcc_default}
 set MPI_INCLUDE     "-I${prefix}/include/${MPI_DIR} -I${prefix}/lib/${MPI_DIR}"
 set MPI_LIB         "-L${prefix}/lib/${MPI_DIR}"
-if {[variant_isset mpich] || [variant_isset mpich_devel]} {
-    set LIBMPI      "-lmpifort -lmpi -lpmpi"
-} elseif {[variant_isset openmpi] || [variant_isset openmpi_devel]} {
-    set LIBMPI      "-lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi"
-}
+set LIBMPI          "-lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi"
 
 configure.dir       ${worksrcpath}/src
 configure.env-append \
@@ -154,11 +150,13 @@ variant openmp description {Enable OpenMP parallelism} {
     build.env-append        USE_OPENMP=1
 }
 
+default_variants    +openmpi
+
 test.run            yes
 # note: a few QA tests
 test {
     system -W ${worksrcpath}/QA \
-        "MPIRUN_PATH=${prefix}/bin/mpirun-[mpi_variant_name]-${compilers.gcc_default}  \
+        "MPIRUN_PATH=${prefix}/bin/mpirun-openmpi-${compilers.gcc_default}  \
         ./runtests.mpi.unix procs 2 \
         libxc_li2freq dft_he2+ cosmo_h2o_dft h2o_opt ritddft_h2o h2o-response"
 }
