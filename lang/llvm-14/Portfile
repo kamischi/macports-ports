@@ -2,7 +2,6 @@
 
 PortSystem                            1.0
 PortGroup select                      1.0
-PortGroup compiler_blacklist_versions 1.0
 PortGroup active_variants             1.1
 PortGroup cmake                       1.1
 PortGroup legacysupport               1.1
@@ -296,13 +295,9 @@ if { ${subport} eq "flang-${llvm_version}" } {
     }
 }
 
-if { ${subport} eq "mlir-${llvm_version}" ||
-     ${subport} eq "flang-${llvm_version}" } {
-    # temporarily restrict to newer systems until older systems can be rigorously vetted
-    platforms {darwin >= 10}
-}
-
 if { ${subport} eq "clang-${llvm_version}" || ${subport} eq "flang-${llvm_version}" } {
+
+    platforms {darwin < 25}
 
     depends_lib-append  port:libxml2 port:libomp port:llvm-${llvm_version}
     depends_run-append  port:ld64

@@ -4,7 +4,7 @@ PortSystem          1.0
 
 name                nginx-devel
 set propername      nginx
-version             1.28.0
+version             1.29.2
 revision            0
 categories          www mail
 license             BSD
@@ -27,11 +27,11 @@ master_sites        https://nginx.org/download:nginx \
 
 distfiles           ${propername}-${version}${extract.suffix}:nginx
 checksums           ${propername}-${version}${extract.suffix} \
-                    rmd160  2e8e93a96397a9f84c8df0b513f6a209616ab560 \
-                    sha256  c6b5c6b086c0df9d3ca3ff5e084c1d0ef909e6038279c71c1c3e985f576ff76a \
-                    size    1280111
+                    rmd160  106bac9e2f575140f22edc7745977dd2230d0609 \
+                    sha256  5669e3c29d49bf7f6eb577275b86efe4504cf81af885c58a1ed7d2e7b8492437 \
+                    size    1287399
 
-depends_lib         port:pcre \
+depends_lib         port:pcre2 \
                     port:zlib
 
 worksrcdir          ${propername}-${version}
@@ -71,10 +71,6 @@ configure.args-append \
                     --http-fastcgi-temp-path=${nginx_rundir}/fastcgi_temp \
                     --http-uwsgi-temp-path=${nginx_rundir}/uwsgi_temp \
                     --with-compat
-
-# pcre2 breaks the lua module (https://trac.macports.org/ticket/65150)
-configure.args-append \
-                    --without-pcre2
 
 # remove --disable-dependency-tracking
 configure.universal_args-delete   --disable-dependency-tracking
@@ -157,14 +153,14 @@ subport ${name}-geoip2 {
 
 subport ${name}-headers_more {
     set ngx_h_more_filename     headers-more-nginx-module
-    set ngx_h_more_version      0.38
+    set ngx_h_more_version      0.39
     revision                    0
     set ngx_h_more_distname     ${ngx_h_more_filename}-${ngx_h_more_version}
     distfiles-append            v${ngx_h_more_version}.tar.gz:h_more_module
     checksums-append            v${ngx_h_more_version}.tar.gz \
-                                rmd160  5f799b8825924db61e82a49d4bedc6652f45d869 \
-                                sha256  febf7271c0c3de69adbd02c1e98ee43e91a60eeb6b27abfb77b5b206fda5215a \
-                                size    29472
+                                rmd160  8019a2d0e5cad13f35e0e88775e753f677954b61 \
+                                sha256  dde68d3fa2a9fc7f52e436d2edc53c6d703dcd911283965d889102d3a877c778 \
+                                size    29616
 
     configure.args-append       --add-dynamic-module=${workpath}/${ngx_h_more_distname}
 

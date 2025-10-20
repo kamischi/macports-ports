@@ -4,11 +4,11 @@ PortSystem              1.0
 PortGroup               muniversal 1.0
 
 name                    libpng
-version                 1.6.47
+version                 1.6.50
 revision                0
-checksums               rmd160  571eca398708c705e6cbbd228b5ff73472dca778 \
-                        sha256  b213cb381fbb1175327bd708a77aab708a05adde7b471bc267bd15ac99893631 \
-                        size    1054664
+checksums               rmd160  b1f46dc95ee562df9e87722f8a51e3a574040804 \
+                        sha256  4df396518620a7aa3651443e87d1b2862e4e88cad135a8b93423e01706232307 \
+                        size    1060992
 
 set branch              [join [lrange [split ${version} .] 0 1] ""]
 categories              graphics
@@ -31,8 +31,7 @@ long_description        Libpng was written as a companion to the PNG \
                         understand. Currently, this library only supports C. \
                         Support for other languages is being considered.
 
-master_sites            sourceforge:project/${name}/${name}${branch}/${version} \
-                        ftp://ftp.simplesystems.org/pub/libpng/png/src/${name}${branch}/
+master_sites            sourceforge:project/${name}/${name}${branch}/${version}
 
 depends_lib             port:zlib
 

@@ -2,10 +2,9 @@
 
 PortSystem      1.0
 PortGroup       legacysupport 1.0
-PortGroup       compiler_blacklist_versions 1.0
 
 name            bind9
-version         9.20.8
+version         9.20.13
 revision        0
 categories      net
 maintainers     {geeklair.net:dluke @danielluke} {jmr @jmroot}
@@ -31,9 +30,9 @@ homepage        https://www.isc.org/bind/
 distname        bind-${version}
 master_sites    isc:${name}/${version}
 
-checksums       rmd160    d68d96c07f28d3608fbd55f7d0219f6f9b35a898 \
-                sha256    3004d99c476beab49a986c2d49f902e2cd7766c9ab18b261e8b353cabf3a04b5 \
-                size      5661928
+checksums       rmd160    68b53ecb6a41b161e69c309ebf12f523e86f5e48 \
+                sha256    151f9376ead317e646a5d0c9f01c060386d891118d7437a7f829bb9727c7b34c \
+                size      5762540
 
 use_xz          yes
 
@@ -91,11 +90,6 @@ configure.args  --disable-silent-rules \
                 --with-openssl=${prefix} \
                 --with-libidn2=${prefix} \
                 --enable-doh
-
-platform darwin 8 {
-    configure.args-append --with-dlopen=no \
-                          --with-gssapi=no
-}
 
 platform darwin 9 {
     configure.args-append --with-dlopen=no

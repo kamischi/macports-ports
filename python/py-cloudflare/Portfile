@@ -4,20 +4,21 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-cloudflare
-version             4.1.0
+version             4.3.1
 revision            0
 categories          python
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Python interface to the CloudFlare API.
 long_description    {*}${description}
-supported_archs     noarch
-platforms           {darwin any}
 homepage            https://github.com/cloudflare/cloudflare-python
 
-checksums           rmd160  230740f27109da8872a4a2f45b1aa5d16dd9910c \
-                    sha256  6b9fbe994856fe942adc6a4881b7beded208034dc5c53dd683751f632e47a1ac \
-                    size    1826873
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  6eff8a8b96ef6be219a713a816d01d7e30c8c296 \
+                    sha256  b1e1c6beeb8d98f63bfe0a1cba874fc4e22e000bcc490544f956c689b3b5b258 \
+                    size    1933187
 
 python.versions     39 310 311 312 313
 

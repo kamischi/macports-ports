@@ -6,11 +6,8 @@ PortGroup           lua 1.0
 PortGroup           makefile 1.0
 PortGroup           gitlab 1.0
 
-gitlab.setup        saalen highlight 4.15 v
+gitlab.setup        saalen highlight 4.17 v
 revision            0
-checksums           rmd160  671228a1eed61244301cfa24785200b29260bd55 \
-                    sha256  88dad5affd078eb2a39af8d7bd53f65bf45fbde2c1acd2bc512e906d26b1f6a7 \
-                    size    1511183
 
 categories          textproc devel
 license             GPL-3
@@ -19,6 +16,12 @@ description         converts source code to formatted text with syntax highlight
 long_description    ${description}
 
 homepage            http://andre-simon.de/doku/highlight/en/highlight.php
+
+checksums           rmd160  df51660754086dac481e225a600142ba03bc9ae3 \
+                    sha256  7d0f4685e7282c2a07d3e8bd32882a9b28df4c290120f320053bc38598c0e30b \
+                    size    1539415
+
+boost.version       1.81
 
 boost.depends_type  build
 

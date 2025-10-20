@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           java 1.0
 
 name                gradle
-version             8.14
+version             9.1.0
 revision            0
 categories          devel java groovy
 license             Apache-2
@@ -22,19 +22,22 @@ platforms           {darwin any}
 supported_archs     noarch
 distname            ${name}-${version}-bin
 master_sites        https://services.gradle.org/distributions
+conflicts           ${name}8
 
 # Update checksums for variant when updating these!
-checksums           rmd160  6062c5f9935299437472da326006890a19a7ffe9 \
-                    sha256  61ad310d3c7d3e5da131b76bbf22b5a4c0786e9d892dae8c1658d4b484de3caa \
-                    size    137391539
+checksums           rmd160  596cd757a429413abf651904a06277dfc3e50cfb \
+                    sha256  a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 \
+                    size    134528013
 
 worksrcdir          ${name}-${version}
 
 use_zip             yes
 use_configure       no
 
-java.version        1.8+
-java.fallback       openjdk8
+if {${subport} eq ${name}} {
+    java.version    17+
+    java.fallback   openjdk17
+}
 
 build {}
 
@@ -59,25 +62,45 @@ destroot {
     ln -s ${prefix}/share/java/${name}/bin/gradle ${destroot}${prefix}/bin
 }
 
-variant all description {Install supplemental documentation and source code} {
-    distname        ${name}-${version}-all
+if {${subport} eq ${name}} {
+    variant all description {Install supplemental documentation and source code} {
+        distname    ${name}-${version}-all
 
-    checksums       rmd160  34ef189019afb48c598b09c96bcc56b4678e7c3d \
-                    sha256  efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1 \
-                    size    224116304
+        checksums   rmd160  94366a03fa79c5e103726a48d96abd7b303fcb5c \
+                    sha256  b84e04fa845fecba48551f425957641074fcc00a88a84d2aae5808743b35fc85 \
+                    size    232491070
 
-    post-destroot {
-        xinstall -m 0755 -d ${destroot}${prefix}/share/doc/${name}
-        copy ${worksrcpath}/src \
-            ${worksrcpath}/docs \
-            ${destroot}${prefix}/share/doc/${name}
+        post-destroot {
+            xinstall -m 0755 -d ${destroot}${prefix}/share/doc/${name}
+            copy ${worksrcpath}/src \
+                ${worksrcpath}/docs \
+                ${destroot}${prefix}/share/doc/${name}
+        }
     }
-}
-
-notes {
-  For Bash and Zsh completion support, install port 'gradle-completion'.
 }
 
 livecheck.type  regex
 livecheck.url   ${master_sites}
 livecheck.regex ${name}-(\\d+\\.\\d+(\\.\\d+)?)-all\\.zip
+
+subport ${name}8 {
+    version         8.14.3
+
+    description-append\
+                    (version 8 for compatibility with older projects)
+
+    conflicts       ${name}
+
+    java.version    1.8+
+    java.fallback   openjdk8
+
+    checksums       rmd160  a933fdefa4f255db5b7a14f8e53ba7ae8cc311d5 \
+                    sha256  bd71102213493060956ec229d946beee57158dbd89d0e62b91bca0fa2c5f3531 \
+                    size    137393837
+
+    livecheck.type  none
+}
+
+notes {
+  For Bash and Zsh completion support, install port 'gradle-completion'.
+}

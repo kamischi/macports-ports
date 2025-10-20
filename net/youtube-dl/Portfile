@@ -37,11 +37,11 @@ if {${subport} eq ${name}} {
 }
 
 subport yt-dlp {
-    github.setup    yt-dlp ${subport} 2025.04.30
+    github.setup    yt-dlp ${subport} 2025.10.14
     revision        0
-    checksums       rmd160  40d07a0e7983b144faff493aa4c143a858760831 \
-                    sha256  feb3113fc38c1c0f987d2cfcb7366fed65fa508ff302e7bd8ac9be87c7774b31 \
-                    size    5947502
+    checksums       rmd160  5ecf2b3ebcb676e4afe6396302f79b4836a3ba86 \
+                    sha256  2772759e7f4768634b486bd8abb44bb2a1374ef8665b7fda92df9ac9232f54bf \
+                    size    6024964
     dist_subdir     ${subport}/${version}
     distname        ${subport}
 
@@ -102,22 +102,16 @@ variant ffmpeg description {Add ffmpeg dependency, used to extract audio} {
 
 default_variants    +ffmpeg
 
-variant python38 conflicts python39 python310 python311 python312 python313 description {Use Python 3.8} {}
-variant python39 conflicts python38 python310 python311 python312 python313 description {Use Python 3.9} {}
-variant python310 conflicts python38 python39 python311 python312 python313 description {Use Python 3.10} {}
-variant python311 conflicts python38 python39 python310 python312 python313 description {Use Python 3.11} {}
-variant python312 conflicts python38 python39 python310 python311 python313 description {Use Python 3.12} {}
-variant python313 conflicts python38 python39 python310 python311 python312 description {Use Python 3.13} {}
+variant python310 conflicts python311 python312 python313 description {Use Python 3.10} {}
+variant python311 conflicts python310 python312 python313 description {Use Python 3.11} {}
+variant python312 conflicts python310 python311 python313 description {Use Python 3.12} {}
+variant python313 conflicts python310 python311 python312 description {Use Python 3.13} {}
 
-if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312] && ![variant_isset python313]} {
+if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312] && ![variant_isset python313]} {
     default_variants +python313
 }
 
-if {[variant_isset python38]} {
-    python.default_version  38
-} elseif {[variant_isset python39]} {
-    python.default_version  39
-} elseif {[variant_isset python310]} {
+if {[variant_isset python310]} {
     python.default_version  310
 } elseif {[variant_isset python311]} {
     python.default_version  311

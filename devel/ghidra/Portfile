@@ -5,11 +5,11 @@ PortGroup           github 1.0
 PortGroup           java 1.0
 PortGroup           app 1.0
 
-github.setup        NationalSecurityAgency ghidra 11.3.2 Ghidra_ _build
+github.setup        NationalSecurityAgency ghidra 11.4.2 Ghidra_ _build
 github.tarball_from archive
-checksums           rmd160  cc93202dd890e734dfb7115127257a9bdad0e863 \
-                    sha256  cb456614e125fc9958bc46104d3e6d688f718a79bbb81da850a1f3719f2fc4b6 \
-                    size    69612146
+checksums           rmd160  c72a57bdb457fbf374eb107b46cf58e5cdb9c261 \
+                     sha256  ac2af20b6d20bee37e5238df2566664d824a5a3205db4dacbebdcb62b1394d00 \
+                     size    74473431
 
 categories          devel
 license             Apache

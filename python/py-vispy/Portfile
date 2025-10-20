@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        vispy vispy 0.15.0 v
-revision            0
+github.setup        vispy vispy 0.15.2 v
+revision            1
 github.tarball_from archive
 name                py-vispy
 license             BSD
@@ -19,9 +19,9 @@ homepage            https://vispy.org/index.html
 
 python.versions     39 310 311 312 313
 
-checksums           rmd160  9e847a5c258dbe94c7bbadba8d5e74a0b9b9dcc3 \
-                    sha256  7b99e90e170d786b43ea3ae761ca9a2018de19a2784da974f21e069c6ccc5beb \
-                    size    2542445
+checksums           rmd160  1859b9f45a94a068205179e4f66d09f9d9caf960 \
+                    sha256  a288afadb9b125e2fee16ae798c1938051c447a7ba179e946365dbf934d69243 \
+                    size    2543942
 
 if {${name} ne ${subport}} {
     depends_build-append \
@@ -38,6 +38,4 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-meshio \
                     port:py${python.version}-numpy \
                     port:py${python.version}-pyqt5
-
-    patchfiles      patch-pyproject.toml.diff
 }

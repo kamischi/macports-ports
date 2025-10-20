@@ -4,7 +4,7 @@ PortSystem              1.0
 PortGroup               cmake 1.1
 PortGroup               github 1.0
 
-github.setup            jupyter-xeus xeus 5.2.2
+github.setup            jupyter-xeus xeus 5.2.4
 revision                0
 categories              devel science
 license                 BSD
@@ -19,9 +19,9 @@ long_description        {*}${description} It takes the burden of implementing th
 # Unfortunately, neither of these options work
 github.tarball_from     tarball
 
-checksums               rmd160  d55679bb9e241d14de21fd2deca8e1351537e076 \
-                        sha256  82a49d2b40be689205bf00c43a7723feb304ec22f9f0c5c7fd647b80cecaacc6 \
-                        size    9048483
+checksums               rmd160  b0d96eada089af6a51fe448f64a44555aac75c7d \
+                        sha256  87adde4cb3f65d4a11c3c093a1179340f10e5db253c39cff0f6d4bd42b80c662 \
+                        size    9049273
 
 # fatal error: 'any' file not found
 compiler.cxx_standard   2017

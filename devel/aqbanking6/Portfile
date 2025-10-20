@@ -3,13 +3,13 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        aqbanking aqbanking 6.6.0
+github.setup        aqbanking aqbanking 6.6.3
 github.tarball_from archive
 name                aqbanking6
 
-checksums           rmd160  bc85d55195202f0fcdd08fb6f39f01690aec74a5 \
-                    sha256  b8c3b53163eff5a13a44c92310859e904f5dcbf1a3367a0f312aac81d7a747c4 \
-                    size    3295135
+checksums           rmd160  040d37d0ce1a4864a1053e40220b1f26a25c2ebb \
+                    sha256  32e2f50d0266048eb84f5400417d0b545c5423b31e1934cb22ad6085f26c96e9 \
+                    size    3296862
 
 categories          devel net finance
 maintainers         {dports @drkp} openmaintainer

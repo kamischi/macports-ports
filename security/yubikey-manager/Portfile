@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                yubikey-manager
-version             5.6.1
+version             5.8.0
 revision            1
 categories-prepend  security
 platforms           {darwin any}
@@ -21,13 +21,11 @@ python.rootname     yubikey_manager
 
 homepage            https://developers.yubico.com/yubikey-manager/
 
-checksums           rmd160  f2bc89e54bb36f0a121b806d5b54e8bd5cd615d8 \
-                    sha256  730da1358504de6616f1868bf48ddb788ada4b39137fb3ada435efbf39070160 \
-                    size    220053
+checksums           rmd160  d2dc8d584bddea4f97851757bb3715ecf13ba5bb \
+                    sha256  3af0da65e1fdd46763c94ee74e2da55a4b6e7771da776c197f5f4b4581738560 \
+                    size    228631
 
-patchfiles          b951fcd0c6e916a5ccf751307b8dcdf71149b38a.patch
-
-python.default_version 312
+python.default_version 313
 
 python.pep517           yes
 python.pep517_backend   poetry

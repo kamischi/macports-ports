@@ -9,13 +9,13 @@ if {(${os.platform} eq "darwin" && ${os.major} > 13) \
     || ${os.platform} ne "darwin"} {
     PortGroup       qt5 1.0
 
-    github.setup    Faster3ck converseen 0.14.0.0 v
+    github.setup    Faster3ck converseen 0.15.1.0 v
     # Change github.tarball_from to 'releases' or 'archive' next update
     github.tarball_from tarball
     revision        0
-    checksums       rmd160  d2124036c6ba27a7a50d4c3e50f47ff690c58457 \
-                    sha256  cccdf39d12dcdfc97e8b37500568c212c4f065cab699d9cd605bd0053a864cc7 \
-                    size    962326
+    checksums       rmd160  5135a7f7bbef73313ff59e772fd6e473222b5c54 \
+                    sha256  2a810db70a2f310b0d575b2ee4ec35608436a4287bf2cac69b7fa67606c7088e \
+                    size    972618
 
     qt5.depends_component \
                     qttools

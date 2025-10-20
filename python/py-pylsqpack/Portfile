@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pylsqpack
-version             0.3.20
-revision            1
+version             0.3.23
+revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         pylsqpack is a wrapper around the ls-qpack library.
@@ -13,19 +13,22 @@ long_description    {*}${description} It provides Python Decoder and Encoder obj
                     to read or write HTTP/3 headers compressed with QPACK.
 homepage            https://github.com/aiortc/pylsqpack
 
-checksums           rmd160  acf9e1e27bf798d7b6dd6094085b53fff33530c8 \
-                    sha256  e2d8128ef1f455c198ce8ead9d70f8aca92533a6ea513481f1e5eb546a2bb834 \
-                    size    676273
+checksums           rmd160  fa3f4168aedd144d58b0bc3d74786937f6b82dca \
+                    sha256  f55b126940d8b3157331f123d4428d703a698a6db65a6a7891f7ec1b90c86c56 \
+                    size    676891
 
 python.versions     39 310 311 312 313
 
 if {${name} ne ${subport}} {
-    depends_lib-append  \
+    depends_build-append \
                     port:ls-qpack
 
     # error: #pragma GCC diagnostic not allowed inside functions
     compiler.blacklist-append \
                     *gcc-4.0 *gcc-4.2
 
-    patchfiles      patch-pyproject.toml.diff
+    patchfiles      patch-pyproject.toml.diff 
+
+    configure.env-append \
+                    MP_PREFIX=${prefix}
 }

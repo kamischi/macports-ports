@@ -5,12 +5,12 @@ PortGroup clang_dependency 1.0
 PortGroup github 1.0
 PortGroup muniversal 1.0
 
-github.setup    libarchive libarchive 3.7.9 v
+github.setup    libarchive libarchive 3.8.2 v
 revision        0
 
-checksums       rmd160  e8e0569a9606f0c4442a112aef4438cb16d42b29 \
-                sha256  ed8b5732e4cd6e30fae909fb945cad8ff9cb7be5c6cdaa3944ec96e4a200c04c \
-                size    5494688
+checksums       rmd160  6b020e54d2c6b74f55d0fbd98d1e2ad0a6f59d5a \
+                sha256  db0dee91561cbd957689036a3a71281efefd131d35d1d98ebbc32720e4da58e2 \
+                size    5853628
 
 github.tarball_from releases
 

@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# Generated with JReleaser 1.18.0-SNAPSHOT at 2025-04-30T09:23:20.225786408Z
+# Generated with JReleaser 1.20.0-SNAPSHOT at 2025-08-31T16:31:37.345453357Z
 
 PortSystem       1.0
 PortGroup        github 1.0
 PortGroup        java 1.0
 
-github.setup     jreleaser jreleaser 1.18.0 v
+github.setup     jreleaser jreleaser 1.20.0 v
 revision         0
 
 categories       devel java
@@ -29,9 +29,9 @@ homepage         https://jreleaser.org
 github.tarball_from releases
 use_zip          yes
 
-checksums        rmd160 f603a4f44a4b1f6f3d181ffabf29cdd6ee10bd88 \
-                 sha256 581b6089f2fecc3eefa33da530df54cbf8e8fe57f2c2c85d8d29d1b111a84424 \
-                 size   42378301
+checksums        rmd160 da7835e16d21f774975fb464a40dc3b4520a87a8 \
+                 sha256 e64ca1ab30ddf0f66ba3380f8af3fc6aa8b335181eaf23530a08fe8370e2cd15 \
+                 size   43030875
 
 java.version     1.8+
 

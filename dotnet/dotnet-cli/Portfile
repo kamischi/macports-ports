@@ -24,7 +24,7 @@
 PortSystem          1.0
 
 name                dotnet-cli
-version             8.0.7
+version             9.0.9
 revision            0
 categories          dotnet
 license             MIT
@@ -47,20 +47,20 @@ homepage            https://dotnet.microsoft.com/
 platforms           {darwin any} {darwin >= 19}
 supported_archs     x86_64 arm64
 
-master_sites        https://dotnetcli.azureedge.net/dotnet/Runtime/${version}/
+master_sites        https://builds.dotnet.microsoft.com/dotnet/Runtime/${version}/
 
 switch ${build_arch} {
     x86_64 {
         distname            dotnet-runtime-${version}-osx-x64
-        checksums           rmd160  203e44d81ed9febb1c6f898dad897776578c8264 \
-                            sha256  dea6a6c2b964ea7305d702324081738853b25d26f9659909e467c79bf4c41f13 \
-                            size    30803633
+        checksums           rmd160  f0605a621137524a97754d424d636d9f039699db \
+                            sha256  711fd9624821c311af2443968ed6bb9480499f014cc8a492512b262dbb49b869 \
+                            size    32730737
     }
     arm64 {
         distname            dotnet-runtime-${version}-osx-arm64
-        checksums           rmd160  283c5d86a0e6afefacab3737f344aed872682eb3 \
-                            sha256  1542510e85570700f3b1ba7b338d5296b416cea3bf6928cedcc40ddbe55226a6 \
-                            size    29130595
+        checksums           rmd160  601ff544618c2ce6c1d33f74da8b818863d2ce94 \
+                            sha256  2af186b0b071430c9f29d7ff1cce666553049ee1c70209ad34782784758e3466 \
+                            size    30786190
     }
     default {
         known_fail yes

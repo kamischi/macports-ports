@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/derailed/k9s 0.50.4 v
+go.setup            github.com/derailed/k9s 0.50.16 v
 go.offline_build    no
 revision            0
 
@@ -21,13 +21,13 @@ long_description    K9s provides a curses based terminal UI to interact with \
 categories          sysutils devel
 installs_libs       no
 license             Apache-2
-maintainers         {breun.nl:nils @breun} \
+maintainers         {breun @breun} \
                     {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  22761a37f29ca7d688fa43ca59411a140773945c \
-                    sha256  4f7f6702145b0eea2f42c684ff823aa261bc80b1a3b2a33b56fb6f87d7755c73 \
-                    size    6823825
+checksums           rmd160  c954911940b51383a5cd0e5289b43ae86cbe4945 \
+                    sha256  09451bea1ba2cf1d29d68eb10b6e8ffe43425b99dd849a58d9b3e9992848139b \
+                    size    6812589
 
 build.cmd           make
 build.pre_args-append \

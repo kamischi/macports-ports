@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-panel
-version             1.6.3
+version             1.8.2
 revision            0
 categories-append   graphics devel
 license             BSD
@@ -14,15 +14,16 @@ description         A high-level app and dashboarding solution for Python.
 long_description    Panel is an open-source Python library that lets you create custom \
                     interactive web apps and dashboards by connecting user-defined \
                     widgets to plots, images, tables, or text.
+homepage            https://panel.holoviz.org
+
 supported_archs     noarch
 platforms           {darwin any}
-homepage            https://panel.holoviz.org
 
 python.versions     39 310 311 312 313
 
-checksums           rmd160  946b03216cd73abd9680d1ffaef07fee32701c02 \
-                    sha256  6ae6e9ffc9aec0a00587b2ce6f4dcb3a0f5f7aa914dac702feaa0d0451aab976 \
-                    size    30193596
+checksums           rmd160  c1c0674a716255b827d1b33ba3c5993057ad11db \
+                    sha256  30a522739b8f93512b1d2a739c26f8bd9674b70b73850ad39b942685703f6a62 \
+                    size    31999922
 
 if {${name} ne ${subport}} {
     if {${python.version} eq 39} {
@@ -40,11 +41,12 @@ if {${name} ne ${subport}} {
                     hatch
 
     depends_build-append \
-                    port:npm10 \
-                    port:py${python.version}-hatch-vcs
+                    port:npm11 \
+                    port:py${python.version}-hatch-vcs \
+                    port:py${python.version}-packaging
 
-    depends_run-append \
-                    path:bin/node:nodejs22 \
+    depends_lib-append \
+                    path:bin/node:nodejs24 \
                     port:panel_select \
                     port:py${python.version}-bleach \
                     port:py${python.version}-bokeh \
@@ -52,7 +54,6 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-markdown \
                     port:py${python.version}-markdown-it-py \
                     port:py${python.version}-mdit-py-plugins \
-                    port:py${python.version}-packaging \
                     port:py${python.version}-pandas \
                     port:py${python.version}-param \
                     port:py${python.version}-pyct \
@@ -69,21 +70,21 @@ if {${name} ne ${subport}} {
     platform darwin {
         if {${os.major} < 13} {
             depends_build-replace \
-                    port:npm10 \
+                    port:npm11 \
                     port:npm8
 
             depends_run-replace \
-                    path:bin/node:nodejs22 \
+                    path:bin/node:nodejs24 \
                     path:bin/node:nodejs14
         }
 
         if {${os.major} < 16} {
             depends_build-replace \
-                    port:npm10 \
+                    port:npm11 \
                     port:npm9
 
             depends_run-replace \
-                    path:bin/node:nodejs22 \
+                    path:bin/node:nodejs24 \
                     path:bin/node:nodejs18
         }
     }

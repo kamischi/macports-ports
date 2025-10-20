@@ -4,7 +4,7 @@ PortSystem      1.0
 PortGroup       makefile 1.0
 PortGroup       github 1.0
 
-github.setup    ColinIanKing stress-ng 0.19.00 V
+github.setup    ColinIanKing stress-ng 0.19.05 V
 github.tarball_from \
                 archive
 revision        0
@@ -12,9 +12,9 @@ categories      benchmarks sysutils
 maintainers     {i0ntempest @i0ntempest} openmaintainer
 license         GPL-2
 
-checksums       rmd160  8c19a37b2b50ff21a67c641ac8acc6411d248c84 \
-                sha256  7d0be69dcdad655145026f499863de01d317e87ff87acd48c3343d451540d172 \
-                size    7036472
+checksums       rmd160  5e299f83f8418b1f20bb7a134d8aad4ea59a7184 \
+                sha256  9712c5505602c6db8017c15a2659a3185f5a4f81ddde745e9f45f9e10a9f86c4 \
+                size    6839158
 
 description     System stress test utility 
 long_description \

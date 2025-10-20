@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/golang/tools 0.32.0 v
+go.setup            github.com/golang/tools 0.36.0 v
 go.offline_build    no
 epoch               7
 revision            0
@@ -18,11 +18,13 @@ maintainers         {ciserlohn @ci42} \
 description         Various packages and tools that support the Go programming language.
 long_description    {*}${description}
 
-checksums           rmd160  fd6eb154b8c8740dff9af3e1e95bacf43a85ddb4 \
-                    sha256  f2b22107aaea83bbcc4a34c86e4331dda035f71e72bdbc057c32ce7072a17c5b \
-                    size    7698574
+checksums           rmd160  571e63d0382ba494894771653495c2d8801a8378 \
+                    sha256  299d2320e8f6adb5b53fb1a32e613b00cd2263237c2c4f8f3a68885040b2cfb9 \
+                    size    9079404
 
-build.args          -o bin/ ./cmd/... ./cmd/auth/...
+build.cmd           \
+    sh -c \"${go.bin} build -o ./bin/ ./cmd/... && \
+        cd ./cmd/auth && ${go.bin} build -o ../../bin ./...\"
 
 destroot {
     set dp_bin ${destroot}${prefix}/bin

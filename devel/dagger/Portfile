@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        dagger dagger 0.18.5 v
+github.setup        dagger dagger 0.19.1 v
 github.tarball_from releases
 revision            0
 
@@ -24,15 +24,15 @@ homepage            https://dagger.io
 switch ${build_arch} {
     x86_64 {
         distfiles           dagger_v${version}_darwin_amd64${extract.suffix}
-        checksums           rmd160  634dcec471900f5d196af6f672ff3b00cdc26aed \
-                            sha256  7f837852e7a737b7e327c458c60957401ab4b7287a4a6ed1ba56f6f2419e8040 \
-                            size    18746924
+        checksums           rmd160  f0205e2d96e67e07ea5379dc3cdbabff475cee1d \
+                            sha256  7e6484d59f36d15530dee5920432a3ff6dbeab95658bbed98735ea918dca0030 \
+                            size    19868149
     }
     arm64 {
         distfiles           dagger_v${version}_darwin_arm64${extract.suffix}
-        checksums           rmd160  a364d9c5c078cdeeecf31483ff23c4d9d04631a6 \
-                            sha256  846d9ede28b34fae044a0e9d686ceafdb76e1ca1b2a27afb14b3ea7903cd2c19 \
-                            size    17918966
+        checksums           rmd160  0e7fb32beee6b1170a073edb4b72bb62a76b7239 \
+                            sha256  fed39c2106d0a39aae97aa5bad0de010c44f8e2a48198231e98322a22f7ec0f9 \
+                            size    18745617
     }
     default {
         known_fail  yes

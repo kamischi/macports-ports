@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pymc
-version             5.22.0
+version             5.26.1
 revision            0
 
 supported_archs     noarch
@@ -22,15 +22,13 @@ long_description    PyMC (formerly PyMC3) is a Python package for Bayesian \
 
 homepage            https://github.com/pymc-devs/pymc
 
-checksums           rmd160  4b7f1d880990f2448aa44580637c3f1aefa117fb \
-                    sha256  922aea302c18aed42785ad90e1f8529fb10fb9fbbf6c6d0df9d6f7a7cdcf2fda \
-                    size    501551
+checksums           rmd160  c537fbe150012fb1d6e0da7f63fa0c9d94ac0a1c \
+                    sha256  b49aeea21e4f50792aa7b0c537bd92abb5542950f93dc254ca86116d8a654a93 \
+                    size    488624
 
-python.versions     310 311 312
+python.versions     311 312 313
 
 if {${name} ne ${subport}} {
-    conflicts   py${python.version}-pymc3
-
     depends_build-append \
                     port:py${python.version}-versioneer
 
@@ -38,11 +36,12 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-arviz \
                     port:py${python.version}-cachetools \
                     port:py${python.version}-cloudpickle \
-                    port:py${python.version}-fastprogress \
                     port:py${python.version}-numpy \
                     port:py${python.version}-pandas \
                     port:py${python.version}-pytensor \
+                    port:py${python.version}-rich \
                     port:py${python.version}-scipy \
+                    port:py${python.version}-threadpoolctl \
                     port:py${python.version}-typing_extensions
 
     if {${python.version} < 311} {

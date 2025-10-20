@@ -5,7 +5,7 @@ PortSystem 1.0
 name                postgresql15-doc
 conflicts           postgresql96-doc postgresql10-doc postgresql11-doc \
                     postgresql12-doc postgresql13-doc postgresql14-doc
-version             15.12
+version             15.14
 revision            0
 categories          databases
 platforms           any
@@ -24,9 +24,9 @@ master_sites        postgresql:source/v${version}
 distname            postgresql-${version}
 set rname           postgresql15
 
-checksums           rmd160  f3b4728a7f40ce24c9c5c6e15e198200c0975f8d \
-                    sha256  3bc8462a38ca0857270cc88b949a3f6659f0d5c44c029c482355835b61a0f6f7 \
-                    size    23170228
+checksums           rmd160  a9aa12dab43fb7ec5ac5a6f081d4f8d21f629fbd \
+                    sha256  06dd75d305cd3870ee62b3932e661c624543eaf9ae2ba37cdec0a4f8edd051d2 \
+                    size    23229854
 
 use_bzip2           yes
 dist_subdir         ${rname}

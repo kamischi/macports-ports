@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/jesseduffield/lazygit 0.50.0 v
+go.setup            github.com/jesseduffield/lazygit 0.55.0 v
 revision            0
 
 description         A simple terminal UI for git commands, written in Go
@@ -15,9 +15,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  eda03a2df9cca83df25c5d46a29041502f0fbb98 \
-                    sha256  4fec66f33609898dbceffc02a38375f5b965b68d0eaf3f5afbe1a44481a5c72b \
-                    size    5320489
+checksums           rmd160  a1bb0bc1f633b0ede9543de24ed8ff7d22c0e699 \
+                    sha256  3751eb590950283c6443d068dab183556f1f827cc44a1709a98df68d513eca02 \
+                    size    5366970
 
 # lazygit's dependencies are already vendored in the source code
 # Allow Go modules so that we can build vendored dependencies

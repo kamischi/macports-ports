@@ -7,7 +7,7 @@ PortGroup           legacysupport 1.1
 legacysupport.newest_darwin_requires_legacy 16
 
 name                got
-version             0.110
+version             0.120
 revision            0
 distname            ${name}-portable-${version}
 categories          devel
@@ -22,10 +22,15 @@ long_description    Game of Trees is a version control system which \
                     possible to work with both Got and Git on the same \
                     repository.
 homepage            https://gameoftrees.org/
-master_sites        ${homepage}releases/portable/
-checksums           rmd160 98829f80a36fcaeb27daf63ba4a57a2a69f924a0 \
-                    sha256 3635e41205e7f85236a6e76ff785d3d8997131cf353c8cdf6f6d25c031661d29 \
-                    size 1560479
+#
+# Thomas Adam, the upstream -portable maintainer has kindly created an official
+# mirror here: https://xteddy.org/mirror/got-portable/
+# Leaving the above FreeBSD mirror comment for the time being, to make sure
+# that all is well with GitHub Actions Continuous Integration checks.
+master_sites        https://xteddy.org/mirror/got-portable/
+checksums           rmd160 0ac9deefb51d7fc3e491f6bccb4920b6b8200cca \
+                    sha256 b7a60c6761f6dc2810f676606a2b32eb7631c17a96dcc74b8d99b67b91e89f43 \
+                    size 1679016
 # error: implicit declaration of function 'stravis' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
 # https://trac.macports.org/ticket/71820
 # backport vis.c wrapper from tmux
@@ -58,4 +63,6 @@ depends_build-append \
 livecheck.type      regex
 livecheck.url       https://gameoftrees.org/
 livecheck.regex     "Game of Trees -portable (\\d+\\.\\d+)"
+use_autoreconf      yes
+    autoreconf.args     -fvi
 configure.checks.implicit_function_declaration.whitelist-append strchr

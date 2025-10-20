@@ -41,16 +41,16 @@ if {${name} eq ${subport}} {
 
 } else {
     # Devel
-    github.setup        tstack lnav 0.12.3 v
+    github.setup        tstack lnav 0.13.2 v
     github.tarball_from archive
     revision            0
 
     conflicts           lnav
 
     checksums           ${distname}${extract.suffix} \
-                        rmd160  a6ca7f065d6f323f654c4578f475413c01d07dd4 \
-                        sha256  7ba030e5da5b59cd9ea7c0d82aef3af1a6ee1969cab6e22e4bb0f37a96005c7a \
-                        size    19229649
+                        rmd160  a9bf26193c9a77df9d6353328174e53a9603a5c9 \
+                        sha256  3501b921c0acb435f85bd2ce589b4d8ba205a87ed855926e65a6ad165431b331 \
+                        size    35349126
 }
 
 depends_lib-append  path:lib/libssl.dylib:openssl \

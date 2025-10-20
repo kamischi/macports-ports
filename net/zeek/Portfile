@@ -5,7 +5,7 @@ PortGroup           cmake 1.1
 PortGroup           openssl 1.0
 
 name                zeek
-version             7.0.6
+version             8.0.3
 revision            0
 categories          net security
 maintainers         {mps @Schamschula} openmaintainer
@@ -21,9 +21,9 @@ long_description    {*}${description} Zeek is the new name for the long-establis
 homepage            https://www.zeek.org/
 master_sites        https://download.zeek.org/
 
-checksums           rmd160  ba7b52ca8eb6a10e82cca7e6af77366e07943e6f \
-                    sha256  5f165bae5a011ff7ad4b8cd703cfbea41605854a767dfd4db55c63b9160e0d35 \
-                    size    95909324
+checksums           rmd160  f9c0fcc57b96f153aa1be933e617b75b5a33e0e3 \
+                    sha256  c178a85e502835cef9584e9a5cb049b4a6abc00bd2bd3c07d4bc3466e5df6eee \
+                    size    99613493
 
 subport ${name} {
     conflicts   ${name}-devel
@@ -32,12 +32,12 @@ subport ${name} {
 subport ${name}-devel {
     conflicts   ${name}
 
-    version         7.1.1
+    version         8.0.3
     revision        0
 
-    checksums       rmd160  a8e7ecd668ab23cbccddbca808d1e2e8b4dbc368 \
-                    sha256  f7974900c44c322b8bee5f502d683b3dcc478687b5ac75b23e2f8a049457d683 \
-                    size    95875151
+    checksums       rmd160  f9c0fcc57b96f153aa1be933e617b75b5a33e0e3 \
+                    sha256  c178a85e502835cef9584e9a5cb049b4a6abc00bd2bd3c07d4bc3466e5df6eee \
+                    size    99613493
 }
 
 openssl.branch      3
@@ -58,6 +58,7 @@ depends_lib-append  port:bison \
                     port:perl5 \
                     port:python${python.version} \
                     port:readline \
+                    port:zmq \
                     port:zlib
 
 configure.args-append \
@@ -157,7 +158,7 @@ ${prefix}/logs -> ${prefix}/var/log/zeek
 livecheck.type      regex
 livecheck.url       https://zeek.org/get-zeek/
 if {${subport} eq ${name}} {
-    livecheck.regex     org/${name}-(7\.0\.\[0-9a-z.\]+)${extract.suffix}
+    livecheck.regex     org/${name}-(8\.0\.\[0-9a-z.\]+)${extract.suffix}
 } else {
     livecheck.regex     org/${name}-(\[0-9a-z.\]+)${extract.suffix}
 }

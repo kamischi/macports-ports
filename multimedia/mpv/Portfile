@@ -3,7 +3,6 @@
 PortSystem              1.0
 PortGroup               github 1.0
 PortGroup               meson 1.0
-PortGroup               compiler_blacklist_versions 1.0
 PortGroup               legacysupport 1.1
 PortGroup               active_variants 1.1
 
@@ -11,7 +10,7 @@ PortGroup               active_variants 1.1
 github.setup            mpv-player mpv 0.40.0 v
 github.tarball_from     archive
 conflicts               mpv-legacy
-revision                2
+revision                3
 categories              multimedia
 license                 GPL-2+
 maintainers             {ionic @Ionic} {i0ntempest @i0ntempest} openmaintainer
@@ -40,7 +39,8 @@ depends_lib             port:ffmpeg${ffmpeg_ver} \
                         port:zlib \
                         path:lib/pkgconfig/libass.pc:libass \
                         port:lcms2 \
-                        port:libplacebo
+                        port:libplacebo \
+                        port:libsixel
 
 universal_variant       no
 
@@ -61,9 +61,10 @@ configure.args-append   --buildtype=release \
                         -Dcocoa=enabled \
                         -Dcplugins=enabled \
                         -Dzlib=enabled \
+                        -Dshaderc=disabled \
+                        -Dsixel=enabled \
                         -Dswift-build=enabled \
                         -Dhtml-build=disabled \
-                        -Dvideotoolbox-gl=enabled \
                         -Dcuda-hwaccel=disabled \
                         -Dopensles=disabled \
                         -Degl-drm=disabled \
@@ -87,6 +88,7 @@ configure.args-append   -Dcaca=disabled \
                         -Degl-x11=disabled \
                         -Dgl=disabled \
                         -Dgl-cocoa=disabled \
+                        -Dvideotoolbox-gl=disabled \
                         -Dvulkan=disabled \
                         -Dgl-x11=disabled \
                         -Djack=disabled \
@@ -382,8 +384,8 @@ variant libarchive description {Enable transparent handling of Zip files and oth
 
 variant rubberband description {Enable support for the Rubber Band library, adding audio pitch and speed control} {
     depends_lib-append      port:rubberband
-    configure.args-replace  -Drubberband-disabled \
-                            -Drubberband-enabled
+    configure.args-replace  -Drubberband=disabled \
+                            -Drubberband=enabled
 }
 
 variant vapoursynth description {} {
@@ -429,6 +431,8 @@ variant opengl description {Enable OpenGL output support. Both the CoreVideo and
     platform darwin {
         configure.args-replace  -Dgl-cocoa=disabled \
                                 -Dgl-cocoa=enabled
+        configure.args-replace  -Dvideotoolbox-gl=disabled \
+                                -Dvideotoolbox-gl=enabled
     }
 
     configure.args-replace  -Dgl=disabled \

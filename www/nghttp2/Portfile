@@ -5,7 +5,7 @@ PortGroup           clang_dependency 1.0
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
-github.setup        nghttp2 nghttp2 1.65.0 v
+github.setup        nghttp2 nghttp2 1.67.1 v
 revision            0
 categories          www
 maintainers         {mps @Schamschula} openmaintainer
@@ -19,9 +19,9 @@ homepage            https://${name}.org
 github.tarball_from releases
 use_xz              yes
 
-checksums           rmd160  f8338363a0b5d4cd0a7bd709aba1b1c6e4a939da \
-                    sha256  f1b9df5f02e9942b31247e3d415483553bc4ac501c87aa39340b6d19c92a9331 \
-                    size    1604848
+checksums           rmd160  83dde5f65a276144a6e1742b1db53969bb24ea8b \
+                    sha256  153972aad57e7bf9d911666df7613f2390acf37ea7e1a97a0c5567e90f98e830 \
+                    size    1671408
 
 depends_build       path:bin/pkg-config:pkgconfig
 

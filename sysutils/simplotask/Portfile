@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/umputun/spot 1.16.4 v
+go.setup            github.com/umputun/spot 1.19.1 v
 name                simplotask
 revision            0
 categories          sysutils
@@ -19,9 +19,9 @@ build.pre_args-append \
                     REV=v${version}
 build.args          build
 
-checksums           rmd160  dbd34156b1c612d2207e7cd6ecee967445123589 \
-                    sha256  58ed1e940193fa35615e7053d861cab1bfcc5d8b2a96517cb06a1d4c694d2f05 \
-                    size    53122375
+checksums           rmd160  a56d834581b83c36b436beca51d0bd69bb8b8b6a \
+                    sha256  269d3d0af413121296bda1377e3eb66321b4dffca0562000fd7d1b2ae5be4b9b \
+                    size    53956755
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/.bin/spot ${destroot}${prefix}/bin

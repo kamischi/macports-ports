@@ -2,10 +2,9 @@
 
 PortSystem          1.0
 PortGroup           python 1.0
-PortGroup           compiler_blacklist_versions 1.0
 
 name                py-pikepdf
-version             9.7.0
+version             9.11.0
 revision            0
 categories-append   graphics
 license             MPL-2
@@ -13,15 +12,13 @@ maintainers         {mps @Schamschula} openmaintainer
 description         pikepdf is based on QPDF, a powerful PDF manipulation and repair \
                     library.
 long_description    {*}${description}
+homepage            https://github.com/pikepdf/pikepdf
 
 python.versions     39 310 311 312 313
 
-# stealth update to switch back to PyPi
-dist_subdir         ${name}/${version}_${revision}
-
-checksums           rmd160  aa5bda00e244d73f7706d76104d8ca1624b069a0 \
-                    sha256  ab54895a246768a2660cafe48052dbf5425c76f6f04e0f53b911df6cfd7e1c95 \
-                    size    2921981
+checksums           rmd160  648eb39b0f031ec6bb354fd101a898fa0a7bd1f5 \
+                    sha256  5ad6bffba08849c21eee273ba0b6fcd4b6a9cff81bcbca6988f87a765ba62163 \
+                    size    4546289
 
 if {${name} ne ${subport}} {
     depends_build-append \

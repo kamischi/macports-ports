@@ -1,35 +1,35 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
-PortSystem           1.0
-PortGroup            golang 1.0
+PortSystem          1.0
+PortGroup           golang 1.0
 
-go.setup             github.com/tofuutils/tenv 4.4.0 v
-go.offline_build     no
-revision             0
+go.setup            github.com/tofuutils/tenv 4.7.21 v
+go.offline_build    no
+revision            0
 
-homepage             https://tofuutils.github.io/tenv
+homepage            https://tofuutils.github.io/tenv
 
-description          OpenTofu / Terraform / Terragrunt / Atmos version manager
-long_description     \
+description         OpenTofu / Terraform / Terragrunt / Atmos version manager
+long_description    \
     Versatile version manager for OpenTofu, Terraform, Terragrunt and Atmos. A successor \
     of tofuenv and tfenv.
 
-conflicts            terraform \
-                     terragrunt
-    
-categories           sysutils
-license              Apache-2
-maintainers          {icloud.com:github.ssk @suhailskhan} \
-                     openmaintainer
- 
-checksums            rmd160  b556266d0ee9db7e40ebe5452d3b7d5f0b9d73d7 \
-                     sha256  4ec009b0da3d1645d7ebd674b7f36ac92831946e8d5fff812c352fab041c1d39 \
-                     size    808268
- 
-build.env-append     CGO_ENABLED=0
-build.args-append    -o ${worksrcpath}/build/ \
-                     -ldflags="-s -w -X main.version=${version}" \
-                     ${worksrcpath}/cmd/*
+conflicts           terraform \
+                    terragrunt
+
+categories          sysutils
+license             Apache-2
+maintainers         {icloud.com:github.ssk @suhailskhan} \
+                    openmaintainer
+
+checksums           rmd160  84e67829d1fab8c618802163e65fb94194bfef99 \
+                    sha256  e320d79495cc15f22386f7b305bb4915fbb5d349e8b6d5713ca1750266cb1275 \
+                    size    813965
+
+build.env-append    CGO_ENABLED=0
+build.args-append   -o ${worksrcpath}/build/ \
+                    -ldflags="-s -w -X main.version=${version}" \
+                    ${worksrcpath}/cmd/*
 
 post-build {
     foreach shell {zsh bash fish} {
@@ -56,11 +56,9 @@ destroot {
 
     xinstall -d ${destroot}${prefix}/share/doc/${name}
     xinstall -m 644 -W ${worksrcpath} \
-        CHANGELOG.md LICENSE \
+        README.md CHANGELOG.md LICENSE SECURITY.md TENV_AS_LIB.md \
         ${destroot}${prefix}/share/doc/${name}
 }
 
 test.run            yes
 test.cmd            ${prefix}/bin/tenv help
-
-github.livecheck.regex {([0-9.]+)}

@@ -6,7 +6,6 @@ if {${os.major} <= 17} {
     PortGroup           muniversal 1.0
 }
 PortGroup               clang_dependency 1.0
-PortGroup               compiler_blacklist_versions 1.0
 
 name                    libomp
 maintainers             {eborisch @eborisch} openmaintainer
@@ -27,7 +26,7 @@ epoch                   1
 
 if {${os.platform} eq "darwin" && ${configure.cxx_stdlib} ne "libstdc++"} {
 
-    version             20.1.1
+    version             21.1.1
     revision            0
 
     livecheck.regex {"llvmorg-([0-9.]+)".*}
@@ -35,15 +34,14 @@ if {${os.platform} eq "darwin" && ${configure.cxx_stdlib} ne "libstdc++"} {
     distname        openmp-${version}.src
     distfiles       ${distname}.tar.xz cmake-${version}.src.tar.xz
 
-    checksums \
-        openmp-20.1.1.src.tar.xz \
-        rmd160  67ccc02cad70b9f4714e0a7d200ab2ec20eaeca5 \
-        sha256  a5d2bba7bc4e7d159ce3fe8d09bdadeb59ff00af967b0a2bf5993fc1528f569e \
-        size    1093888 \
-        cmake-20.1.1.src.tar.xz \
-        rmd160  49696af4a2acec9d52919ca16a9dbeaac2150d1d \
-        sha256  b5988c9e3df3a61249fa82db54061f733756e74f73dfb299ff6314873a732d61 \
-        size    8648 
+    checksums       openmp-${version}.src.tar.xz \
+                    rmd160  f6017af171c1b247b0d421ec1dbc72acf38f8d4b \
+                    sha256  eb10379045844c2d2f1b89a15fd1beaf9cd0de524180c6648e9ea17a0661ece2 \
+                    size    1101460 \
+                    cmake-${version}.src.tar.xz \
+                    rmd160  e43184d51ef380acfd2844820a33492d6d247e31 \
+                    sha256  9c0b9064b7d0f2a3004f1d034aadf84d2af4e5dca2135ebf697b0a1eb85ef769 \
+                    size    8972
 
     if {${os.major} <= 12} {
         # kmp_alloc.c includes <atomic> but libc++ is not the default on
@@ -144,6 +142,8 @@ if {${os.major} <= 10} {
     set hnames              {omp-tools.h omp.h ompt.h ompx.h}
 }
 
+set lnames {libiomp5.dylib libomp.dylib libgomp.dylib libgomp.1.dylib}
+
 variant top_level description \
     "Install (links to) omp.h and libs into ${prefix}/(include|lib)" {}
 
@@ -164,18 +164,16 @@ post-destroot {
     }
 
     xinstall -d ${instdest}/lib/libomp
-    foreach p {libiomp5.dylib libomp.dylib libgomp.dylib} {
+    foreach p ${lnames} {
         move ${instdest}/tmp/lib/${p} ${instdest}/lib/libomp/
     }
 
     if {[variant_isset top_level]} {
         foreach h ${hnames} {
-            system -W ${instdest}/include \
-              "ln -s libomp/${h}"
+            ln -s libomp/${h} ${instdest}/include/${h}
         }
-        foreach p {libiomp5.dylib libomp.dylib libgomp.dylib} {
-            system -W ${instdest}/lib/ \
-              "ln -s libomp/${p}"
+        foreach p ${lnames} {
+            ln -s libomp/${p} ${instdest}/lib/${p}
         }
     }
 

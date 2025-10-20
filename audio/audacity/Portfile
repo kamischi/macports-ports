@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 
 name                audacity
-version             3.7.3
+version             3.7.5
 categories          audio
 license             GPL-3
 maintainers         {makr @mohd-akram} openmaintainer
@@ -27,16 +27,17 @@ subport ${name} {
 
     homepage            https://www.audacityteam.org
 
-    checksums           rmd160  dfe972bf22258cc3ccf643013fecb99d71db3955 \
-                        sha256  5dbe4f494f9fa51e47bfe6dc2c3bf62e1eaedbf087bad79cce51e461c1db3e92 \
-                        size    62087367
+    checksums           rmd160  ef1f25517df47c8e8fc16581dd4612c651bf6ab0 \
+                        sha256  b33ad9f8b53e8ddf3ee0a6ba920ce9a2fd47915e329388729900ec6c0c49567f \
+                        size    64285530
 
     distname            ${name}-sources-${version}
 
     wxWidgets.use       wxWidgets-3.2
 
     # rapidjson is header-only
-    depends_build-append    port:rapidjson
+    depends_build-append \
+                        port:rapidjson
 
     depends_lib-append  port:${wxWidgets.port} \
                         port:lame \
@@ -86,9 +87,9 @@ subport ${name}-manual {
     github.setup        audacity audacity-manual ${version} v
     github.tarball_from releases
     homepage            https://manual.audacityteam.org
-    checksums           rmd160  f27f7853100bb3cb60c38ed5b1ef87ff59164c42 \
-                        sha256  81c3f161cf025104994b79186dd5e985807b6212e0b27b40d03fe4eee3f2cf95 \
-                        size    26209190
+    checksums           rmd160  cacbe8b8e35a70859ffd1491182f5671b1fe6336 \
+                        sha256  5e1632dbd649418c25b3d52ae92c5e72395fd8276e209261c5f4981ab1168476 \
+                        size    26572320
     depends_run         port:audacity
     use_configure       no
     build               {}

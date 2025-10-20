@@ -2,7 +2,6 @@
 
 PortSystem                            1.0
 PortGroup select                      1.0
-PortGroup compiler_blacklist_versions 1.0
 PortGroup active_variants             1.1
 PortGroup cmake                       1.1
 PortGroup legacysupport               1.0
@@ -181,6 +180,8 @@ if {${subport} eq "llvm-${llvm_version}"} {
 }
 
 if {${subport} eq "clang-${llvm_version}"} {
+
+    platforms           {darwin < 25}
 
     homepage            https://clang.llvm.org/
     description         C, C++, Objective C and Objective C++ compiler

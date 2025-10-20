@@ -9,7 +9,7 @@ PortGroup           makefile 1.0
 # clock_gettime
 legacysupport.newest_darwin_requires_legacy 15
 
-github.setup        valkey-io valkey 8.1.1
+github.setup        valkey-io valkey 8.1.4
 github.tarball_from archive
 revision            0
 categories          databases
@@ -24,9 +24,9 @@ long_description    Valkey is an open source (BSD) high-performance key/value \
 
 homepage            https://valkey.io
 
-checksums           rmd160  cc76881af90034b540c843f923d5d546da537f21 \
-                    sha256  3355fbd5458d853ab201d2c046ffca9f078000587ccbe9a6c585110f146ad2c5 \
-                    size    3806719
+checksums           rmd160  d91047d795d1e3dae965958f6dcb4a9a25eda9fa \
+                    sha256  32350b017fee5e1a85f7e2d8580d581a0825ceae5cb3395075012c0970694dee \
+                    size    3816705
 
 patchfiles          patch-valkey.conf.diff
 

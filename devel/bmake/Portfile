@@ -4,11 +4,11 @@ PortSystem          1.0
 PortGroup           muniversal 1.1
 
 name                bmake
-version             20250330
+version             20250804
 revision            0
-checksums           rmd160  b566507a77e485b3cabd3d5bc41143760ceeaf07 \
-                    sha256  e012a34b0a8b4fe03ed4d0e2452580391c66a4076d7a0aa1016d2c0a096eb9b3 \
-                    size    882379
+checksums           rmd160  51579ed7fa632b9af317a7f2c284f0896ce48235 \
+                    sha256  0b49037644b253206d2e710d46e32859e62dfe2c6c8e7218ae439f2ef50de8ad \
+                    size    894313
 
 categories          devel
 maintainers         {ryandesign @ryandesign} openmaintainer

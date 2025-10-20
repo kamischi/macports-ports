@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-sip
-version             6.10.0
-revision            0
+version             6.13.1
+revision            1
 epoch               1
 
 categories-append   devel
@@ -23,28 +23,11 @@ long_description    SIP is a tool that makes it very easy to create \
 
 homepage            https://www.riverbankcomputing.com/software/sip/
 
-checksums           rmd160  98da16573df62de72533794fe0b0464aac9ef79f \
-                    sha256  fa0515697d4c98dbe04d9e898d816de1427e5b9ae5d0e152169109fd21f5d29c \
-                    size    2344536
+checksums           rmd160  bb45cb9f829905465fa0dc9102df1ea4402ceee7 \
+                    sha256  d065b74eca996f29f1f0831ad321efaecf9906759b09466edc45349df7be6cd0 \
+                    size    2349037
 
-python.versions     39 310 311 312 313
-
-foreach pver {39 310 311 312 313} {
-    subport py${pver}-sip-devel {
-        version         6.9.2.dev1+ga0d45a97
-        master_sites    https://www.riverbankcomputing.com/pypi/packages/snapshots/sip
-        epoch           0
-        revision        0
-        checksums       rmd160  6d76c0a0e7a873426724e599f98e2eff049e6320 \
-                        sha256  3c9dba536dbc6f5a5c11b64cb78c07e79c8d3b0168f8428d5ca58e40dcf8c2fd \
-                        size    422152
-        conflicts       py${pver}-sip
-    }
-
-    subport py${pver}-sip {
-        conflicts       py${pver}-sip-devel
-    }
-}
+python.versions     39 310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_build-append \
@@ -57,7 +40,11 @@ if {${name} ne ${subport}} {
 
     # 'ScopedName' object has no attribute 'replace'
     patchfiles-append \
-                patch-ScopedName-str-conversion.diff
+                patch-ScopedName-str-conversion.diff \
+
+    # AttributeError: 'ScopedName' object has no attribute 'types'
+    patchfiles-append \
+                patch-sipbuild_generator_resolver_resolver.py.diff
 
     if {${python.version} < 311} {
         depends_lib-append \

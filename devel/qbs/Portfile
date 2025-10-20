@@ -3,11 +3,10 @@
 PortSystem          1.0
 PortGroup           cmake 1.1
 PortGroup           qt6 1.0
-PortGroup           compiler_blacklist_versions 1.0
 PortGroup           legacysupport 1.1
 
 name                qbs
-version             2.6.1
+version             3.1.0
 revision            0
 
 categories          devel
@@ -21,9 +20,9 @@ homepage            https://wiki.qt.io/Qbs
 distname            qbs-src-${version}
 master_sites        https://download.qt.io/official_releases/qbs/${version}/
 
-checksums           rmd160  6c414a20f490883fde5f87d981b21f16e4c3e93e \
-                    sha256  9f7f1a1f7daaa4a39fe3604f1851d0e520b576ee7750a7f97bf9401bcb849f2d \
-                    size    5733859
+checksums           rmd160  331766b37282c6534ae35d61afecfb39b89d55ba \
+                    sha256  0fe497e72174bcd94aba4173c36f034ae7d1b3c4f38ed39e1fe4bee2e6929f75 \
+                    size    5802644
 
 qt6.depends_lib qt5compat
 

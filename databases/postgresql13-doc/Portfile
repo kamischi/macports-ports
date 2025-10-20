@@ -5,7 +5,7 @@ PortSystem 1.0
 name                postgresql13-doc
 conflicts           postgresql96-doc postgresql10-doc postgresql11-doc \
                     postgresql12-doc postgresql14-doc postgresql15-doc
-version             13.20
+version             13.22
 revision            0
 categories          databases
 platforms           any
@@ -24,9 +24,9 @@ master_sites        postgresql:source/v${version}
 distname            postgresql-${version}
 set rname           postgresql13
 
-checksums           rmd160  1c263ce84754d31cbd3e13358708730dc0311979 \
-                    sha256  8134b685724d15e60d93bea206fbe0f14c8295e84f1cc91d5a3928163e4fb288 \
-                    size    21730844
+checksums           rmd160  7d0937197117b706b669f46daa4e024c9304c294 \
+                    sha256  d36d83dc89e625502cf6fb1d0529642ba1266bd614b4e4a41cefd1dddcf09080 \
+                    size    21783034
 
 use_bzip2           yes
 dist_subdir         ${rname}

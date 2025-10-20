@@ -3,9 +3,8 @@
 PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           makefile 1.0
-PortGroup           compiler_blacklist_versions 1.0
 
-github.setup        aristocratos btop 1.4.2 v
+github.setup        aristocratos btop 1.4.5 v
 revision            0
 github.tarball_from archive
 epoch               1
@@ -13,9 +12,9 @@ categories          sysutils
 license             Apache-2
 maintainers         {samasaur.com:sam @samasaur1} openmaintainer
 
-checksums           rmd160  037aece5350dff0a0466b71b5274c88046b3141a \
-                    sha256  c7c0fb625af269d47eed926784900c8e154fdf71703f4325cffdf26357338c85 \
-                    size    1244982
+checksums           rmd160  df30ee0934ad82b43fcd88283e6e8806d5ece19c \
+                    sha256  0ffe03d3e26a3e9bbfd5375adf34934137757994f297d6b699a46edd43c3fc02 \
+                    size    1250099
 
 description         A monitor of resources
 

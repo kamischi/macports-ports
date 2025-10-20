@@ -5,7 +5,7 @@ PortGroup               github 1.0
 PortGroup               python 1.0
 PortGroup               mpi 1.0
 
-github.setup            h5py h5py 3.13.0
+github.setup            h5py h5py 3.15.1
 # Change github.tarball_from to 'releases' or 'archive' next update
 github.tarball_from     tarball
 name                    py-h5py
@@ -15,9 +15,9 @@ name                    py-h5py
 revision                0
 
 checksums \
-    rmd160  e2a523086a2efe94b19a344fa70d18ade2c5a43d \
-    sha256  f03d551e5b45b832e9f7ded2ed4cc76d03b16de69ca054e8947bcbcf561581e7 \
-    size    430963
+    rmd160  42f8bca924820ebcca9584bb5baae1ac2143eaf1 \
+    sha256  8f66d7153404039551c32783582c39441bc876d1f23df93fa34cf637e01637cc \
+    size    446046
 
 license                 BSD
 maintainers             {eborisch @eborisch} openmaintainer
@@ -36,7 +36,7 @@ long_description  \
 
 homepage                https://www.h5py.org
 
-python.versions         39 310 311 312 313
+python.versions         310 311 312 313
 
 # Only check against releases.
 github.livecheck.regex      {([0-9.]+)}
@@ -50,8 +50,6 @@ if {${name} ne ${subport}} {
 
     build.env-append        HDF5_DIR=${prefix}
     destroot.env-append     HDF5_DIR=${prefix}
-
-    patchfiles-append       patch-oldest-supported-numpy.diff
 
     post-destroot {
         xinstall -d ${destroot}${prefix}/share/doc/${subport}

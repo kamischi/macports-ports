@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           python 1.0
 
 name                py-acme
-github.setup        certbot certbot 4.0.0 v
+github.setup        certbot certbot 5.1.0 v
 github.tarball_from releases
 revision            0
 categories-append   security
@@ -20,11 +20,11 @@ distname            acme-${version}
 supported_archs     noarch
 platforms           {darwin any}
 
-python.versions     39 310 311 312 313
+checksums           rmd160  66f429b549b5fb76c7e94d21ef81163516c02aec \
+                    sha256  7b97820857d9baffed98bca50ab82bb6a636e447865d7a013a7bdd7972f03cda \
+                    size    89982
 
-checksums           rmd160  660f985035498554b798cd27c33bb6ba09dc4478 \
-                    sha256  972d6e0b160000ae833aaa9619901896336e5dc7ca82003fa6ff465bafcbdf52 \
-                    size    91684
+python.versions     310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append \

@@ -2,12 +2,12 @@
 
 PortSystem          1.0
 PortGroup           compilers 1.0
-PortGroup           compiler_blacklist_versions 1.0
 PortGroup           muniversal 1.0
 PortGroup           legacysupport 1.1
+PortGroup           openssl 1.0
 
 name                postgresql17
-version             17.4
+version             17.6
 revision            1
 
 categories          databases
@@ -28,9 +28,9 @@ homepage            https://www.postgresql.org/
 master_sites        postgresql:source/v${version}/
 distname            postgresql-${version}
 
-checksums           rmd160  693312ec10edb2c21f565e736fef0c1e0529800b \
-                    sha256  c4605b73fea11963406699f949b966e5d173a7ee0ccaef8938dec0ca8a995fe7 \
-                    size    21519810
+checksums           rmd160  297428737e78b05d4997ba6cecc6f0b6c61630b9 \
+                    sha256  e0630a3600aea27511715563259ec2111cd5f4353a4b040e0be827f94cd7a8b0 \
+                    size    21623975
 
 use_bzip2           yes
 
@@ -43,10 +43,8 @@ platform darwin powerpc {
                        patch-fix-ppc-asm.diff
 }
 
-# https://www.postgresql.org/message-id/flat/E1tziZ6-002AW9-2C%40gemulon.postgresql.org
-patchfiles-append   patch-strchrnul.diff
-
-depends_lib         port:readline path:lib/libssl.dylib:openssl port:zlib \
+openssl.branch      3
+depends_lib         port:readline port:zlib \
                     port:libxml2 port:libxslt \
                     path:lib/pkgconfig/icu-uc.pc:icu \
                     path:lib/libgssapi_krb5.dylib:kerberos5 \
@@ -66,6 +64,9 @@ if {${universal_possible} && [variant_isset universal]} {
     set zicpath     ${worksrcpath}-${build_arch}/src/timezone/zic
 } else {
     set zicpath     ${worksrcpath}/src/timezone/zic
+}
+if {${os.platform} eq "darwin" && ${os.major} < 10} {
+    depends_build-append port:flex
 }
 set libdir          ${prefix}/lib/${name}
 set mandir          ${prefix}/share/doc/${name}/man
@@ -151,9 +152,9 @@ if {!${universal_possible} || ![variant_isset universal]} {
 }
 
 variant python3 description {add support for python 3.x} {
-    depends_lib-append      port:python312
+    depends_lib-append      port:python313
     configure.args-append   --with-python
-    configure.python        ${prefix}/bin/python3.12
+    configure.python        ${prefix}/bin/python3.13
 }
 
 variant perl description {add Perl support} {
@@ -168,7 +169,7 @@ variant tcl description {add Tcl support} {
 }
 
 variant llvm description {add support for JIT compilation} {
-    set llvm_ver 19
+    set llvm_ver 20
 
     foreach clang ${compilers.clang_variants} {
         if { [variant_exists ${clang}] && [variant_isset ${clang}] } {

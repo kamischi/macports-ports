@@ -4,11 +4,10 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pycares
-version             4.6.1
+version             4.10.0
 revision            0
 
 categories-append   devel
-platforms           darwin
 license             MIT
 
 python.versions     39 310 311 312 313
@@ -22,9 +21,11 @@ long_description    pycares is a Python module which provides an interface to \
 
 homepage            https://github.com/saghul/pycares
 
-checksums           rmd160  187d81645e1e5bf531fb594a040ac2fb92ad310d \
-                    sha256  8a1d981206a16240eedc79b51af3293575715d4b0b971f4eb47e24839d5ab440 \
-                    size    822359
+checksums           rmd160  38f1dcc609046cb52c0f4082175dfed7eac08fd7 \
+                    sha256  9df70dce6e05afa5d477f48959170e569485e20dad1a089c4cf3b2d7ffbd8bf9 \
+                    size    654318
+
+compiler.c_standard 2011
 
 if {${name} ne ${subport}} {
     depends_lib-append      port:py${python.version}-cffi

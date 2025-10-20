@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           compilers 1.0
 PortGroup           github 1.0
 
-github.setup        nco nco 5.3.3
+github.setup        nco nco 5.3.5
 github.tarball_from archive
 revision            0
 maintainers         {takeshi @tenomoto} \
@@ -21,9 +21,9 @@ if {${os.major} > 12} {
     compilers.setup -clang33 -clang34
 }
 
-checksums           rmd160  13bc2edde14180e5c686ee63b5d1a025915cb64f \
-                    sha256  f9185e115e246fe884dcae0804146b56df7257f53de7ba190fea66977ccd5a64 \
-                    size    6867073
+checksums           rmd160  73ee62e56f77339b6329ca72689641db18f08f69 \
+                    sha256  f2373b68279ff48b5cacf431f6a9f459bae75dc58d76f74cbff0834938aa6224 \
+                    size    6882871
 
 homepage            http://nco.sourceforge.net/
 long_description \

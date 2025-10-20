@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-pytensor
 # confirm compatibility with py-pymc before updating the version
-version             2.30.3
+version             2.35.0
 revision            0
 
 categories-append   math
@@ -18,11 +18,11 @@ long_description    {*}${description}
 
 homepage            https://github.com/pymc-devs/pytensor
 
-checksums           rmd160  0f82fbbb2958951a742297d62e6e6fbc67684bc5 \
-                    sha256  d9f591cea045c72df520d68677bf7422c425df3a48d3e3173914e04536cd7d7f \
-                    size    3656776
+checksums           rmd160  66237a3bf85bedfb36b511819883082fdb353ece \
+                    sha256  736dc1af4ef2893b617f439aa4ec51fdfdc1bdcdbfa8af5249bbdfc06e3677d0 \
+                    size    4835879
 
-python.versions     39 310 311 312
+python.versions     311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append \

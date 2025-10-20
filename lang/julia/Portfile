@@ -4,13 +4,12 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           gpg_verify 1.0
 PortGroup           compilers 1.0
-PortGroup           compiler_blacklist_versions 1.0
 
 compilers.choose    fc f77 f90
 compilers.setup     require_fortran -g95
 compiler.blacklist-append {clang < 900}
 
-github.setup        JuliaLang julia 1.11.5 v
+github.setup        JuliaLang julia 1.12.1 v
 revision            0
 categories-append   lang math science
 maintainers         {ieee.org:s.t.smith @essandess} \
@@ -30,9 +29,9 @@ github.tarball_from releases
 distfiles           ${name}-${version}-full${extract.suffix}
 
 checksums           ${name}-${version}-full${extract.suffix} \
-                    rmd160  bbfab93125134c46d8ee586fab7f495d56062b25 \
-                    sha256  147626db6b6887bfb6612cb6cd2a48d689806649fae34dc749fddc8375c2c625 \
-                    size    353274009
+                    rmd160  bcc7a14c7c93fdacae71eeac0183dfa7492cd526 \
+                    sha256  891d16bb91c8a94d5a6355a82c17fa3c2458eb89160d428443a0b2a1b841ea52 \
+                    size    575248947
 
 extract.only        ${distfiles}
 

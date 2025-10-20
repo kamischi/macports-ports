@@ -1,14 +1,13 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem              1.0
-PortGroup               compiler_blacklist_versions 1.0
 PortGroup               legacysupport               1.1
 
 # clock_gettime
 legacysupport.newest_darwin_requires_legacy 16
 
 name                    qemu
-version                 9.2.2
+version                 10.1.1
 revision                0
 categories              emulators
 license                 GPL-2+
@@ -26,13 +25,12 @@ homepage                https://www.qemu.org
 master_sites            https://download.qemu.org/
 use_xz                  yes
 
-checksums               rmd160  79458545fadc4ec3bcf76919dd7ce55b2719329c \
-                        sha256  752eaeeb772923a73d536b231e05bcc09c9b1f51690a41ad9973d900e4ec9fbf \
-                        size    134756816
+checksums               rmd160  735652231e0485faec0ffef4f5b42ba5f0219661 \
+                        sha256  e56b93d95953a9b6a64d1985dbcedfb07dc54d92c50b7912526693536c589923 \
+                        size    142046220
 
-set py_version          313
-set py_branch           \
-    [string index ${py_version} 0].[string range ${py_version} 1 end]
+set py_branch           3.13
+set py_version          [string replace ${py_branch} 1 1]
 
 depends_build-append    port:texinfo \
                         port:libtool \
@@ -146,7 +144,8 @@ configure.args-append   --disable-cocoa \
                         --enable-vdi \
                         --enable-virtfs \
                         --enable-vvfat \
-                        --enable-fdt=system
+                        --enable-fdt=system \
+                        --disable-fuse
 
 # Use 'smbd' installed by samba port, rather than macOS; latter does not work with qemu.
 configure.args-append   --smbd=${prefix}/sbin/smbd
@@ -201,7 +200,7 @@ foreach t {i386 x86_64 alpha {arm aarch64} cris hppa m68k {microblaze microblaze
 default_variants-append +target_i386 +target_x86_64 +target_arm
 
 # https://trac.macports.org/ticket/62164#comment:10
-if {${os.platform} eq "darwin" && ${os.major} >= 18} {
+if {${os.platform} eq "darwin" && ${os.major} >= 18 && ![variant_isset gtk3] && ![variant_isset sdl2]} {
     default_variants-append +cocoa
 }
 
@@ -275,6 +274,11 @@ variant ssh description {Support remote block devices over SSH} {
 variant dbus description {Export the VM display through D-Bus} {
     configure.args-replace  --disable-dbus-display --enable-dbus-display
     configure.args-append   --enable-modules
+}
+
+variant fuse description {Support exporting block devices via FUSE} {
+    configure.args-replace  --disable-fuse --enable-fuse
+    depends_lib-append      port:macfuse
 }
 
 # Default universal variant does not work
