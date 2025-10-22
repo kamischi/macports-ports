@@ -60,8 +60,7 @@ depends_build-append \
                     port:automake \
                     port:libtool
 
-depends_lib-append  port:hwloc \
-                    port:python313 \
+depends_lib-append  port:python313 \
                     path:lib/libopenblas.dylib:OpenBLAS \
                     port:libxc6 \
                     port:openmpi-${compilers.gcc_default}
@@ -140,7 +139,8 @@ build.post_args     FC=${configure.fc} \
                     CC=${configure.cc}
 build.env           {*}${configure.env}
 
-variant native description {Enable CPU-specific optimizations} {
+variant hwloc description {Enable CPU-specific optimizations} {
+    depends_lib-append      port:hwloc
     configure.env-replace   USE_HWOPT=n USE_HWOPT=1
     build.env-replace       USE_HWOPT=n USE_HWOPT=1
 }
@@ -150,7 +150,7 @@ variant openmp description {Enable OpenMP parallelism} {
     build.env-append        USE_OPENMP=1
 }
 
-default_variants    +openmpi
+default_variants    +openmpi +openmp +hwloc
 
 test.run            yes
 # note: a few QA tests
