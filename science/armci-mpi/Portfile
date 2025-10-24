@@ -1,0 +1,49 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           mpi 1.0
+
+github.setup        pmodels armci-mpi 66743809a15ae1a095f68509ae8c662c2da76cba
+name                armci-mpi
+version             v0.4
+revision            0
+
+categories          science physics chemistry
+license             BSD
+maintainers         {@kamischi web.de:karl-michael.schindler} \
+                    {@jeffhammond acm.org:jeff_hammond} \
+                    openmaintainer
+
+description         ARMCI runtime system using MPI.
+long_description    This project provides a full, high performance, \
+                    portable implementation of the ARMCI runtime system \
+                    using MPI's remote memory access (RMA) functionality.
+
+homepage            https://github.com/pmodels/armci-mpi/wiki
+
+checksums           rmd160  cc2d64c14304f044789552e237336f936aec7530 \
+                    sha256  6dd9d8acc46f0fece3c1d0ba74e094dba983a5b239be2399f82d1b30a64de8ad \
+                    size    464235
+
+depends_build       port:pkgconfig \
+                    port:autoconf \
+                    port:automake \
+                    port:libtool
+
+mpi.setup           require
+
+use_autoreconf      yes
+
+# Install documentation
+post-destroot {
+    set docdir ${destroot}${prefix}/share/doc/${subport}
+    xinstall -d ${docdir}
+    xinstall -m 0644 -W ${worksrcpath} DEBUGGING.md \
+        PROFILING.md \
+        README.md \
+        ${docdir}
+}
+
+test.run            yes
+test.target         check
