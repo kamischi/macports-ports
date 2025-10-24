@@ -10,7 +10,7 @@ version             v0.4
 revision            0
 
 categories          science physics chemistry
-license             GPL-2
+license             BSD-3
 maintainers         {@kamischi web.de:karl-michael.schindler} \
                     {@jeffhammond acm.org:jeff_hammond} \
                     openmaintainer
