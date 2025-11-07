@@ -22,7 +22,7 @@ maintainers             nomaintainer
 
 set llvm_version        21
 set clang_exe_version   ${llvm_version}
-version                 ${llvm_version}.1.3
+version                 ${llvm_version}.1.5
 
 name                    llvm-${llvm_version}
 revision                0
@@ -31,9 +31,9 @@ subport                 clang-${llvm_version} { revision [ expr ${revision} + 0 
 subport                 lldb-${llvm_version}  { revision [ expr ${revision} + 0 ] }
 subport                 flang-${llvm_version} { revision [ expr ${revision} + 0 ] }
 
-checksums               rmd160  a1991f32f94fe0e1c23d2c9bb8d3c3e04fa388d0 \
-                        sha256  9c9db50d8046f668156d83f6b594631b4ca79a0d96e4f19bed9dc019b022e58f \
-                        size    158943752
+checksums               rmd160  13567d314d2aca40ee59c7d75ae8efa2dc0069ce \
+                        sha256  1794be4bf974e99a3fe1da4b2b9b1456c02ae9479c942f365441d8d207bd650c \
+                        size    158957032
 
 master_sites            https://github.com/llvm/llvm-project/releases/download/llvmorg-${version}
 distname                llvm-project-${version}.src

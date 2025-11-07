@@ -14,7 +14,7 @@ epoch                   1
 name                    mesa
 conflicts               gl-headers
 version                 25.2.5
-revision                0
+revision                1
 checksums               rmd160  cb05a5256e61a8a373cd9aa7a3423fb109357760 \
                         sha256  bb6243e7a6f525febfa1e6ab50827ca4d4bfdad73812377b0ca9b6c50998b03e \
                         size    43723176
@@ -84,6 +84,10 @@ compiler.cxx_standard   2017
 # #elif HAS_CLANG_FALLTHROUGH
 compiler.blacklist-append  {clang < 800}
 
+configure.args          -Degl=disabled \
+                        -Dgles1=disabled \
+                        -Dgles2=disabled
+
 set drivers             [list softpipe]
 
 platform darwin {
@@ -144,13 +148,22 @@ if {${os.platform} ne "darwin"} {
 }
 
 post-patch {
-    reinplace "s|\"libvulkan.1.dylib\"|\"${prefix}/lib/libvulkan.1.dylib\"|g" \
+    reinplace "s|\"libvulkan\\.1\\.dylib\"|\"${prefix}/lib/libvulkan.1.dylib\"|g" \
         src/gallium/drivers/zink/zink_screen.c \
         src/gfxstream/guest/vulkan-mapper/GfxStreamVulkanMapper.cpp
 }
 
 pre-configure {
     configure.args-append   -Dgallium-drivers=[join $drivers ,]
+}
+
+post-destroot {
+    # avoid conflict with ANGLE
+    move ${destroot}${prefix}/include/KHR/khrplatform.h \
+        ${destroot}${prefix}/include/KHR/khrplatform_mesa.h
+    reinplace "s|khrplatform\\.h|khrplatform_mesa.h|" \
+        ${destroot}${prefix}/include/GL/glcorearb.h \
+        ${destroot}${prefix}/include/GL/glext.h
 }
 
 variant tests description "build tests" {

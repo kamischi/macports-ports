@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-astropy-iers-data
 python.rootname     astropy_iers_data
-version             0.2025.10.20.0.39.8
+version             0.2025.11.3.0.38.37
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -17,9 +17,9 @@ homepage            https://github.com/astropy/astropy-iers-data
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  be84e39113881a3186590aa3de0fbd1c2c71e61a \
-                    sha256  ba292db8d5cff8d7a1b16793dc23c2016d7f6c4355c8002925e454d9af2c1938 \
-                    size    1911902
+checksums           rmd160  da700bba15c1272a472e83f3d8f3eadcb1bbffb4 \
+                    sha256  e018a3efbb6a4e4ea5a5a2a73bb3575b0123f3643b415a7327ec1dbd169787dd \
+                    size    1912788
 
 python.versions     39 310 311 312 313 314
 

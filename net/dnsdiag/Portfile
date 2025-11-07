@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                dnsdiag
-version             2.8.1
+version             2.9.1
 revision            0
 license             BSD-2
 categories          net
@@ -17,22 +17,20 @@ homepage            https://dnsdiag.org
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  332cff41cf09c889610e2b3e49a9a925a38eaa10 \
-                    sha256  823739c712d4126648037b1ad583a3005dfdaff6a37495f7f2c0bfe92301c247 \
-                    size    24774
+checksums           rmd160  bf8ac389e5fa9f0e967b6c4707e33f547d6a203c \
+                    sha256  e93038a80b9402e2b87a5bc41bf46d4551bacbfee9c296ffd512dc054e5c70d0 \
+                    size    44305
 
-variant python39 conflicts python310 python311 python312 python313 description {Use Python 3.9} {}
-variant python310 conflicts python39 python311 python312 python313 description {Use Python 3.10} {}
-variant python311 conflicts python39 python310 python312 python313 description {Use Python 3.11} {}
-variant python312 conflicts python39 python310 python311 python313 description {Use Python 3.12} {}
-variant python313 conflicts python39 python310 python311 python312 description {Use Python 3.13} {}
+variant python310 conflicts python311 python312 python313 description {Use Python 3.10} {}
+variant python311 conflicts python310 python312 python313 description {Use Python 3.11} {}
+variant python312 conflicts python310 python311 python313 description {Use Python 3.12} {}
+variant python313 conflicts python310 python311 python312 description {Use Python 3.13} {}
 
-if {![variant_isset python39] && ![variant_isset python310] 
-        && ![variant_isset python311] && ![variant_isset python312]} {
+if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312]} {
     default_variants +python313
 }
 
-foreach pv {313 312 311 310 39} {
+foreach pv {313 312 311 310} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break

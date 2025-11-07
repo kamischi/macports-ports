@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                google-cloud-sdk
-version             543.0.0
+version             546.0.0
 revision            0
 categories          devel python
 license             Apache-2
@@ -21,19 +21,19 @@ supported_archs     i386 x86_64 arm64
 
 if { ${configure.build_arch} eq "i386" } {
     set arch_classifier x86
-    checksums       rmd160  4fe57cdad583386def637422dba719c6eabbe2e9 \
-                    sha256  44083eca7bce5558dca470e982f31b9ed53e485d32c69d561dcb9d4266711746 \
-                    size    55667236
+    checksums       rmd160  e51b5a98288347e98878141179abcaa89a15cb69 \
+                    sha256  deb94c6dfcf956b73e14e1c85a48d522601c4261ed95644937cf0f21566724ba \
+                    size    56034800
 } elseif { ${configure.build_arch} eq "x86_64" } {
     set arch_classifier x86_64
-    checksums       rmd160  a3986436360ca683167ad62379fab6cb28373c07 \
-                    sha256  7042b62639fef4a10d6bd8e0d509c7bad1b4e834a3a4a40d4275c80f3fd2270e \
-                    size    57202064
+    checksums       rmd160  aea14c0a3f0829e9aab30640bea61b36f8b1c014 \
+                    sha256  67894d41595b2e54a1463315186e97d6aec7c221a0cf2881c6a86f0191784b71 \
+                    size    57605677
 } elseif { ${configure.build_arch} eq "arm64" } {
     set arch_classifier arm
-    checksums       rmd160  97824b7be3ec6b921323d37b654cf3df00c0b590 \
-                    sha256  048ee98ba45a0dc504e499f313a05afedf861997bb06122cffc7f6e922db6134 \
-                    size    57136328
+    checksums       rmd160  cc68922f24049be06de4eddad9e940e8c5f604a5 \
+                    sha256  f5b48a5954cf3c9316537f022d9da39b5ea5dfedd9911bcf86a2cc131950581c \
+                    size    57535109
 } else {
     set arch_classifier invalid
 }
