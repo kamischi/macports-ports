@@ -7,7 +7,7 @@ PortGroup           mpi 1.0
 PortGroup           makefile 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
-github.setup        nwchemgit nwchem 7.3.0 v -release
+github.setup        nwchemgit nwchem 7.3.1 v -release
 revision            0
 
 # Using this tarball avoids the need for the make 64_to_32 step
@@ -15,12 +15,12 @@ github.tarball_from tarball
 # Version of included Global Arrays (GA) sources
 # Needs to be checked and updated with an update of nwchem
 set ga_version      5.9.2
-checksums           rmd160  4594c22c7147055e8bd7c2d2e55b98ced0a8b29c \
-                    sha256  e462db097bb6abb155603219adb55bacaa6ba220e5afdba9d0a91a8d9a60418d \
-                    size    236380823
+checksums           rmd160  54b73c026b76ca1002cadf53a8418b8a4b1924a6 \
+                    sha256  2dc7d715615ac9f3fc1ddc5c464f77db56bb53473a029d993c900153bae8a1ab \
+                    size    236375450
 master_sites        https://github.com/nwchemgit/${name}/releases/download/v${version}-release
-set nwc_hash        e60d3d90
-set nwc_date        2025-10-24
+set nwc_hash        23c3b41b
+set nwc_date        2025-11-06
 distname            ${name}-${version}-release.revision-${nwc_hash}-src.${nwc_date}
 worksrcdir          ${name}-${version}
 supported_archs     x86_64 arm64
