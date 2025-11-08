@@ -5,7 +5,6 @@ PortGroup           github 1.0
 PortGroup           compilers 1.0
 PortGroup           mpi 1.0
 PortGroup           makefile 1.0
-PortGroup           compiler_blacklist_versions 1.0
 
 github.setup        nwchemgit nwchem 7.3.1 v -release
 revision            0
