@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         Sub-HandlesVia 0.050003 ../../authors/id/T/TO/TOBYINK
+perl5.setup         Sub-HandlesVia 0.050006 ../../authors/id/T/TO/TOBYINK
 revision            0
 license             {Artistic-1 GPL}
 maintainers         {devans @dbevans} openmaintainer
@@ -14,9 +14,9 @@ long_description    {*}${description}
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  47a85f72e732eb41c76dbb6d32714a22bd0a1e5b \
-                    sha256  98b270f89329a15a29a520aadc2676c0ac545afb24ef40401bf26893f0ef2655 \
-                    size    177782
+checksums           rmd160  4247b3d46e52d43392d764c6f52459d1b2849a74 \
+                    sha256  76ee05fe1eec43aea7be1e6579c215415d61a0210974901d9d3ab0b820ccb0ab \
+                    size    185552
 
 if {${perl5.major} != ""} {
     depends_build-append \
