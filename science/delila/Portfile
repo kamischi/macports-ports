@@ -1,0 +1,118 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           gitlab 1.0
+
+name                delila
+
+gitlab.instance     https://gitlab.com
+gitlab.setup        KaMiSchi Delila-Bundle 1bd880b42483b60ca2d6b0e09e39d3dbaa825e55
+
+version             2026-02-10
+revision            0
+
+categories          science biology chemistry
+license             public-domain
+maintainers         {@kamischi web.de:karl-michael.schindler} openmaintainer
+description         Information Analysis of Protein and Nucleic-acid Sequences
+
+long_description    Delila programs were designed to manipulate sets of \
+                    sequence fragments. Some of the programs are used to \
+                    create sequence logos and sequence walkers while others \
+                    are tools that I find useful such as rembla and the \
+                    TheThe program.
+
+homepage            http://users.fred.net/tds/lab/delila.html
+
+checksums           sha256  3068e457ff308340e96ac0c848ab9e1ecfb545b5d2a9948dbee892e1b67715af \
+                    rmd160  f249001edb7f914c93632c93c4c29d82b7472f5e \
+                    size    1820619
+
+depends_build       port:fpc
+
+use_configure       no
+
+post-patch {
+# delete files, which should not be compiled, since they are not needed
+    file delete ${worksrcpath}/dosun.p
+    file delete ${worksrcpath}/ev.3.67.p
+    file delete ${worksrcpath}/ev.3.69.p
+    file delete ${worksrcpath}/evd-p2c.p
+    file delete ${worksrcpath}/fpcfix.p
+    file delete ${worksrcpath}/gpctime.p
+    file delete ${worksrcpath}/mkdb500000000.p
+    file delete ${worksrcpath}/timesun.p
+    file delete ${worksrcpath}/timep2c.p
+
+# delete files with compile errors, still work in progress
+    file delete ${worksrcpath}/multibest.p
+    file delete ${worksrcpath}/orf.p
+
+# insert withDate.inc where needed
+    file copy ${filespath}/withDate.inc ${worksrcpath}
+
+    set dateInsert "{\$ifdef FPC}\\n  {\$i withDate.inc}\\n{\$endif}\\n"
+
+    reinplace -E "s|^(\\(\\* end module dbpull\.type \\*\\))$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/dbpull.p
+    reinplace -E "s|^(\\(\\* module trigger.type from .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/delmod.p
+    reinplace -E "s|^(\\(\\* end module datetime\.type .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/medlinebib.p
+    reinplace -E "s|^(\\(\\* end new types made by RYAN for multiscan \\*\\))$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/multiscan.p
+    reinplace -E "s|^(\\(\\* end module datetime\.type .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/oligosetc.p
+    reinplace -E "s|^(\\(\\* end module pascru\.type \\*\\))$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/pascru.p
+    reinplace -E "s|^(      ends = \\(fiveprime,threeprime\\); .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/patlrn.p
+    reinplace -E "s|^(\\(\\* end module datetime\.type .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/rndseq.p
+    reinplace -E "s|^(\\(\\* end module hnblist\.type \\*\\))$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/rsim.p
+    reinplace -E "s|^(\\(\\* end module book\.type .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/rwbk.p
+    reinplace -E "s|^(\\(\\* end module datetime\.type .\*)$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/setdate.p
+    reinplace -E "s|^(\\(\\* end module siva\.type \\*\\))$|\\1\\n\\n${dateInsert}|" \
+        ${worksrcpath}/siva.p
+
+# other fixes of sources
+    reinplace "s|controlm=\'|controlm=char(13);|" \
+        ${worksrcpath}/mstrip.p
+    reinplace "s|\';||" \
+        ${worksrcpath}/mstrip.p
+    reinplace "s|ranword = b^.newvar|equalstring(ranword,b^.newvar)|" \
+        ${worksrcpath}/pascru.p
+    reinplace "s|controlM = 13;|controlM = char(13);|" \
+        ${worksrcpath}/rb.p
+    reinplace "s|write\(fout,\' @line=\',line:1\)|write\(fout,\' @line=\',line:1\);|" \
+        ${worksrcpath}/wtch.p
+}
+
+build {
+    file mkdir ${worksrcpath}/build
+    foreach sourcefile [glob -nocomplain ${worksrcpath}/*.p] {
+        system "fpc -Mextendedpascal -FE${worksrcpath}/build $sourcefile"
+    }
+# cleanup of *.o files
+    foreach objectfile [glob -nocomplain ${worksrcpath}/build/*.o] {
+        file delete $objectfile
+    }
+# rename known conflicting binaries
+# conflict with graphviz
+    file rename ${worksrcpath}/build/cluster \
+                ${worksrcpath}/build/delila-cluster
+# conflict with util-linux
+    file rename ${worksrcpath}/build/column \
+                ${worksrcpath}/build/delila-column
+}
+
+destroot {
+    xinstall -m 755 -d ${destroot}${prefix}/bin
+    xinstall -m 755 -d ${destroot}${prefix}/bin
+    foreach binary [glob -nocomplain ${worksrcpath}/build/*] {
+        xinstall -m 755 $binary ${destroot}${prefix}/bin
+    }
+}
