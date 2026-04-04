@@ -1,0 +1,106 @@
+--- compiler/globals-orig.pas	2019-05-04 23:45:55
++++ compiler/globals.pas	2026-04-01 12:16:03
+@@ -256,6 +256,9 @@
+        { external assembler extra option }
+        asmextraopt       : string;
+ 
++       { extension for transparent file names (-Sr<extension>, ISO mode) }
++       transparent_file_extension : string;
++
+        { things specified with parameters }
+        paralinkoptions   : TCmdStr;
+        paradynamiclinker : string;
+--- compiler/options-orig.pas	2026-04-01 12:26:58
++++ compiler/options.pas	2026-04-01 12:20:51
+@@ -2086,10 +2086,17 @@
+                        'o' : //an alternative to -Mtp
+                          SetCompileMode('TP',true);
+                        'r' :
+-                         If UnsetBool(More, j, opt, false) then
+-                           exclude(init_settings.globalswitches,cs_transparent_file_names)
+-                         else
+-                           include(init_settings.globalswitches,cs_transparent_file_names);
++					     If UnsetBool(More, j, opt, false) then
++                            begin
++                              exclude(init_settings.globalswitches,cs_transparent_file_names);
++                              transparent_file_extension:='';
++                            end
++                          else
++                            begin
++                              include(init_settings.globalswitches,cs_transparent_file_names);
++                              transparent_file_extension:=copy(More,j+1,length(More));
++                              j:=length(More);
++                            end;
+ {$ifdef gpc_mode}
+                        'p' : //an alternative to -Mgpc
+                          SetCompileMode('GPC',true);
+--- compiler/ngenutil-orig.pas	2026-04-01 12:27:32
++++ compiler/ngenutil.pas	2026-04-01 12:18:07
+@@ -545,13 +545,15 @@
+             begin
+               if cs_transparent_file_names in current_settings.globalswitches then
+                 addstatement(stat^,ccallnode.createintern('fpc_textinit_filename_iso',
++                  ccallparanode.create(
++                    cstringconstnode.createstr(transparent_file_extension),
+                   ccallparanode.create(
+                     cstringconstnode.createstr(tstaticvarsym(p).Name),
+                   ccallparanode.create(
+                     cordconstnode.create(tstaticvarsym(p).isoindex,uinttype,false),
+                   ccallparanode.create(
+                     cloadnode.create(tstaticvarsym(p),tstaticvarsym(p).Owner),
+-                  nil)))))
++                  nil))))))
+               else
+                 addstatement(stat^,ccallnode.createintern('fpc_textinit_iso',
+                   ccallparanode.create(
+--- rtl/inc/text-orig.inc	2026-04-01 12:14:34
++++ rtl/inc/text.inc	2026-04-01 12:24:06
+@@ -611,11 +611,16 @@
+ end;
+ 
+ 
+-Procedure fpc_textinit_filename_iso(var t : Text;nr : DWord;const filename : string);compilerproc;
++Procedure fpc_textinit_filename_iso(var t : Text;nr : DWord;const filename : string;const extension : shortstring);compilerproc;
+ begin
+ {$ifdef FPC_HAS_FEATURE_COMMANDARGS}
+   if paramstr(nr)='' then
+-    assign(t,filename+'.txt')
++    begin
++      if extension<>'' then
++        assign(t,filename+'.'+extension)
++      else
++        assign(t,filename)
++    end
+   else
+     assign(t,paramstr(nr));
+ {$else FPC_HAS_FEATURE_COMMANDARGS}
+@@ -627,7 +632,6 @@
+ end;
+ 
+ 
+-
+ Procedure fpc_textclose_iso(var t : Text);compilerproc;
+ begin
+   { reset inout result as this procedure is only called by the compiler and no I/O checking is carried out,
+--- rtl/inc/compproc-orig.inc	2026-04-01 12:25:35
++++ rtl/inc/compproc.inc	2026-04-01 12:21:59
+@@ -434,7 +434,7 @@
+ Function fpc_get_input:PText;compilerproc;
+ Function fpc_get_output:PText;compilerproc;
+ Procedure fpc_textinit_iso(var t : Text;nr : DWord);compilerproc;
+-Procedure fpc_textinit_filename_iso(var t : Text;nr : DWord;const filename : string);compilerproc;
++Procedure fpc_textinit_filename_iso(var t : Text;nr : DWord;const filename : string;const extension : shortstring);compilerproc;
+ Procedure fpc_textclose_iso(var t : Text);compilerproc;
+ Procedure fpc_Write_End(var f:Text); compilerproc;
+ Procedure fpc_Writeln_End(var f:Text); compilerproc;
+--- compiler/msg/errore-orig.msg	2026-04-01 12:28:13
++++ compiler/msg/errore.msg	2026-04-01 12:16:46
+@@ -4001,7 +4001,7 @@
+ **3SIcorba_CORBA compatible interface
+ **2Sm_Support macros like C (global)
+ **2So_Same as -Mtp
+-**2Sr_Transparent file names in ISO mode
++**2Sr[x]_Transparent file names in ISO mode with optional file extension [x]
+ **2Ss_Constructor name must be init (destructor must be done)
+ **2Sv_Support vector processing (use CPU vector extensions if available)
+ **2Sx_Enable exception keywords (default in Delphi/ObjFPC modes)

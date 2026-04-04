@@ -90,6 +90,15 @@ patchfiles-append   text.inc.patch
 # version 3.2.4 and up need to be checked, whether to include this patch or not.
 patchfiles-append   typefile.inc.patch
 
+# this patches the file extension for transparent filenames in ISO-mode.
+# the file extension can optionally be given with the -Sr option like
+# -Srtxt, -Srdat, ...
+# the dot before the extension is added automatically
+# the patch is based on this pull request:
+# https://gitlab.com/freepascal.org/fpc/source/-/merge_requests/1407
+# version 3.2.4 and up need to be checked, whether to include this patch or not.
+patchfiles-append   transparent-file-extension.patch
+
 if {${os.platform} eq "darwin" && ${os.major} >= 22} { # macOS 13, Ventura
 # fix obsolete linker options
     patchfiles-append   t_darwin.pas.patch
@@ -144,7 +153,7 @@ subport "chmcmd-${name}" {
 }
 
 subport "${name}-cross" {
-    revision        1
+    revision        2
 
     description     FreePascal common cross-compiler binaries
     long_description \
@@ -203,7 +212,7 @@ subport "${name}-cross" {
 }
 
 subport "${name}-cross-arm-wince" {
-    revision                3
+    revision                4
     categories-append       cross
     supported_archs         noarch
     worksrcdir              fpcbuild-${version}/fpcsrc
@@ -238,7 +247,7 @@ subport "${name}-cross-arm-wince" {
 
 foreach ostarget {nativent win32 wince} {
     subport "${name}-cross-i386-$ostarget" {
-        revision                3
+        revision                4
         categories-append       cross
         supported_archs         i386 x86_64 noarch
         worksrcdir              fpcbuild-${version}/fpcsrc
@@ -281,7 +290,7 @@ subport "${name}-cross-x86-64-win64" {
 }
 
 subport "${name}-cross-x86_64-win64" {
-    revision                3
+    revision                4
     categories-append       cross
     supported_archs         noarch
     worksrcdir              fpcbuild-${version}/fpcsrc
@@ -317,7 +326,7 @@ subport "${name}-cross-x86_64-win64" {
 # may also support: Linux6432 embedded solaris AROS Android Haiku
 foreach ostarget {linux dragonfly freebsd netbsd openbsd} {
     subport "${name}-cross-x86_64-$ostarget" {
-        revision                3
+        revision                4
         categories-append       cross
         supported_archs         i386 x86_64 noarch
         worksrcdir              fpcbuild-${version}/fpcsrc
@@ -355,7 +364,7 @@ foreach ostarget {linux dragonfly freebsd netbsd openbsd} {
 # may also support: amiga macosclassic darwin morphos embedded wii aix
 foreach ostarget {linux netbsd} {
     subport "${name}-cross-powerpc-$ostarget" {
-        revision                3
+        revision                4
         categories-append       cross
         supported_archs         noarch
         worksrcdir              fpcbuild-${version}/fpcsrc
@@ -391,7 +400,7 @@ foreach ostarget {linux netbsd} {
 }
 
 if {${subport} eq "${name}"} {
-    revision            3
+    revision            4
 
     installs_libs       yes
 
